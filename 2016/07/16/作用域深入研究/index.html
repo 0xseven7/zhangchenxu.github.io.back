@@ -1,0 +1,619 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/vendors/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/vendors/font-awesome/css/font-awesome.min.css?v=4.4.0" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="作用域," />
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.0.1" />
+
+
+
+
+
+
+<meta name="description" content="简单的编译原理学简单的学习一下编译原理：在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。如var a = 2;会被分解为”var “、”a”、”=”、”2”、“;”。
+
+解析/语法分析这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树Abstract Syn">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域深入学习">
+<meta property="og:url" content="http://yoursite.com/2016/07/16/作用域深入研究/index.html">
+<meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="简单的编译原理学简单的学习一下编译原理：在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。如var a = 2;会被分解为”var “、”a”、”=”、”2”、“;”。
+
+解析/语法分析这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树Abstract Syn">
+<meta property="og:updated_time" content="2016-09-19T07:06:28.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="作用域深入学习">
+<meta name="twitter:description" content="简单的编译原理学简单的学习一下编译原理：在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。如var a = 2;会被分解为”var “、”a”、”=”、”2”、“;”。
+
+解析/语法分析这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树Abstract Syn">
+
+
+
+<script type="text/javascript" id="hexo.configuration">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post"},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: 0,
+      author: '博主'
+    }
+  };
+</script>
+
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2016/07/16/作用域深入研究/"/>
+
+  <title> 作用域深入学习 | Hexo </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-meta ">
+  
+
+  <div class="custom-logo-site-title">
+    <a href="/"  class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <span class="site-title">Hexo</span>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+  </div>
+  <p class="site-subtitle"></p>
+</div>
+
+<div class="site-nav-toggle">
+  <button>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+    <span class="btn-bar"></span>
+  </button>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-categories">
+          <a href="/categories" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-th"></i> <br />
+            
+            分类
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                作用域深入学习
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-16T00:00:00+08:00" content="2016-07-16">
+              2016-07-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="简单的编译原理"><a href="#简单的编译原理" class="headerlink" title="简单的编译原理"></a>简单的编译原理</h3><p>学简单的学习一下编译原理：<br>在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；<br>这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。<br>如<code>var a = 2;</code>会被分解为”var “、”a”、”=”、”2”、“;”。</p>
+<ol>
+<li>解析/语法分析<br>这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树<code>Abstract Syntax tree(AST)</code>;</li>
+<li>代码生成<br>将AST转化为一组机器指令。<blockquote>
+<p><strong>引擎</strong>：从头到尾负责整个JS程序的编译和执行的过程；<br><strong>编译器</strong>：负责语法分析及代码生成；<br><strong>作用域</strong>：可以看作是一套规则，用来管理引擎如何在当前作用域以及嵌套的子作用域中根据标识符名称进行变量查找。</p>
+</blockquote>
+</li>
+</ol>
+<a id="more"></a>
+<h3 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h3><p>当一个块或者函数早另一个函数或块中的时候，就出现了作用域的嵌套；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(a + b);</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</div><div class="line">foo(<span class="number">2</span>);</div></pre></td></tr></table></figure></p>
+<p>上面就发生了作用域嵌套；<br>对b进行RHS引用的时候，无法在foo内部完成，因为b在全局作用域中。<br>遍历嵌套的作用域链很简单，引擎从当前作用域开始查找变量，如果没找到，就在上级作用于查找。当抵达最外层作用域的时候，不管有没有找到变量，查找过程都停止。</p>
+<h5 id="区分LHS和RHS"><a href="#区分LHS和RHS" class="headerlink" title="区分LHS和RHS"></a>区分LHS和RHS</h5><p>当变量出现在“=”左侧的时候，就执行LHS查找，当在右侧的时候就执行RHS查找，也就是说RHS查询就是简单的查询某个变量的值，而LHS查询则是试图查找变量的容器本身从而进行赋值<br>如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a);    RHS查找</div><div class="line">a = <span class="number">2</span>;    LHS查找</div></pre></td></tr></table></figure></p>
+<p>如过RHS查找时，无法查询到该变量，就会抛出<code>ReferenceRrror</code>的异常，也就是引用错误；<br>但是LHS在全局作用域也无法查找到变量的时候，就会热心的在全局作用域中创建该变量，并赋值；</p>
+<h3 id="函数中的作用域"><a href="#函数中的作用域" class="headerlink" title="函数中的作用域"></a>函数中的作用域</h3><p>函数作用域的含义就是，属于这个函数的全部变量都可以在整个函数范围内使用或者复用，而在作用域之外无法访问。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>,</div><div class="line">        b = <span class="number">3</span>;</div><div class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</div><div class="line">        <span class="built_in">console</span>.log (a);</div><div class="line">    &#125;</div><div class="line">    bar ();</div><div class="line">&#125;</div><div class="line">foo();   <span class="comment">// 2</span></div><div class="line">bar ();  <span class="comment">//RefrenceError bar is not defined;</span></div></pre></td></tr></table></figure></p>
+<h3 id="立即执行函数表达式（IIFE）"><a href="#立即执行函数表达式（IIFE）" class="headerlink" title="立即执行函数表达式（IIFE）"></a>立即执行函数表达式（IIFE）</h3><p>明确一下函数表达是和函数声明的区别：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> foo1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">//函数表达式</span></div><div class="line">    <span class="built_in">console</span>.log (<span class="string">"1"</span>);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span> (<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log (<span class="string">"2"</span>);   <span class="comment">//函数声明</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>函数声明和函数表达式的重要区别就是，<code>function</code>操作符的位置，如果<code>function</code>操作符之前没有任何字符，那么就是函数声明。否则就是函数表达式<br><strong>立即执行函数表达式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">    <span class="built_in">console</span>.log(a);   <span class="comment">// 2</span></div><div class="line">&#125;)();</div><div class="line">(<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="keyword">var</span> b = <span class="number">3</span>;</div><div class="line">    <span class="built_in">console</span>.log(b);</div><div class="line">&#125;())  <span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<p>如上：立即执行函数的两种表达形式，此函数的优点：不需要函数名，不需要调用就能够自动运行；而且外部作用域无法访问<code>foo</code>，因为<code>foo</code>被绑定在函数表达式自身的函数中，而不是所在的作用域中；<br>由于函数被一对( )包围，因此就成为了一个函数表达式，在末尾加上另外一对（）表示立即执行这个函数；<br>IIFE的进阶使用方法就是当作函数调用，并传递参数进去:<br><figure class="highlight"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var a = 2;</div><div class="line">(function IIFE (global) &#123;</div><div class="line">    var a = 3;</div><div class="line">    console.log(a);    // 3</div><div class="line">    console.log(global.a);    /2</div><div class="line">&#125;(window))</div></pre></td></tr></table></figure></p>
+<h3 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3><p>函数作用域是最常见的作用域单元：块作用域在JS表面上并不支持：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</div><div class="line">    <span class="built_in">console</span>.log (i);</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(i)   <span class="comment">//10</span></div></pre></td></tr></table></figure></p>
+<p>上面可以看出，本来只想在for(){ }中使用的<code>var i</code>却在外部作用域中依然能够访问，如果在外部作用域中错误调用了<code>i</code>却不会返回错误。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/作用域/" rel="tag">#作用域</a>
+          
+        </div>
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2016/06/18/caller&callee/" rel="next" title="caller 和 callee">
+                <i class="fa fa-chevron-left"></i> caller 和 callee
+              </a>
+            
+          </div>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/18/基本类型和引用类型/" rel="prev" title="基本类型和引用类型">
+                基本类型和引用类型 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel ">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="/images/avatar.gif"
+               alt="John Doe" />
+          <p class="site-author-name" itemprop="name">John Doe</p>
+          <p class="site-description motion-element" itemprop="description"></p>
+        </div>
+        <nav class="site-state motion-element">
+          <div class="site-state-item site-state-posts">
+            <a href="/archives">
+              <span class="site-state-item-count">8</span>
+              <span class="site-state-item-name">日志</span>
+            </a>
+          </div>
+
+          
+            <div class="site-state-item site-state-categories">
+              <a href="/categories">
+                <span class="site-state-item-count">3</span>
+                <span class="site-state-item-name">分类</span>
+              </a>
+            </div>
+          
+
+          
+            <div class="site-state-item site-state-tags">
+              <a href="/tags">
+                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+      </section>
+
+      
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+            
+              
+            
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#简单的编译原理"><span class="nav-number">1.</span> <span class="nav-text">简单的编译原理</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#作用域嵌套"><span class="nav-number">2.</span> <span class="nav-text">作用域嵌套</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#区分LHS和RHS"><span class="nav-number">2.0.1.</span> <span class="nav-text">区分LHS和RHS</span></a></li></ol></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#函数中的作用域"><span class="nav-number">3.</span> <span class="nav-text">函数中的作用域</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#立即执行函数表达式（IIFE）"><span class="nav-number">4.</span> <span class="nav-text">立即执行函数表达式（IIFE）</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#块作用域"><span class="nav-number">5.</span> <span class="nav-text">块作用域</span></a></li></ol></div>
+            
+          </div>
+        </section>
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2016</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">John Doe</span>
+</div>
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+        
+
+        
+      </div>
+    </footer>
+
+    <div class="back-to-top">
+      <i class="fa fa-arrow-up"></i>
+    </div>
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+  
+  <script type="text/javascript" src="/vendors/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/vendors/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/vendors/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.0.1"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.0.1"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.0.1"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.0.1"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.0.1"></script>
+
+
+
+  
+
+
+
+  
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
