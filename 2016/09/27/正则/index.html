@@ -84,25 +84,31 @@
 
 
 
-<meta name="description" content="通过源代码进行安装。
-下载源代码NodeJS官网
-安装1234//解压源码包$ tar zxvf node-&amp;lt;version&amp;gt;.tar.gz$ cd node-&amp;lt;version&amp;gt;$ ./configure
-执行./configure之后会生成两个文件config.gypi和config.mk，然后执行make命令，队这两个文件进行编译。12$ make$ sudo make">
+<meta name="description" content="正则ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
+pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：
+
+g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；
+i ：表示case-sinsenstive忽略大小写；
+m：multiline多行模式，在">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu16.04上配置NodeJS环境">
-<meta property="og:url" content="http://yoursite.com/2016/09/22/配置NodeJS环境/index.html">
+<meta property="og:title" content="正则">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/正则/index.html">
 <meta property="og:site_name" content="张晨旭的本子">
-<meta property="og:description" content="通过源代码进行安装。
-下载源代码NodeJS官网
-安装1234//解压源码包$ tar zxvf node-&amp;lt;version&amp;gt;.tar.gz$ cd node-&amp;lt;version&amp;gt;$ ./configure
-执行./configure之后会生成两个文件config.gypi和config.mk，然后执行make命令，队这两个文件进行编译。12$ make$ sudo make">
-<meta property="og:updated_time" content="2016-09-22T07:55:46.672Z">
+<meta property="og:description" content="正则ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
+pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：
+
+g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；
+i ：表示case-sinsenstive忽略大小写；
+m：multiline多行模式，在">
+<meta property="og:updated_time" content="2016-09-27T15:44:11.891Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu16.04上配置NodeJS环境">
-<meta name="twitter:description" content="通过源代码进行安装。
-下载源代码NodeJS官网
-安装1234//解压源码包$ tar zxvf node-&amp;lt;version&amp;gt;.tar.gz$ cd node-&amp;lt;version&amp;gt;$ ./configure
-执行./configure之后会生成两个文件config.gypi和config.mk，然后执行make命令，队这两个文件进行编译。12$ make$ sudo make">
+<meta name="twitter:title" content="正则">
+<meta name="twitter:description" content="正则ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
+pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：
+
+g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；
+i ：表示case-sinsenstive忽略大小写；
+m：multiline多行模式，在">
 
 
 
@@ -123,9 +129,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/22/配置NodeJS环境/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/27/正则/"/>
 
-  <title> Ubuntu16.04上配置NodeJS环境 | 张晨旭的本子 </title>
+  <title> 正则 | 张晨旭的本子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +271,7 @@
             
             
               
-                Ubuntu16.04上配置NodeJS环境
+                正则
               
             
           </h1>
@@ -277,8 +283,8 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T15:48:24+08:00" content="2016-09-22">
-              2016-09-22
+            <time itemprop="dateCreated" datetime="2016-09-27T23:41:57+08:00" content="2016-09-27">
+              2016-09-27
             </time>
           </span>
 
@@ -291,8 +297,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux入门/" itemprop="url" rel="index">
-                    <span itemprop="name">linux入门</span>
+                  <a href="/categories/javascript/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript</span>
                   </a>
                 </span>
 
@@ -307,8 +313,8 @@
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/22/配置NodeJS环境/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/配置NodeJS环境/" itemprop="commentsCount"></span>
+                <a href="/2016/09/27/正则/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/正则/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,13 +337,46 @@
       
 
       
-        <p>通过源代码进行安装。</p>
-<h4 id="下载源代码"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码</h4><p><a href="http://nodejs.cn/" target="_blank" rel="external">NodeJS官网</a></p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//解压源码包</div><div class="line">$ tar zxvf node-&lt;version&gt;.tar.gz</div><div class="line">$ <span class="built_in">cd</span> node-&lt;version&gt;</div><div class="line">$ ./configure</div></pre></td></tr></table></figure>
-<p>执行<code>./configure</code>之后会生成两个文件<code>config.gypi</code>和<code>config.mk</code>，然后执行<code>make</code>命令，队这两个文件进行编译。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make</div><div class="line">$ sudo make install</div></pre></td></tr></table></figure></p>
-<a id="more"></a>
-<p>编译的时间会很长，这时候可以泡杯咖啡放松一下。<br>最终会在<code>out/Release</code>目录下得到node文件。执行<code>sudo make install</code>会将<code>node</code>的相关头文件和二进制文件安装到<code>/usr/local</code>目录下面。<br>检查一下吧：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ node -v</div><div class="line">v6.<span class="number">2.0</span></div><div class="line">$ npm -v</div><div class="line"><span class="number">3.8</span>.<span class="number">9</span></div></pre></td></tr></table></figure></p>
-<p>好了，这就安装成功了。很简单吧。</p>
+        <h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</div></pre></td></tr></table></figure></p>
+<p><code>pattern</code>模式部分可以接收任何了简单或复杂的正则表达式。<br><code>flages</code>标明正则表达式的行为：</p>
+<ul>
+<li><code>g</code>：表示<code>global</code>模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；</li>
+<li><code>i</code> ：表示<code>case-sinsenstive</code>忽略大小写；</li>
+<li><code>m</code>：<code>multiline</code>多行模式，在前一行末尾后查找下一行；</li>
+</ul>
+<p>一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是<strong>转义字符</strong><br>元字符：( [ ( * $  ^ ? \ +  ) ] )<br>转意字符： “\”引导元字符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/at/g</span>    <span class="comment">// 匹配'at'</span></div><div class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[ab]cd /i</span>    <span class="comment">// 匹配第一个'acd'或'bcd'，不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/\[ab\]cd/i</span>    <span class="comment">//匹配第一个[ab]cd ,不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern4 = <span class="regexp">/.at/gi</span>    <span class="comment">//匹配所有以"at"结尾的</span></div></pre></td></tr></table></figure></p>
+<p><strong>创建正则实例</strong><br>创建正则实例和其他实例有两种方法：<code>new</code>操作符加<code>RegExp</code>构造函数和字面量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re1 = <span class="regexp">/at/g</span> ;</div><div class="line"><span class="keyword">var</span> re2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"at"</span> <span class="string">"g"</span>) ;</div><div class="line"><span class="keyword">var</span> re3 = <span class="regexp">/\[ab\]cd/g</span>;</div><div class="line"><span class="keyword">var</span> re4 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[ab\\]cd"</span> , <span class="string">"g"</span>)</div></pre></td></tr></table></figure></p>
+<p>在使用<code>new</code>操作符创建<code>RegExp</code>实例的时候，由于<code>RegExp</code>构造函数参数为字符串，字面量创建时用转义字符的，这里需要用双重转义字符。<br><strong><code>RegExp</code>实例的方法</strong><br>两种方法<code>exec()</code>和<code>test()</code>：</p>
+<ul>
+<li><code>exec()</code>方法，返回包含第一个匹配项的数组。没有匹配的话返回<code>null</code>。<br><code>exec()</code>包含两个属性：<ul>
+<li><code>index</code>会返回第一个匹配项在字符串中的位置；</li>
+<li><code>input</code>会返回应用正则表达式的字符串；</li>
+<li><code>test</code>模式与参数匹配的时候会返回<code>true</code>，否则为<code>false</code>;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re = <span class="regexp">/\d&#123;3&#125;.\d&#123;3&#125;.\d&#123;1&#125;.\d&#123;1&#125;/</span></div><div class="line"><span class="keyword">var</span> b = <span class="string">"192.168.1.1"</span> ;</div><div class="line"><span class="keyword">var</span> c = <span class="string">"192.168.10.11"</span> ;</div><div class="line"><span class="built_in">console</span>.log(re.test(b));   <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(re.test(c))    <span class="comment">//false</span></div></pre></td></tr></table></figure>
+<p>上述正则表达式中<code>/d3</code>表示3位数字，这种方法用来检测用户输入的格式是否有效。</p>
+<hr>
+<p>#####全面学习正则<br>JS中的正则只是介绍了通过RegExp创建正则表达式的方法，但是正则的复杂的用法没有提及，比如怎么验证邮箱的格式？<br>这里就通过学习如何验证邮箱格式来学习正。<br>首先，邮箱的格式是什么？<code>username@xxx.xxx</code>；注册网易邮箱的时候的提示：</p>
+<blockquote>
+<p>邮箱用户名名首字符为字母或者数字，中间可以是下划线<code>_</code>、数字和字母，以字母或数字结尾。</p>
+</blockquote>
+<p>上面我们看到有些元字符在表达式中只能使用转义字符，因为这些字符在正则中有特殊的含义：<br><strong>特殊字符</strong>：有特殊意义的符号</p>
+<ul>
+<li><code>()</code>标记一个子表达式的开始和结束位置。</li>
+<li><code>^</code> 在字符串的首部匹配，在<code>[]</code>使用时，表示不匹配方括号中的表达式；</li>
+<li><code>$</code>在字符末尾匹配；</li>
+<li><code>.</code>匹配除换行符 \n之外的任何单字符;</li>
+<li><code>|</code>指明两项之间的一个选择;</li>
+<li><code>?</code>匹配前面的子表达式零次或一次，(即使多次使用也只匹配最多一次)常和<code>*+</code>配合使用；</li>
+<li><code>\</code>转义符号；<br><strong>限定符</strong></li>
+<li><code>+</code> 匹配前面子表达式的次数为1次或多次，相当于{1,}</li>
+<li><code>*</code> 匹配前面子表达式的次数为0次或多次，相当于{0,}</li>
+<li><code>{}</code>标记限定符表达式的开始和结束<code>{a,b}</code>a表示最小次数，b表示最大次数(a&lt;=b);</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/^([a-zA-Z1-9])+([a-zA-Z0-9_])+([a-zA-Z0-9])+@([a-zA-Z0-9])+\.([a-z])&#123;2,3&#125;$/</span> ;    <span class="built_in">console</span>.log(pattern.test(em));</div><div class="line"><span class="keyword">if</span>(pattern.test(em))&#123;</div><div class="line">    alert(<span class="string">"邮箱格式正确"</span>);</div><div class="line">&#125;<span class="keyword">else</span> &#123;</div><div class="line">    alert(<span class="string">"邮箱格式不正确"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>首先邮箱名首字符为数字或者字母：<br><code>/^([a-zA-Z1-9])+/</code><br>这里使用了<code>^</code>表示这段模式部分是在目标字符串的首部匹配的，<code>+</code>表示表达式至少出现一次。<br>邮箱用户名中可以有<code>_</code>字母和数字，但不是必须的，所以限定符使用了<code>*</code><br><code>([a-zA-Z0-9_])*</code>;<br>用户名末尾必须为字母或数字，而且末尾位是在<code>@</code>之前的：<br><code>([a-zA-Z0-9])+@</code>;<br>服务器域名由两部分组成，其中<code>.</code>之后有两个或者三个字母；<br><code>([a-zA-Z0-9])+\.([a-z]){2,3}$/</code><br><code>.</code>这里使用了转义字符，而且使用了<code>$</code>表示从字符串末尾开始匹配；<br>这样一个基本的邮箱的正则表达式就完成了，这暂时没发现什么问题。</p>
 
       
     </div>
@@ -363,17 +402,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/21/网络基础/" rel="next" title="网络基础">
-                <i class="fa fa-chevron-left"></i> 网络基础
+              <a href="/2016/09/22/ubuntu下常用软件安装/" rel="next" title="ubuntu下常用软件安装">
+                <i class="fa fa-chevron-left"></i> ubuntu下常用软件安装
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/22/ubuntu下常用软件安装/" rel="prev" title="ubuntu下常用软件安装">
-                ubuntu下常用软件安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -399,8 +434,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/22/配置NodeJS环境/"
-           data-title="Ubuntu16.04上配置NodeJS环境" data-url="http://yoursite.com/2016/09/22/配置NodeJS环境/">
+      <div class="ds-thread" data-thread-key="2016/09/27/正则/"
+           data-title="正则" data-url="http://yoursite.com/2016/09/27/正则/">
       </div>
     
   </div>
@@ -491,7 +526,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载源代码"><span class="nav-number">1.</span> <span class="nav-text">下载源代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则"><span class="nav-number">1.</span> <span class="nav-text">正则</span></a></li></ol></div>
             
           </div>
         </section>
