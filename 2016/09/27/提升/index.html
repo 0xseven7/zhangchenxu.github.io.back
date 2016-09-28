@@ -68,7 +68,7 @@
 <link href="/css/main.css?v=5.0.1" rel="stylesheet" type="text/css" />
 
 
-  <meta name="keywords" content="arguments 去耦合," />
+  <meta name="keywords" content="作用域," />
 
 
 
@@ -84,22 +84,22 @@
 
 
 
-<meta name="description" content="caller和callee@(js重新学习)[js, caller, callee]
-ES5定义了caller和callee都可作为arguments的属性，在严格模式下都会导致错误。正常情况下，callee是一个指向拥有arguments的指针：
-定义阶乘的递归算法：1234567function factorial(num) &amp;#123;    if (num &amp;lt;= 1) &amp;#123;">
+<meta name="description" content="问题描述为什么变量声明的位置在使用的后面为什么不抛出错误？代码如下：123a = 3;var a;  console.log(a);  //3
+输出是3，而不是undefined, 按照我之前的认识，a赋值在声明的后面，此时a应该被undefined！到底是为什么呢？
+####变量提升原来javascript代码的执行并不是一行一行依次顺序执行的，会有那么几个插队的“坏蛋”，而且这种插队还是合法的">
 <meta property="og:type" content="article">
-<meta property="og:title" content="caller 和 callee">
-<meta property="og:url" content="http://yoursite.com/2016/06/18/caller&callee/index.html">
+<meta property="og:title" content="声明提升">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/提升/index.html">
 <meta property="og:site_name" content="张晨旭的本子">
-<meta property="og:description" content="caller和callee@(js重新学习)[js, caller, callee]
-ES5定义了caller和callee都可作为arguments的属性，在严格模式下都会导致错误。正常情况下，callee是一个指向拥有arguments的指针：
-定义阶乘的递归算法：1234567function factorial(num) &amp;#123;    if (num &amp;lt;= 1) &amp;#123;">
-<meta property="og:updated_time" content="2016-09-18T10:38:22.789Z">
+<meta property="og:description" content="问题描述为什么变量声明的位置在使用的后面为什么不抛出错误？代码如下：123a = 3;var a;  console.log(a);  //3
+输出是3，而不是undefined, 按照我之前的认识，a赋值在声明的后面，此时a应该被undefined！到底是为什么呢？
+####变量提升原来javascript代码的执行并不是一行一行依次顺序执行的，会有那么几个插队的“坏蛋”，而且这种插队还是合法的">
+<meta property="og:updated_time" content="2016-09-27T15:51:49.784Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="caller 和 callee">
-<meta name="twitter:description" content="caller和callee@(js重新学习)[js, caller, callee]
-ES5定义了caller和callee都可作为arguments的属性，在严格模式下都会导致错误。正常情况下，callee是一个指向拥有arguments的指针：
-定义阶乘的递归算法：1234567function factorial(num) &amp;#123;    if (num &amp;lt;= 1) &amp;#123;">
+<meta name="twitter:title" content="声明提升">
+<meta name="twitter:description" content="问题描述为什么变量声明的位置在使用的后面为什么不抛出错误？代码如下：123a = 3;var a;  console.log(a);  //3
+输出是3，而不是undefined, 按照我之前的认识，a赋值在声明的后面，此时a应该被undefined！到底是为什么呢？
+####变量提升原来javascript代码的执行并不是一行一行依次顺序执行的，会有那么几个插队的“坏蛋”，而且这种插队还是合法的">
 
 
 
@@ -120,9 +120,9 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/06/18/caller&callee/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/09/27/提升/"/>
 
-  <title> caller 和 callee | 张晨旭的本子 </title>
+  <title> 声明提升 | 张晨旭的本子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -262,7 +262,7 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
             
             
               
-                caller 和 callee
+                声明提升
               
             
           </h1>
@@ -274,8 +274,8 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-18T00:00:00+08:00" content="2016-06-18">
-              2016-06-18
+            <time itemprop="dateCreated" datetime="2016-09-27T23:41:57+08:00" content="2016-09-27">
+              2016-09-27
             </time>
           </span>
 
@@ -304,8 +304,8 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/06/18/caller&callee/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/18/caller&callee/" itemprop="commentsCount"></span>
+                <a href="/2016/09/27/提升/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/提升/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -328,12 +328,16 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
       
 
       
-        <h4 id="caller和callee"><a href="#caller和callee" class="headerlink" title="caller和callee"></a>caller和callee</h4><p>@(js重新学习)[js, caller, callee]</p>
-<p>ES5定义了<code>caller</code>和<code>callee</code>都可作为<code>arguments</code>的属性，在严格模式下都会导致错误。<br>正常情况下，<code>callee</code>是一个指向拥有<code>arguments</code>的指针：</p>
-<p>定义阶乘的递归算法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">     &#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">return</span> num * factorial(num<span class="number">-1</span>);</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>但可以使用<code>arguments.callee</code>，用以消除与函数名的紧密耦合：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factotial</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> num * argumrnts.callee(num<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>caller</code>还有另外的用法，可以作为函数的属性，用来返回调用该函数的函数的源代码;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"caller is "</span> + foo1.caller);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    foo1();</div><div class="line">&#125;</div><div class="line">foo2();</div></pre></td></tr></table></figure></p>
-<p>这里也可以使用<code>arguments.callee.caller</code>代替<code>foo1.caller</code>，用来消除耦合；</p>
+        <h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>为什么变量声明的位置在使用的后面为什么不抛出错误？代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">3</span>;</div><div class="line"><span class="keyword">var</span> a;  </div><div class="line"><span class="built_in">console</span>.log(a);  <span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<p>输出是3，而不是<code>undefined</code>, 按照我之前的认识，<code>a</code>赋值在声明的后面，此时a应该被<code>undefined</code>！到底是为什么呢？</p>
+<p>####变量提升<br>原来<code>javascript</code>代码的执行并不是一行一行依次顺序执行的，会有那么几个插队的“坏蛋”，而且这种插队还是合法的，这就是变量提升。<br>再看下面的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p>这几行代码中，也有个坏蛋<code>var a = 3</code>，那么是否会输出3呢？确实不是<code>3</code>，而是<code>undefined</code>，原因是什么呢？<br><a id="more"></a><br>之前浅显地学习了编译器的知识，在没有词法错误的语句，编译器会对其进行编译，而这个语句被编译器看作的是:<code>var a</code>和<code>a = 2</code>两个坏蛋，而提升只允许定义声明合法，而赋值声明会被留在原地排队，按顺序执行。就行=就像下面一样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> a;</div><div class="line"><span class="built_in">console</span>.log (a)  <span class="comment">//undefined</span></div><div class="line">a =<span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p>不光变量声明会提升，函数声明也会提升;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">foo1();  <span class="comment">// 4</span></div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo1</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	a = <span class="number">4</span> ;</div><div class="line">	<span class="built_in">console</span>.log(a)</div><div class="line">	<span class="keyword">var</span> a ;</div><div class="line">&#125;</div><div class="line"><span class="built_in">console</span>.log(a) <span class="comment">//undefined referenceError</span></div></pre></td></tr></table></figure></p>
+<p>可以看出，函数声明的位置在调用的后面，却没发生错误；上面代码中还说明了提升的一个重要的特点：声明提示依附于作用域，换句话说就是只是提升到当前作用域的最顶端。<br>注意：对于函数来说，表达式形式定义的函数也会发生变量提升，但是提升定义声明语句。如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">foo();  <span class="comment">//TypeError: foo is not a function</span></div><div class="line"><span class="keyword">var</span> foo = <span class="function"><span class="keyword">function</span> <span class="title">foo1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">	<span class="built_in">console</span>.log(a);</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>注意上面抛出的错误是<code>TypeError</code>而不是<code>ReferenceError</code>，那是因为每个变来那个被声明之后，都先被赋值为<code>undefined</code>，也就是说此时<code>foo</code>的类型是<code>undefine</code>而不是<code>function</code>，所以会发生类型错误；<br>现在知道了提升包括函数和变量两种情况，那么，函数和变量的提升的优先级是什么呢？<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">foo();</div><div class="line"><span class="keyword">var</span> foo ;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">1</span>)</div><div class="line">&#125;</div><div class="line">foo = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="number">2</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面代码函数执行之后输出为<code>1</code>，而不是<code>TypeError</code>，可以看出函数声明在变量声明之前。而后面的<code>var a</code>被忽略了。但是如果重复的函数声明的话，会覆盖前面的函数声明，这点需要注意，同一函数定义域中进行重复定义是非常糟糕的。</p>
+<h4 id="警告"><a href="#警告" class="headerlink" title="警告"></a>警告</h4><p>普通块内部的函数声明通常也会本提升到作用域最前面，而和块的显式代码暗示的那样：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">foo() ;  <span class="comment">//b</span></div><div class="line"><span class="keyword">var</span> a = <span class="literal">true</span>;</div><div class="line"><span class="keyword">if</span> (a) &#123;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log (<span class="string">"a"</span>);</div><div class="line">&#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>但是我试了一下，输出为<code>TypeError</code>，而不是<code>b</code>，要避免的就是在块作用域中定义函数，以规避不必要的错误。</p>
 
       
     </div>
@@ -356,7 +360,7 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
       
         <div class="post-tags">
           
-            <a href="/tags/arguments-去耦合/" rel="tag">#arguments 去耦合</a>
+            <a href="/tags/作用域/" rel="tag">#作用域</a>
           
         </div>
       
@@ -365,12 +369,16 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2016/09/27/正则/" rel="next" title="正则">
+                <i class="fa fa-chevron-left"></i> 正则
+              </a>
+            
           </div>
 
           <div class="post-nav-prev post-nav-item">
             
-              <a href="/2016/07/16/作用域深入研究/" rel="prev" title="作用域深入学习">
-                作用域深入学习 <i class="fa fa-chevron-right"></i>
+              <a href="/2016/09/27/面向对象的初步认识/" rel="prev" title="面向对象与继承">
+                面向对象与继承 <i class="fa fa-chevron-right"></i>
               </a>
             
           </div>
@@ -397,8 +405,8 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/06/18/caller&callee/"
-           data-title="caller 和 callee" data-url="http://yoursite.com/2016/06/18/caller&callee/">
+      <div class="ds-thread" data-thread-key="2016/09/27/提升/"
+           data-title="声明提升" data-url="http://yoursite.com/2016/09/27/提升/">
       </div>
     
   </div>
@@ -489,7 +497,7 @@ ES5定义了caller和callee都可作为arguments的属性，在严格模式下�
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#caller和callee"><span class="nav-number">1.</span> <span class="nav-text">caller和callee</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-5"><a class="nav-link" href="#问题描述"><span class="nav-number">1.</span> <span class="nav-text">问题描述</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#警告"><span class="nav-number"></span> <span class="nav-text">警告</span></a></div>
             
           </div>
         </section>

@@ -255,6 +255,258 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/27/面向对象的初步认识/" itemprop="url">
+                  面向对象与继承
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T23:41:57+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/面向对象的初步认识/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/面向对象的初步认识/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <blockquote>
+<p>面向对象<code>Object-Oriented OO</code>语言的特点就是存在类的概念，ES没有类的钙奶年，所以ES与基于类的语言中的对象有所不同；<br>ES对象：“<strong>无序属性的集合，其属性包含基本值，对象或者函数</strong>”</p>
+</blockquote>
+<h2 id="创建对象"><a href="#创建对象" class="headerlink" title="创建对象"></a>创建对象</h2><h3 id="工厂模式"><a href="#工厂模式" class="headerlink" title="工厂模式"></a>工厂模式</h3><p>工厂模式可以理解为把一个函数当作批量创建对象的工厂，通过对此调用函数，实现批量创建：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">createPerson</span> (<span class="params">name, age, job</span>)</span>&#123;</div><div class="line">	<span class="keyword">var</span> o = <span class="keyword">new</span> <span class="built_in">Object</span>() ;</div><div class="line">	o.name = name ;</div><div class="line">	o.age = age ;</div><div class="line">	o.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name) ;</div><div class="line">	&#125;;</div><div class="line">	<span class="keyword">return</span> o ;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person1 = createPerson (<span class="string">"zhangchenxu"</span>, <span class="number">24</span>);</div><div class="line"><span class="keyword">var</span> person2 = createPerson (<span class="string">"zhanglongzhu"</span>, <span class="number">23</span>);</div></pre></td></tr></table></figure></p>
+<p>工厂模式解决了创建多个相似对象的问题，但是无法解决对象别的问题。</p>
+<h3 id="构造函数模式"><a href="#构造函数模式" class="headerlink" title="构造函数模式"></a>构造函数模式</h3><p>ES中的构造函数可以创建特定类型的对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">Person</span> (<span class="params">name, age</span>) </span>&#123;</div><div class="line">	<span class="keyword">this</span>.name = name ;</div><div class="line">	<span class="keyword">this</span>.age = age ;</div><div class="line">	<span class="keyword">this</span>.sayName = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(<span class="keyword">this</span>.name) ;</div><div class="line">	&#125;;</div><div class="line">&#125;</div><div class="line"><span class="keyword">var</span> person1 = <span class="keyword">new</span> Person(<span class="string">"zhangchenxu"</span>, <span class="number">24</span>) ;</div><div class="line"><span class="keyword">var</span> person2 = <span class="keyword">new</span> Person(<span class="string">"zhanglongzhu"</span>, <span class="number">23</span>) ;</div><div class="line"><span class="built_in">console</span>.log(person1.constructor == Person)  <span class="comment">//true</span></div><div class="line"></div><div class="line"><span class="built_in">console</span>.log(person1 <span class="keyword">instanceof</span> Person) ; <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(person1 <span class="keyword">instanceof</span> <span class="built_in">Object</span>) ; <span class="comment">// true</span></div><div class="line"><span class="built_in">console</span>.log(person1.sayName === person2.sayName)  <span class="comment">//false</span></div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/27/面向对象的初步认识/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/27/提升/" itemprop="url">
+                  声明提升
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T23:41:57+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/提升/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/提升/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h5 id="问题描述"><a href="#问题描述" class="headerlink" title="问题描述"></a>问题描述</h5><p>为什么变量声明的位置在使用的后面为什么不抛出错误？代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">a = <span class="number">3</span>;</div><div class="line"><span class="keyword">var</span> a;  </div><div class="line"><span class="built_in">console</span>.log(a);  <span class="comment">//3</span></div></pre></td></tr></table></figure></p>
+<p>输出是3，而不是<code>undefined</code>, 按照我之前的认识，<code>a</code>赋值在声明的后面，此时a应该被<code>undefined</code>！到底是为什么呢？</p>
+<p>####变量提升<br>原来<code>javascript</code>代码的执行并不是一行一行依次顺序执行的，会有那么几个插队的“坏蛋”，而且这种插队还是合法的，这就是变量提升。<br>再看下面的代码：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="built_in">console</span>.log(a);</div><div class="line"><span class="keyword">var</span> a = <span class="number">3</span>;</div></pre></td></tr></table></figure></p>
+<p>这几行代码中，也有个坏蛋<code>var a = 3</code>，那么是否会输出3呢？确实不是<code>3</code>，而是<code>undefined</code>，原因是什么呢？<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/27/提升/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/27/正则/" itemprop="url">
                   正则
                 </a>
@@ -283,8 +535,8 @@
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
                   </a>
                 </span>
 
@@ -324,8 +576,7 @@
 
       
         
-          
-            <h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</div></pre></td></tr></table></figure></p>
+          <p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</div></pre></td></tr></table></figure></p>
 <p><code>pattern</code>模式部分可以接收任何了简单或复杂的正则表达式。<br><code>flages</code>标明正则表达式的行为：</p>
 <ul>
 <li><code>g</code>：表示<code>global</code>模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；</li>
@@ -333,40 +584,136 @@
 <li><code>m</code>：<code>multiline</code>多行模式，在前一行末尾后查找下一行；</li>
 </ul>
 <p>一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是<strong>转义字符</strong><br>元字符：( [ ( * $  ^ ? \ +  ) ] )<br>转意字符： “\”引导元字符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/at/g</span>    <span class="comment">// 匹配'at'</span></div><div class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[ab]cd /i</span>    <span class="comment">// 匹配第一个'acd'或'bcd'，不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/\[ab\]cd/i</span>    <span class="comment">//匹配第一个[ab]cd ,不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern4 = <span class="regexp">/.at/gi</span>    <span class="comment">//匹配所有以"at"结尾的</span></div></pre></td></tr></table></figure></p>
-<p><strong>创建正则实例</strong><br>创建正则实例和其他实例有两种方法：<code>new</code>操作符加<code>RegExp</code>构造函数和字面量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re1 = <span class="regexp">/at/g</span> ;</div><div class="line"><span class="keyword">var</span> re2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"at"</span> <span class="string">"g"</span>) ;</div><div class="line"><span class="keyword">var</span> re3 = <span class="regexp">/\[ab\]cd/g</span>;</div><div class="line"><span class="keyword">var</span> re4 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[ab\\]cd"</span> , <span class="string">"g"</span>)</div></pre></td></tr></table></figure></p>
-<p>在使用<code>new</code>操作符创建<code>RegExp</code>实例的时候，由于<code>RegExp</code>构造函数参数为字符串，字面量创建时用转义字符的，这里需要用双重转义字符。<br><strong><code>RegExp</code>实例的方法</strong><br>两种方法<code>exec()</code>和<code>test()</code>：</p>
-<ul>
-<li><code>exec()</code>方法，返回包含第一个匹配项的数组。没有匹配的话返回<code>null</code>。<br><code>exec()</code>包含两个属性：<ul>
-<li><code>index</code>会返回第一个匹配项在字符串中的位置；</li>
-<li><code>input</code>会返回应用正则表达式的字符串；</li>
-<li><code>test</code>模式与参数匹配的时候会返回<code>true</code>，否则为<code>false</code>;</li>
-</ul>
-</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re = <span class="regexp">/\d&#123;3&#125;.\d&#123;3&#125;.\d&#123;1&#125;.\d&#123;1&#125;/</span></div><div class="line"><span class="keyword">var</span> b = <span class="string">"192.168.1.1"</span> ;</div><div class="line"><span class="keyword">var</span> c = <span class="string">"192.168.10.11"</span> ;</div><div class="line"><span class="built_in">console</span>.log(re.test(b));   <span class="comment">//true</span></div><div class="line"><span class="built_in">console</span>.log(re.test(c))    <span class="comment">//false</span></div></pre></td></tr></table></figure>
-<p>上述正则表达式中<code>/d3</code>表示3位数字，这种方法用来检测用户输入的格式是否有效。</p>
-<hr>
-<p>#####全面学习正则<br>JS中的正则只是介绍了通过RegExp创建正则表达式的方法，但是正则的复杂的用法没有提及，比如怎么验证邮箱的格式？<br>这里就通过学习如何验证邮箱格式来学习正。<br>首先，邮箱的格式是什么？<code>username@xxx.xxx</code>；注册网易邮箱的时候的提示：</p>
-<blockquote>
-<p>邮箱用户名名首字符为字母或者数字，中间可以是下划线<code>_</code>、数字和字母，以字母或数字结尾。</p>
-</blockquote>
-<p>上面我们看到有些元字符在表达式中只能使用转义字符，因为这些字符在正则中有特殊的含义：<br><strong>特殊字符</strong>：有特殊意义的符号</p>
-<ul>
-<li><code>()</code>标记一个子表达式的开始和结束位置。</li>
-<li><code>^</code> 在字符串的首部匹配，在<code>[]</code>使用时，表示不匹配方括号中的表达式；</li>
-<li><code>$</code>在字符末尾匹配；</li>
-<li><code>.</code>匹配除换行符 \n之外的任何单字符;</li>
-<li><code>|</code>指明两项之间的一个选择;</li>
-<li><code>?</code>匹配前面的子表达式零次或一次，(即使多次使用也只匹配最多一次)常和<code>*+</code>配合使用；</li>
-<li><code>\</code>转义符号；<br><strong>限定符</strong></li>
-<li><code>+</code> 匹配前面子表达式的次数为1次或多次，相当于{1,}</li>
-<li><code>*</code> 匹配前面子表达式的次数为0次或多次，相当于{0,}</li>
-<li><code>{}</code>标记限定符表达式的开始和结束<code>{a,b}</code>a表示最小次数，b表示最大次数(a&lt;=b);</li>
-</ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern = <span class="regexp">/^([a-zA-Z1-9])+([a-zA-Z0-9_])+([a-zA-Z0-9])+@([a-zA-Z0-9])+\.([a-z])&#123;2,3&#125;$/</span> ;    <span class="built_in">console</span>.log(pattern.test(em));</div><div class="line"><span class="keyword">if</span>(pattern.test(em))&#123;</div><div class="line">    alert(<span class="string">"邮箱格式正确"</span>);</div><div class="line">&#125;<span class="keyword">else</span> &#123;</div><div class="line">    alert(<span class="string">"邮箱格式不正确"</span>)</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>首先邮箱名首字符为数字或者字母：<br><code>/^([a-zA-Z1-9])+/</code><br>这里使用了<code>^</code>表示这段模式部分是在目标字符串的首部匹配的，<code>+</code>表示表达式至少出现一次。<br>邮箱用户名中可以有<code>_</code>字母和数字，但不是必须的，所以限定符使用了<code>*</code><br><code>([a-zA-Z0-9_])*</code>;<br>用户名末尾必须为字母或数字，而且末尾位是在<code>@</code>之前的：<br><code>([a-zA-Z0-9])+@</code>;<br>服务器域名由两部分组成，其中<code>.</code>之后有两个或者三个字母；<br><code>([a-zA-Z0-9])+\.([a-z]){2,3}$/</code><br><code>.</code>这里使用了转义字符，而且使用了<code>$</code>表示从字符串末尾开始匹配；<br>这样一个基本的邮箱的正则表达式就完成了，这暂时没发现什么问题。</p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/27/正则/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/22/配置NodeJS环境/" itemprop="url">
+                  Ubuntu16.04上配置NodeJS环境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-22T15:48:24+08:00" content="2016-09-22">
+              2016-09-22
+            </time>
+          </span>
 
           
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux入门/" itemprop="url" rel="index">
+                    <span itemprop="name">linux入门</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/22/配置NodeJS环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/配置NodeJS环境/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>通过源代码进行安装。</p>
+<h4 id="下载源代码"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码</h4><p><a href="http://nodejs.cn/">NodeJS官网</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//解压源码包</div><div class="line">$ tar zxvf node-&lt;version&gt;.tar.gz</div><div class="line">$ <span class="built_in">cd</span> node-&lt;version&gt;</div><div class="line">$ ./configure</div></pre></td></tr></table></figure>
+<p>执行<code>./configure</code>之后会生成两个文件<code>config.gypi</code>和<code>config.mk</code>，然后执行<code>make</code>命令，队这两个文件进行编译。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make</div><div class="line">$ sudo make install</div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/22/配置NodeJS环境/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
         
       
     </div>
@@ -495,131 +842,6 @@
 </ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/22/ubuntu下常用软件安装/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/22/配置NodeJS环境/" itemprop="url">
-                  Ubuntu16.04上配置NodeJS环境
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T15:48:24+08:00" content="2016-09-22">
-              2016-09-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux入门/" itemprop="url" rel="index">
-                    <span itemprop="name">linux入门</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/22/配置NodeJS环境/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/配置NodeJS环境/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>通过源代码进行安装。</p>
-<h4 id="下载源代码"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码</h4><p><a href="http://nodejs.cn/">NodeJS官网</a></p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//解压源码包</div><div class="line">$ tar zxvf node-&lt;version&gt;.tar.gz</div><div class="line">$ <span class="built_in">cd</span> node-&lt;version&gt;</div><div class="line">$ ./configure</div></pre></td></tr></table></figure>
-<p>执行<code>./configure</code>之后会生成两个文件<code>config.gypi</code>和<code>config.mk</code>，然后执行<code>make</code>命令，队这两个文件进行编译。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make</div><div class="line">$ sudo make install</div></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/22/配置NodeJS环境/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1308,134 +1530,13 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/06/18/caller&callee/" itemprop="url">
-                  caller 和 callee
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-06-18T00:00:00+08:00" content="2016-06-18">
-              2016-06-18
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/06/18/caller&callee/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/06/18/caller&callee/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          
-            <h4 id="caller和callee"><a href="#caller和callee" class="headerlink" title="caller和callee"></a>caller和callee</h4><p>@(js重新学习)[js, caller, callee]</p>
-<p>ES5定义了<code>caller</code>和<code>callee</code>都可作为<code>arguments</code>的属性，在严格模式下都会导致错误。<br>正常情况下，<code>callee</code>是一个指向拥有<code>arguments</code>的指针：</p>
-<p>定义阶乘的递归算法：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factorial</span>(<span class="params">num</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">     &#125; <span class="keyword">else</span> &#123;</div><div class="line">	<span class="keyword">return</span> num * factorial(num<span class="number">-1</span>);</div><div class="line">     &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p>但可以使用<code>arguments.callee</code>，用以消除与函数名的紧密耦合：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">factotial</span> (<span class="params">num</span>) </span>&#123;</div><div class="line">    <span class="keyword">if</span> (num &lt;= <span class="number">1</span>) &#123;</div><div class="line">        <span class="keyword">return</span> <span class="number">1</span>;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">return</span> num * argumrnts.callee(num<span class="number">-1</span>);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
-<p><code>caller</code>还有另外的用法，可以作为函数的属性，用来返回调用该函数的函数的源代码;<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo1</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    <span class="built_in">console</span>.log(<span class="string">"caller is "</span> + foo1.caller);</div><div class="line">&#125;</div><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span>(<span class="params"></span>) </span>&#123;</div><div class="line">    foo1();</div><div class="line">&#125;</div><div class="line">foo2();</div></pre></td></tr></table></figure></p>
-<p>这里也可以使用<code>arguments.callee.caller</code>代替<code>foo1.caller</code>，用来消除耦合；</p>
-
-          
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
 
 
           </div>
@@ -1474,7 +1575,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -1491,7 +1592,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>

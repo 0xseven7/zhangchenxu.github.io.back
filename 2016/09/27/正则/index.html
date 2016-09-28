@@ -84,31 +84,31 @@
 
 
 
-<meta name="description" content="正则ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
+<meta name="description" content="ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
 pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：
 
 g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；
 i ：表示case-sinsenstive忽略大小写；
-m：multiline多行模式，在">
+m：multiline多行模式，在前一">
 <meta property="og:type" content="article">
 <meta property="og:title" content="正则">
 <meta property="og:url" content="http://yoursite.com/2016/09/27/正则/index.html">
 <meta property="og:site_name" content="张晨旭的本子">
-<meta property="og:description" content="正则ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
+<meta property="og:description" content="ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
 pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：
 
 g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；
 i ：表示case-sinsenstive忽略大小写；
-m：multiline多行模式，在">
-<meta property="og:updated_time" content="2016-09-27T15:44:11.891Z">
+m：multiline多行模式，在前一">
+<meta property="og:updated_time" content="2016-09-27T15:49:09.048Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="正则">
-<meta name="twitter:description" content="正则ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
+<meta name="twitter:description" content="ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ;
 pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：
 
 g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；
 i ：表示case-sinsenstive忽略大小写；
-m：multiline多行模式，在">
+m：multiline多行模式，在前一">
 
 
 
@@ -297,8 +297,8 @@ m：multiline多行模式，在">
               <span class="post-meta-item-text">分类于</span>
               
                 <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript</span>
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
                   </a>
                 </span>
 
@@ -337,7 +337,7 @@ m：multiline多行模式，在">
       
 
       
-        <h3 id="正则"><a href="#正则" class="headerlink" title="正则"></a>正则</h3><p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</div></pre></td></tr></table></figure></p>
+        <p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</div></pre></td></tr></table></figure></p>
 <p><code>pattern</code>模式部分可以接收任何了简单或复杂的正则表达式。<br><code>flages</code>标明正则表达式的行为：</p>
 <ul>
 <li><code>g</code>：表示<code>global</code>模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；</li>
@@ -345,6 +345,7 @@ m：multiline多行模式，在">
 <li><code>m</code>：<code>multiline</code>多行模式，在前一行末尾后查找下一行；</li>
 </ul>
 <p>一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是<strong>转义字符</strong><br>元字符：( [ ( * $  ^ ? \ +  ) ] )<br>转意字符： “\”引导元字符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/at/g</span>    <span class="comment">// 匹配'at'</span></div><div class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[ab]cd /i</span>    <span class="comment">// 匹配第一个'acd'或'bcd'，不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/\[ab\]cd/i</span>    <span class="comment">//匹配第一个[ab]cd ,不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern4 = <span class="regexp">/.at/gi</span>    <span class="comment">//匹配所有以"at"结尾的</span></div></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p><strong>创建正则实例</strong><br>创建正则实例和其他实例有两种方法：<code>new</code>操作符加<code>RegExp</code>构造函数和字面量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> re1 = <span class="regexp">/at/g</span> ;</div><div class="line"><span class="keyword">var</span> re2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"at"</span> <span class="string">"g"</span>) ;</div><div class="line"><span class="keyword">var</span> re3 = <span class="regexp">/\[ab\]cd/g</span>;</div><div class="line"><span class="keyword">var</span> re4 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[ab\\]cd"</span> , <span class="string">"g"</span>)</div></pre></td></tr></table></figure></p>
 <p>在使用<code>new</code>操作符创建<code>RegExp</code>实例的时候，由于<code>RegExp</code>构造函数参数为字符串，字面量创建时用转义字符的，这里需要用双重转义字符。<br><strong><code>RegExp</code>实例的方法</strong><br>两种方法<code>exec()</code>和<code>test()</code>：</p>
 <ul>
@@ -402,13 +403,17 @@ m：multiline多行模式，在">
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/22/ubuntu下常用软件安装/" rel="next" title="ubuntu下常用软件安装">
-                <i class="fa fa-chevron-left"></i> ubuntu下常用软件安装
+              <a href="/2016/09/22/配置NodeJS环境/" rel="next" title="Ubuntu16.04上配置NodeJS环境">
+                <i class="fa fa-chevron-left"></i> Ubuntu16.04上配置NodeJS环境
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2016/09/27/提升/" rel="prev" title="声明提升">
+                声明提升 <i class="fa fa-chevron-right"></i>
+              </a>
             
           </div>
         </div>
@@ -480,7 +485,7 @@ m：multiline多行模式，在">
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">9</span>
+              <span class="site-state-item-count">11</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -497,7 +502,7 @@ m：multiline多行模式，在">
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">6</span>
+                <span class="site-state-item-count">7</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
@@ -526,7 +531,7 @@ m：multiline多行模式，在">
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#正则"><span class="nav-number">1.</span> <span class="nav-text">正则</span></a></li></ol></div>
+              <p class="post-toc-empty">此文章未包含目录</p>
             
           </div>
         </section>
