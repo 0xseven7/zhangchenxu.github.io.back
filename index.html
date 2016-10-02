@@ -255,6 +255,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/27/正则/" itemprop="url">
+                  正则
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-27T23:41:57+08:00" content="2016-09-27">
+              2016-09-27
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/27/正则/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/正则/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</div></pre></td></tr></table></figure></p>
+<p><code>pattern</code>模式部分可以接收任何了简单或复杂的正则表达式。<br><code>flages</code>标明正则表达式的行为：</p>
+<ul>
+<li><code>g</code>：表示<code>global</code>模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；</li>
+<li><code>i</code> ：表示<code>case-sinsenstive</code>忽略大小写；</li>
+<li><code>m</code>：<code>multiline</code>多行模式，在前一行末尾后查找下一行；</li>
+</ul>
+<p>一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是<strong>转义字符</strong><br>元字符：( [ ( * $  ^ ? \ +  ) ] )<br>转意字符： “\”引导元字符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/at/g</span>    <span class="comment">// 匹配'at'</span></div><div class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[ab]cd /i</span>    <span class="comment">// 匹配第一个'acd'或'bcd'，不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/\[ab\]cd/i</span>    <span class="comment">//匹配第一个[ab]cd ,不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern4 = <span class="regexp">/.at/gi</span>    <span class="comment">//匹配所有以"at"结尾的</span></div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/27/正则/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/27/面向对象的初步认识/" itemprop="url">
                   面向对象与继承
                 </a>
@@ -457,135 +586,6 @@
 <p>这几行代码中，也有个坏蛋<code>var a = 3</code>，那么是否会输出3呢？确实不是<code>3</code>，而是<code>undefined</code>，原因是什么呢？<br>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/27/提升/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/09/27/正则/" itemprop="url">
-                  正则
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-27T23:41:57+08:00" content="2016-09-27">
-              2016-09-27
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/27/正则/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/27/正则/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</div></pre></td></tr></table></figure></p>
-<p><code>pattern</code>模式部分可以接收任何了简单或复杂的正则表达式。<br><code>flages</code>标明正则表达式的行为：</p>
-<ul>
-<li><code>g</code>：表示<code>global</code>模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；</li>
-<li><code>i</code> ：表示<code>case-sinsenstive</code>忽略大小写；</li>
-<li><code>m</code>：<code>multiline</code>多行模式，在前一行末尾后查找下一行；</li>
-</ul>
-<p>一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是<strong>转义字符</strong><br>元字符：( [ ( * $  ^ ? \ +  ) ] )<br>转意字符： “\”引导元字符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/at/g</span>    <span class="comment">// 匹配'at'</span></div><div class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[ab]cd /i</span>    <span class="comment">// 匹配第一个'acd'或'bcd'，不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/\[ab\]cd/i</span>    <span class="comment">//匹配第一个[ab]cd ,不区分大小写</span></div><div class="line"><span class="keyword">var</span> pattern4 = <span class="regexp">/.at/gi</span>    <span class="comment">//匹配所有以"at"结尾的</span></div></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/27/正则/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1583,7 +1583,7 @@
           
             <div class="site-state-item site-state-categories">
               <a href="/categories">
-                <span class="site-state-item-count">4</span>
+                <span class="site-state-item-count">3</span>
                 <span class="site-state-item-name">分类</span>
               </a>
             </div>
