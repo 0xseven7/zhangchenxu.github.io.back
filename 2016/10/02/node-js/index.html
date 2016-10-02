@@ -84,25 +84,21 @@
 
 
 
-<meta name="description" content="通过源代码进行安装。
-下载源代码NodeJS官网
-安装1234//解压源码包$ tar zxvf node-&amp;lt;version&amp;gt;.tar.gz$ cd node-&amp;lt;version&amp;gt;$ ./configure
-执行./configure之后会生成两个文件config.gypi和config.mk，然后执行make命令，队这两个文件进行编译。12$ make$ sudo make">
+<meta name="description" content="NodeJS学习
+构建简单的HTTP服务器：Node中的http模块提供了HTTP服务器和客户端的接口，创建HTTP服务器需要调用http.createServer()函数，他有一个参数，十个回调函数，服务器每次接收到HTTP请求的时候都会调用这个函数，这个请求回调函数有两个参数，req（请求）和res（响应）；1234var http = require(&apos;http&apos;);var server =">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Ubuntu16.04上配置NodeJS环境">
-<meta property="og:url" content="http://yoursite.com/2016/09/22/配置NodeJS环境/index.html">
+<meta property="og:title" content="node js">
+<meta property="og:url" content="http://yoursite.com/2016/10/02/node-js/index.html">
 <meta property="og:site_name" content="张晨旭的本子">
-<meta property="og:description" content="通过源代码进行安装。
-下载源代码NodeJS官网
-安装1234//解压源码包$ tar zxvf node-&amp;lt;version&amp;gt;.tar.gz$ cd node-&amp;lt;version&amp;gt;$ ./configure
-执行./configure之后会生成两个文件config.gypi和config.mk，然后执行make命令，队这两个文件进行编译。12$ make$ sudo make">
-<meta property="og:updated_time" content="2016-09-22T07:55:46.672Z">
+<meta property="og:description" content="NodeJS学习
+构建简单的HTTP服务器：Node中的http模块提供了HTTP服务器和客户端的接口，创建HTTP服务器需要调用http.createServer()函数，他有一个参数，十个回调函数，服务器每次接收到HTTP请求的时候都会调用这个函数，这个请求回调函数有两个参数，req（请求）和res（响应）；1234var http = require(&apos;http&apos;);var server =">
+<meta property="og:image" content="http://zhangchenxu.com/images/js/Nodehttp.png">
+<meta property="og:updated_time" content="2016-10-02T07:59:52.966Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Ubuntu16.04上配置NodeJS环境">
-<meta name="twitter:description" content="通过源代码进行安装。
-下载源代码NodeJS官网
-安装1234//解压源码包$ tar zxvf node-&amp;lt;version&amp;gt;.tar.gz$ cd node-&amp;lt;version&amp;gt;$ ./configure
-执行./configure之后会生成两个文件config.gypi和config.mk，然后执行make命令，队这两个文件进行编译。12$ make$ sudo make">
+<meta name="twitter:title" content="node js">
+<meta name="twitter:description" content="NodeJS学习
+构建简单的HTTP服务器：Node中的http模块提供了HTTP服务器和客户端的接口，创建HTTP服务器需要调用http.createServer()函数，他有一个参数，十个回调函数，服务器每次接收到HTTP请求的时候都会调用这个函数，这个请求回调函数有两个参数，req（请求）和res（响应）；1234var http = require(&apos;http&apos;);var server =">
+<meta name="twitter:image" content="http://zhangchenxu.com/images/js/Nodehttp.png">
 
 
 
@@ -123,9 +119,9 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2016/09/22/配置NodeJS环境/"/>
+  <link rel="canonical" href="http://yoursite.com/2016/10/02/node-js/"/>
 
-  <title> Ubuntu16.04上配置NodeJS环境 | 张晨旭的本子 </title>
+  <title> node js | 张晨旭的本子 </title>
 </head>
 
 <body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
@@ -265,7 +261,7 @@
             
             
               
-                Ubuntu16.04上配置NodeJS环境
+                node js
               
             
           </h1>
@@ -277,38 +273,19 @@
               <i class="fa fa-calendar-o"></i>
             </span>
             <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T15:48:24+08:00" content="2016-09-22">
-              2016-09-22
+            <time itemprop="dateCreated" datetime="2016-10-02T15:57:36+08:00" content="2016-10-02">
+              2016-10-02
             </time>
           </span>
 
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux入门/" itemprop="url" rel="index">
-                    <span itemprop="name">linux入门</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
           
 
           
             
               <span class="post-comments-count">
                 &nbsp; | &nbsp;
-                <a href="/2016/09/22/配置NodeJS环境/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/配置NodeJS环境/" itemprop="commentsCount"></span>
+                <a href="/2016/10/02/node-js/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/02/node-js/" itemprop="commentsCount"></span>
                 </a>
               </span>
             
@@ -331,13 +308,15 @@
       
 
       
-        <p>通过源代码进行安装。</p>
-<h4 id="下载源代码"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码</h4><p><a href="http://nodejs.cn/" target="_blank" rel="external">NodeJS官网</a></p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//解压源码包</div><div class="line">$ tar zxvf node-&lt;version&gt;.tar.gz</div><div class="line">$ <span class="built_in">cd</span> node-&lt;version&gt;</div><div class="line">$ ./configure</div></pre></td></tr></table></figure>
-<p>执行<code>./configure</code>之后会生成两个文件<code>config.gypi</code>和<code>config.mk</code>，然后执行<code>make</code>命令，队这两个文件进行编译。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make</div><div class="line">$ sudo make install</div></pre></td></tr></table></figure></p>
+        <p>NodeJS学习</p>
+<h2 id="构建简单的HTTP服务器："><a href="#构建简单的HTTP服务器：" class="headerlink" title="构建简单的HTTP服务器："></a>构建简单的HTTP服务器：</h2><p>Node中的<code>http</code>模块提供了<code>HTTP</code>服务器和客户端的接口，创建<code>HTTP</code>服务器需要调用<code>http.createServer()</code>函数，他有一个参数，十个回调函数，服务器每次接收到<code>HTTP</code>请求的时候都会调用这个函数，这个请求回调函数有两个参数，<code>req</code>（请求）和<code>res</code>（响应）；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">	<span class="comment">// 处理请求</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>服务器接收到一条<code>HTTP</code>请求的时候，就会用新的<code>req</code>和<code>res</code>对象触发回调函数，在触发之前，<code>Node</code>会先解析请求的<code>http</code>头，并将他们作为<code>req</code>对象的一部分提供给回调函数，但在触发回调函数之前，<code>Node</code>不会解析请求体的内容。<br><code>Node</code>不会自动往客户端里卖年写任何相应，也就是说它不会自动结束响应。在调用完请求回调函数之后，就要由你负责用<code>res.end()</code>方法来结束响应。<br><img src="http://zhangchenxu.com/images/js/Nodehttp.png" alt="enter image description here"></p>
+<h3 id="一个响应hello-world的HTTP服务器"><a href="#一个响应hello-world的HTTP服务器" class="headerlink" title="一个响应hello world的HTTP服务器"></a>一个响应<code>hello world</code>的HTTP服务器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">	<span class="comment">// 处理请求</span></div><div class="line">	res.write(<span class="string">'hello world'</span>)</div><div class="line">	res.end();</div><div class="line">&#125;)</div><div class="line">servre.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'listen at 3000'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
 <a id="more"></a>
-<p>编译的时间会很长，这时候可以泡杯咖啡放松一下。<br>最终会在<code>out/Release</code>目录下得到node文件。执行<code>sudo make install</code>会将<code>node</code>的相关头文件和二进制文件安装到<code>/usr/local</code>目录下面。<br>检查一下吧：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ node -v</div><div class="line">v6.<span class="number">2.0</span></div><div class="line">$ npm -v</div><div class="line"><span class="number">3.8</span>.<span class="number">9</span></div></pre></td></tr></table></figure></p>
-<p>好了，这就安装成功了。很简单吧。</p>
+<p>首先调用<code>res.write()</code>，将响应的内容写到socket中，然后用<code>res.end()</code>来结束这个相应，<code>res.write()</code>和<code>res.end()</code>可以所写成一个语句，这样对小型的响应来说比较方便。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">res.end(<span class="string">'hello world'</span>)</div></pre></td></tr></table></figure></p>
+<p>然后绑定端口，让服务器可以监听接入的参数，在测试过程中一般绑定到飞特却端口，如3000；<br>搭建服务器仅仅是个开始，还需要知道如何设定响应状态吗和响应头中的字段，如何处理异常，以及如何使用<code>Node</code>的<code>API</code>。</p>
+<h3 id="如何读取请求头和设定响应头"><a href="#如何读取请求头和设定响应头" class="headerlink" title="如何读取请求头和设定响应头"></a>如何读取请求头和设定响应头</h3><p>Node提供了几个修改HTTP响应头的方法<code>res.setHeader(field, value)</code>, <code>res.getHeader(field)</code>和<code>res.removeHeader(field)</code>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> body = <span class="string">'hello world'</span>;</div><div class="line">res.setHeader(<span class="string">'content-Length'</span>, body.length);</div><div class="line">res.setHeader(<span class="string">'content-Type'</span>, text/plain);</div><div class="line">res.end(body);</div></pre></td></tr></table></figure></p>
+<h2 id="构建RESTful-Web服务"><a href="#构建RESTful-Web服务" class="headerlink" title="构建RESTful Web服务"></a>构建RESTful Web服务</h2><p>什么是<code>RESTful</code>？。<a href="http://www.ruanyifeng.com/blog/2011/09/restful.html" target="_blank" rel="external">理解RESTful架构<br> 阮一峰</a>,   <a href="https://zh.wikipedia.org/wiki/REST" target="_blank" rel="external">REST—-维基百科</a><br> HTTP谓词，比如<code>GET</code>, <code>POST00</code>00000</p>
 
       
     </div>
@@ -363,17 +342,13 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
-              <a href="/2016/09/21/网络基础/" rel="next" title="网络基础">
-                <i class="fa fa-chevron-left"></i> 网络基础
+              <a href="/2016/09/27/正则/" rel="next" title="正则">
+                <i class="fa fa-chevron-left"></i> 正则
               </a>
             
           </div>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2016/09/22/ubuntu下常用软件安装/" rel="prev" title="ubuntu下常用软件安装">
-                ubuntu下常用软件安装 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -399,8 +374,8 @@
           
   <div class="comments" id="comments">
     
-      <div class="ds-thread" data-thread-key="2016/09/22/配置NodeJS环境/"
-           data-title="Ubuntu16.04上配置NodeJS环境" data-url="http://yoursite.com/2016/09/22/配置NodeJS环境/">
+      <div class="ds-thread" data-thread-key="2016/10/02/node-js/"
+           data-title="node js" data-url="http://yoursite.com/2016/10/02/node-js/">
       </div>
     
   </div>
@@ -491,7 +466,7 @@
               
             
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-4"><a class="nav-link" href="#下载源代码"><span class="nav-number">1.</span> <span class="nav-text">下载源代码</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#安装"><span class="nav-number">2.</span> <span class="nav-text">安装</span></a></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#构建简单的HTTP服务器："><span class="nav-number">1.</span> <span class="nav-text">构建简单的HTTP服务器：</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#一个响应hello-world的HTTP服务器"><span class="nav-number">1.1.</span> <span class="nav-text">一个响应hello world的HTTP服务器</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#如何读取请求头和设定响应头"><span class="nav-number">1.2.</span> <span class="nav-text">如何读取请求头和设定响应头</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#构建RESTful-Web服务"><span class="nav-number">2.</span> <span class="nav-text">构建RESTful Web服务</span></a></li></ol></div>
             
           </div>
         </section>

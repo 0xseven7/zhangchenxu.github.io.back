@@ -255,6 +255,112 @@
             
               
                 
+                <a class="post-title-link" href="/2016/10/02/node-js/" itemprop="url">
+                  node js
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-10-02T15:57:36+08:00" content="2016-10-02">
+              2016-10-02
+            </time>
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/10/02/node-js/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/10/02/node-js/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>NodeJS学习</p>
+<h2 id="构建简单的HTTP服务器："><a href="#构建简单的HTTP服务器：" class="headerlink" title="构建简单的HTTP服务器："></a>构建简单的HTTP服务器：</h2><p>Node中的<code>http</code>模块提供了<code>HTTP</code>服务器和客户端的接口，创建<code>HTTP</code>服务器需要调用<code>http.createServer()</code>函数，他有一个参数，十个回调函数，服务器每次接收到<code>HTTP</code>请求的时候都会调用这个函数，这个请求回调函数有两个参数，<code>req</code>（请求）和<code>res</code>（响应）；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">	<span class="comment">// 处理请求</span></div><div class="line">&#125;)</div></pre></td></tr></table></figure></p>
+<p>服务器接收到一条<code>HTTP</code>请求的时候，就会用新的<code>req</code>和<code>res</code>对象触发回调函数，在触发之前，<code>Node</code>会先解析请求的<code>http</code>头，并将他们作为<code>req</code>对象的一部分提供给回调函数，但在触发回调函数之前，<code>Node</code>不会解析请求体的内容。<br><code>Node</code>不会自动往客户端里卖年写任何相应，也就是说它不会自动结束响应。在调用完请求回调函数之后，就要由你负责用<code>res.end()</code>方法来结束响应。<br><img src="http://zhangchenxu.com/images/js/Nodehttp.png" alt="enter image description here"></p>
+<h3 id="一个响应hello-world的HTTP服务器"><a href="#一个响应hello-world的HTTP服务器" class="headerlink" title="一个响应hello world的HTTP服务器"></a>一个响应<code>hello world</code>的HTTP服务器</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">var</span> http = <span class="built_in">require</span>(<span class="string">'http'</span>);</div><div class="line"><span class="keyword">var</span> server = http.createServer(<span class="function"><span class="keyword">function</span> (<span class="params">req, res</span>) </span>&#123;</div><div class="line">	<span class="comment">// 处理请求</span></div><div class="line">	res.write(<span class="string">'hello world'</span>)</div><div class="line">	res.end();</div><div class="line">&#125;)</div><div class="line">servre.listen(<span class="number">3000</span>, <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="built_in">console</span>.log(<span class="string">'listen at 3000'</span>);</div><div class="line">&#125;)</div></pre></td></tr></table></figure>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/10/02/node-js/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/27/正则/" itemprop="url">
                   正则
                 </a>
@@ -636,131 +742,6 @@
             
               
                 
-                <a class="post-title-link" href="/2016/09/22/配置NodeJS环境/" itemprop="url">
-                  Ubuntu16.04上配置NodeJS环境
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-09-22T15:48:24+08:00" content="2016-09-22">
-              2016-09-22
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/linux入门/" itemprop="url" rel="index">
-                    <span itemprop="name">linux入门</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/09/22/配置NodeJS环境/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/配置NodeJS环境/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <p>通过源代码进行安装。</p>
-<h4 id="下载源代码"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码</h4><p><a href="http://nodejs.cn/">NodeJS官网</a></p>
-<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//解压源码包</div><div class="line">$ tar zxvf node-&lt;version&gt;.tar.gz</div><div class="line">$ <span class="built_in">cd</span> node-&lt;version&gt;</div><div class="line">$ ./configure</div></pre></td></tr></table></figure>
-<p>执行<code>./configure</code>之后会生成两个文件<code>config.gypi</code>和<code>config.mk</code>，然后执行<code>make</code>命令，队这两个文件进行编译。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make</div><div class="line">$ sudo make install</div></pre></td></tr></table></figure></p>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/09/22/配置NodeJS环境/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
                 <a class="post-title-link" href="/2016/09/22/ubuntu下常用软件安装/" itemprop="url">
                   ubuntu下常用软件安装
                 </a>
@@ -842,6 +823,131 @@
 </ul>
           <div class="post-more-link text-center">
             <a class="btn" href="/2016/09/22/ubuntu下常用软件安装/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
+                <a class="post-title-link" href="/2016/09/22/配置NodeJS环境/" itemprop="url">
+                  Ubuntu16.04上配置NodeJS环境
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-22T15:48:24+08:00" content="2016-09-22">
+              2016-09-22
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/linux入门/" itemprop="url" rel="index">
+                    <span itemprop="name">linux入门</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/22/配置NodeJS环境/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/22/配置NodeJS环境/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>通过源代码进行安装。</p>
+<h4 id="下载源代码"><a href="#下载源代码" class="headerlink" title="下载源代码"></a>下载源代码</h4><p><a href="http://nodejs.cn/">NodeJS官网</a></p>
+<h4 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">//解压源码包</div><div class="line">$ tar zxvf node-&lt;version&gt;.tar.gz</div><div class="line">$ <span class="built_in">cd</span> node-&lt;version&gt;</div><div class="line">$ ./configure</div></pre></td></tr></table></figure>
+<p>执行<code>./configure</code>之后会生成两个文件<code>config.gypi</code>和<code>config.mk</code>，然后执行<code>make</code>命令，队这两个文件进行编译。<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ make</div><div class="line">$ sudo make install</div></pre></td></tr></table></figure></p>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/22/配置NodeJS环境/#more" rel="contents">
               阅读全文 &raquo;
             </a>
           </div>
@@ -1401,135 +1507,6 @@
 
 
     
-      
-
-  
-  
-
-  
-  
-  
-
-  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
-
-    
-      <header class="post-header">
-
-        
-        
-          <h1 class="post-title" itemprop="name headline">
-            
-            
-              
-                
-                <a class="post-title-link" href="/2016/07/16/作用域深入研究/" itemprop="url">
-                  作用域深入学习
-                </a>
-              
-            
-          </h1>
-        
-
-        <div class="post-meta">
-          <span class="post-time">
-            <span class="post-meta-item-icon">
-              <i class="fa fa-calendar-o"></i>
-            </span>
-            <span class="post-meta-item-text">发表于</span>
-            <time itemprop="dateCreated" datetime="2016-07-16T00:00:00+08:00" content="2016-07-16">
-              2016-07-16
-            </time>
-          </span>
-
-          
-            <span class="post-category" >
-              &nbsp; | &nbsp;
-              <span class="post-meta-item-icon">
-                <i class="fa fa-folder-o"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-              
-                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
-                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
-                    <span itemprop="name">javascript笔记</span>
-                  </a>
-                </span>
-
-                
-                
-
-              
-            </span>
-          
-
-          
-            
-              <span class="post-comments-count">
-                &nbsp; | &nbsp;
-                <a href="/2016/07/16/作用域深入研究/#comments" itemprop="discussionUrl">
-                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/16/作用域深入研究/" itemprop="commentsCount"></span>
-                </a>
-              </span>
-            
-          
-
-          
-
-          
-          
-
-          
-        </div>
-      </header>
-    
-
-
-    <div class="post-body" itemprop="articleBody">
-
-      
-      
-
-      
-        
-          <h3 id="简单的编译原理"><a href="#简单的编译原理" class="headerlink" title="简单的编译原理"></a>简单的编译原理</h3><p>学简单的学习一下编译原理：<br>在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；<br>这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。<br>如<code>var a = 2;</code>会被分解为”var “、”a”、”=”、”2”、“;”。</p>
-<ol>
-<li>解析/语法分析<br>这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树<code>Abstract Syntax tree(AST)</code>;</li>
-<li>代码生成<br>将AST转化为一组机器指令。<blockquote>
-<p><strong>引擎</strong>：从头到尾负责整个JS程序的编译和执行的过程；<br><strong>编译器</strong>：负责语法分析及代码生成；<br><strong>作用域</strong>：可以看作是一套规则，用来管理引擎如何在当前作用域以及嵌套的子作用域中根据标识符名称进行变量查找。</p>
-</blockquote>
-</li>
-</ol>
-          <div class="post-more-link text-center">
-            <a class="btn" href="/2016/07/16/作用域深入研究/#more" rel="contents">
-              阅读全文 &raquo;
-            </a>
-          </div>
-        
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <div>
-      
-    </div>
-
-    <footer class="post-footer">
-      
-
-      
-
-      
-      
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-
-
-    
   </section>
 
   
@@ -1575,7 +1552,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>

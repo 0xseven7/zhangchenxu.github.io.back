@@ -255,6 +255,135 @@
             
               
                 
+                <a class="post-title-link" href="/2016/07/16/作用域深入研究/" itemprop="url">
+                  作用域深入学习
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-07-16T00:00:00+08:00" content="2016-07-16">
+              2016-07-16
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/07/16/作用域深入研究/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/07/16/作用域深入研究/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <h3 id="简单的编译原理"><a href="#简单的编译原理" class="headerlink" title="简单的编译原理"></a>简单的编译原理</h3><p>学简单的学习一下编译原理：<br>在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；<br>这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。<br>如<code>var a = 2;</code>会被分解为”var “、”a”、”=”、”2”、“;”。</p>
+<ol>
+<li>解析/语法分析<br>这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树<code>Abstract Syntax tree(AST)</code>;</li>
+<li>代码生成<br>将AST转化为一组机器指令。<blockquote>
+<p><strong>引擎</strong>：从头到尾负责整个JS程序的编译和执行的过程；<br><strong>编译器</strong>：负责语法分析及代码生成；<br><strong>作用域</strong>：可以看作是一套规则，用来管理引擎如何在当前作用域以及嵌套的子作用域中根据标识符名称进行变量查找。</p>
+</blockquote>
+</li>
+</ol>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/07/16/作用域深入研究/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/06/18/caller&callee/" itemprop="url">
                   caller 和 callee
                 </a>
@@ -404,7 +533,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">11</span>
+              <span class="site-state-item-count">12</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
