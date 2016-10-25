@@ -255,6 +255,130 @@
             
               
                 
+                <a class="post-title-link" href="/2016/09/18/浅谈闭包/" itemprop="url">
+                  浅谈闭包
+                </a>
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            <span class="post-meta-item-icon">
+              <i class="fa fa-calendar-o"></i>
+            </span>
+            <span class="post-meta-item-text">发表于</span>
+            <time itemprop="dateCreated" datetime="2016-09-18T18:41:59+08:00" content="2016-09-18">
+              2016-09-18
+            </time>
+          </span>
+
+          
+            <span class="post-category" >
+              &nbsp; | &nbsp;
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+              
+                <span itemprop="about" itemscope itemtype="https://schema.org/Thing">
+                  <a href="/categories/javascript笔记/" itemprop="url" rel="index">
+                    <span itemprop="name">javascript笔记</span>
+                  </a>
+                </span>
+
+                
+                
+
+              
+            </span>
+          
+
+          
+            
+              <span class="post-comments-count">
+                &nbsp; | &nbsp;
+                <a href="/2016/09/18/浅谈闭包/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2016/09/18/浅谈闭包/" itemprop="commentsCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+
+          
+          
+
+          
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          <p>之前很长一段时间不能理解闭包，经过这几天搜集资料，也对闭包有了一点较深的认识。那么闭包是什么呢？</p>
+<h3 id="闭包是什么？"><a href="#闭包是什么？" class="headerlink" title="闭包是什么？"></a>闭包是什么？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</div><div class="line">	<span class="keyword">var</span> a = <span class="number">2</span>;</div><div class="line">	<span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</div><div class="line">		<span class="built_in">console</span>.log(a)</div><div class="line">		&#125;</div><div class="line">	<span class="keyword">return</span> bar;</div><div class="line">	&#125;</div><div class="line"><span class="keyword">var</span> baz = foo();</div><div class="line">baz();   <span class="comment">//2 这就是闭包的效果</span></div></pre></td></tr></table></figure>
+<p>上面代码中函数<code>bar</code>被当作值返回，并且通过调用<code>foo()</code>将<code>bar</code>赋给了<code>baz</code>，并调用<code>baz()</code>，实际上是通过不同的标识符引用调用了内部的函数<code>bar()</code>。<br>当<code>foo()</code>执行结束之后，根据垃圾回收的机制，<code>foo()</code>的整个内部作用域都会被销毁，但是由于<strong>闭包</strong>的发生而阻止了这件事情的发生，之后内部作用域一直存在，被<code>bar()</code>所使用。而这个函数在定义的词法作用域之外进行成功调用，闭包使得函数可以访问定义时的作用域。<br>当函数记住并访问所在词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行的。函数对持有对该定义域的引用这就是闭包。<br>
+          <div class="post-more-link text-center">
+            <a class="btn" href="/2016/09/18/浅谈闭包/#more" rel="contents">
+              阅读全文 &raquo;
+            </a>
+          </div>
+        
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <div>
+      
+    </div>
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+
+
+    
+      
+
+  
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                
                 <a class="post-title-link" href="/2016/09/18/基本类型和引用类型/" itemprop="url">
                   基本类型和引用类型
                 </a>
@@ -675,7 +799,7 @@
         <nav class="site-state motion-element">
           <div class="site-state-item site-state-posts">
             <a href="/archives">
-              <span class="site-state-item-count">13</span>
+              <span class="site-state-item-count">14</span>
               <span class="site-state-item-name">日志</span>
             </a>
           </div>
@@ -692,7 +816,7 @@
           
             <div class="site-state-item site-state-tags">
               <a href="/tags">
-                <span class="site-state-item-count">7</span>
+                <span class="site-state-item-count">8</span>
                 <span class="site-state-item-name">标签</span>
               </a>
             </div>
