@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="this是JavaScript中非常重要的关键字之一，是函数的内部属性，被自动定义在函数的作用域中。123456789101112131415function identify() &amp;#123;    return this.name.toUpperCase();&amp;#125;function speak() &amp;#123;    var greeting = &quot;Hello, I`m &quot; + ide">
+<meta property="og:type" content="article">
+<meta property="og:title" content="this 解析">
+<meta property="og:url" content="http://yoursite.com/2016/10/09/this-解析/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="this是JavaScript中非常重要的关键字之一，是函数的内部属性，被自动定义在函数的作用域中。123456789101112131415function identify() &amp;#123;    return this.name.toUpperCase();&amp;#125;function speak() &amp;#123;    var greeting = &quot;Hello, I`m &quot; + ide">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-10-09T15:09:08.899Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="this 解析">
+<meta name="twitter:description" content="this是JavaScript中非常重要的关键字之一，是函数的内部属性，被自动定义在函数的作用域中。123456789101112131415function identify() &amp;#123;    return this.name.toUpperCase();&amp;#125;function speak() &amp;#123;    var greeting = &quot;Hello, I`m &quot; + ide">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>this 解析</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/10/25/NodeJS发送邮件/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/10/02/node-js/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/10/09/this-解析/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/10/09/this-解析/&text=this 解析"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/10/09/this-解析/&is_video=false&description=this 解析"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=this 解析&body=Check out this article: http://yoursite.com/2016/10/09/this-解析/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/10/09/this-解析/&name=this 解析&description=&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;this&lt;/code&gt;是&lt;code&gt;JavaScript&lt;/code&gt;中非常重要的关键字之一，是函数的内部属性，被自动定义在函数的作用域中。&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;identify&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;this&lt;/span&gt;.name.toUpperCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;speak&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; greeting = &lt;span class=&#34;string&#34;&gt;&#34;Hello, I`m &#34;&lt;/span&gt; + identify.call(&lt;span class=&#34;keyword&#34;&gt;this&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(greeting);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; me = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhangchenxu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; you = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhanglongzhu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak.call(me);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak.call(you);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用&lt;code&gt;this&lt;/code&gt;可以在不同上下文对象&lt;code&gt;me&lt;/code&gt;和&lt;code&gt;you&lt;/code&gt;中复用&lt;code&gt;identify&lt;/code&gt;和&lt;code&gt;speak&lt;/code&gt;，不用针对每个对象编写不同版本的函数。如果不是用&lt;code&gt;this&lt;/code&gt;就要显示传入一个上下文对象。&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;identify&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;context&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; context.name.toUpperCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;speak&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;context&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; greeting = &lt;span class=&#34;string&#34;&gt;&#34;Hello, I`m &#34;&lt;/span&gt; + identify(context);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(greeting);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; me = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhangchenxu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; you = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhanglongzhu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak(me);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak(you);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，&lt;code&gt;this&lt;/code&gt;提供了非常优雅的方式传递一个对象引用，因此可以使API更加简洁和易于复用。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#this指向函数自身？"><span class="toc-number">1.</span> <span class="toc-text">this指向函数自身？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定规则"><span class="toc-number"></span> <span class="toc-text">绑定规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、-默认绑定"><span class="toc-number">1.</span> <span class="toc-text">1、 默认绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、隐式绑定"><span class="toc-number">2.</span> <span class="toc-text">2、隐式绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、显示绑定"><span class="toc-number">3.</span> <span class="toc-text">3、显示绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、new绑定"><span class="toc-number">4.</span> <span class="toc-text">4、new绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定优先级"><span class="toc-number"></span> <span class="toc-text">绑定优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        this 解析
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-10-09T15:07:42.000Z" itemprop="datePublished">2016-10-09</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <blockquote>
+<p><code>this</code>是<code>JavaScript</code>中非常重要的关键字之一，是函数的内部属性，被自动定义在函数的作用域中。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identify</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.name.toUpperCase();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">speak</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> greeting = <span class="string">"Hello, I`m "</span> + identify.call(<span class="keyword">this</span>);</span><br><span class="line">    <span class="built_in">console</span>.log(greeting);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> me = &#123;</span><br><span class="line">    name : <span class="string">"zhangchenxu"</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> you = &#123;</span><br><span class="line">    name : <span class="string">"zhanglongzhu"</span>,</span><br><span class="line">&#125;</span><br><span class="line">speak.call(me);</span><br><span class="line">speak.call(you);</span><br></pre></td></tr></table></figure></p>
+</blockquote>
+<p>使用<code>this</code>可以在不同上下文对象<code>me</code>和<code>you</code>中复用<code>identify</code>和<code>speak</code>，不用针对每个对象编写不同版本的函数。如果不是用<code>this</code>就要显示传入一个上下文对象。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">identify</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> context.name.toUpperCase();</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">speak</span>(<span class="params">context</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> greeting = <span class="string">"Hello, I`m "</span> + identify(context);</span><br><span class="line">    <span class="built_in">console</span>.log(greeting);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> me = &#123;</span><br><span class="line">    name : <span class="string">"zhangchenxu"</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> you = &#123;</span><br><span class="line">    name : <span class="string">"zhanglongzhu"</span>,</span><br><span class="line">&#125;</span><br><span class="line">speak(me);</span><br><span class="line">speak(you);</span><br></pre></td></tr></table></figure></p>
+<p>可以看出，<code>this</code>提供了非常优雅的方式传递一个对象引用，因此可以使API更加简洁和易于复用。<br><a id="more"></a></p>
+<h4 id="this指向函数自身？"><a href="#this指向函数自身？" class="headerlink" title="this指向函数自身？"></a><code>this</code>指向函数自身？</h4><p><code>this</code>既不指向函数本身，也不指向函数所在的词法作用域，而是指向函数被直接调用的时候所绑定的对象。<br>来看下面这段代码，我想要记录一下<code>foo</code>函数被调用的次数：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">"foo"</span> + num);</span><br><span class="line">    <span class="keyword">this</span>.count++;</span><br><span class="line">&#125;</span><br><span class="line">foo.count = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">for</span>(<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">    <span class="keyword">if</span>(i &gt; <span class="number">5</span>)&#123;</span><br><span class="line">        foo(i);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// foo: 6;</span></span><br><span class="line"><span class="comment">// foo: 7;</span></span><br><span class="line"><span class="comment">// foo: 8;</span></span><br><span class="line"><span class="comment">// foo: 9;</span></span><br><span class="line"><span class="built_in">console</span>.log(foo.count);  <span class="comment">// 0</span></span><br></pre></td></tr></table></figure></p>
+<p><code>console.log</code>产生了4条输出，证明<code>foo()</code>被调用了4次，如果<code>this</code>指向函数<code>foo</code>，那么<code>foo.count</code>应该为4。但是，<code>foo.count</code>却是0。说明<code>this</code>并不指向函数自身。函数被直接调用的位置是在<code>window</code>对象中，那么<code>this</code>就是指向<code>window</code>对象，那我们在函数中使用的<code>this.count++</code>就创建了一个全局变量<code>count</code>。<br><code>this</code>是在函数运行的时候进行绑定的，而不是在函数编写的时候，它的上下文取决于调用时的各种条件。<code>this</code>的绑定和函数的声明位置没有任何关系，<br>当函数被调用的时候，会创建一个活动的记录（执行上下文）。这个记录包含函数在哪里被调用（调用栈），函数的调用方法，传入的参数等信息。</p>
+<blockquote>
+<p>可以在调试器中添加断点来判断函数的调用栈。</p>
+</blockquote>
+<h3 id="绑定规则"><a href="#绑定规则" class="headerlink" title="绑定规则"></a>绑定规则</h3><h4 id="1、-默认绑定"><a href="#1、-默认绑定" class="headerlink" title="1、 默认绑定"></a>1、 默认绑定</h4><p>最常用的函数调用类型，独立函数调用：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">foo();</span><br></pre></td></tr></table></figure></p>
+<p>在代码中，<code>foo()</code>被调用的时候是不带任何修饰的函数引用进行调用的，因此只能是默认绑定。默认绑定时，<code>this</code>指向全局对象，这里的<code>window</code>。<br>在严格模式下，默认绑定的<code>this</code>为<code>undefined</code>；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">"use strict"</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">foo(); <span class="comment">//TypeError: Cannot read property 'a' of undefined</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="2、隐式绑定"><a href="#2、隐式绑定" class="headerlink" title="2、隐式绑定"></a>2、隐式绑定</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a : <span class="number">2</span>,</span><br><span class="line">    bar : foo</span><br><span class="line">&#125;;</span><br><span class="line">obj.bar();</span><br></pre></td></tr></table></figure>
+<p>函数<code>foo</code>被当作引用属性添加到<code>obj</code>中，当函数被调用的时候<code>obj</code>就“拥有”了这个函数，这时，<code>this</code>就被绑定到了<code>obj</code>；</p>
+<h4 id="3、显示绑定"><a href="#3、显示绑定" class="headerlink" title="3、显示绑定"></a>3、显示绑定</h4><p>显示绑定就是使用<code>call</code>和<code>apply</code>在某个对象上面强制调用某个函数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a)</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj = &#123;</span><br><span class="line">    a : <span class="number">2</span>,</span><br><span class="line">&#125;;</span><br><span class="line">foo.call(obj);</span><br></pre></td></tr></table></figure></p>
+<p>上面代码中<code>foo</code>中的<code>this</code>指向对象<code>obj</code>；</p>
+<h4 id="4、new绑定"><a href="#4、new绑定" class="headerlink" title="4、new绑定"></a>4、new绑定</h4><p>最后一条<code>this</code>绑定规则：使用<code>new</code>操作符来调用<code>foo()</code>时，会后造一个新的对象并把它绑定到<code>foo()</code>调用中的<code>this</code>上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo();</span><br><span class="line"><span class="built_in">console</span>.log(bar.a)</span><br></pre></td></tr></table></figure></p>
+<h3 id="绑定优先级"><a href="#绑定优先级" class="headerlink" title="绑定优先级"></a>绑定优先级</h3><p>现在我们知道了<code>this</code>绑定的四个规则，只需要找到函数调用的位置并判断应当应用那条规则就，就可以判断<code>this</code>的绑定了。单数如果该位置同时满足多条的话，该遵循什么样的优先级呢？</p>
+<ul>
+<li>默认绑定优先级最低先不考虑。</li>
+<li>显示绑定和隐式绑定的优先级：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.a);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;</span><br><span class="line">    a : <span class="number">2</span>,</span><br><span class="line">    foo : foo</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj2 = &#123;</span><br><span class="line">    a : <span class="number">3</span>,</span><br><span class="line">    foo: foo</span><br><span class="line">&#125;</span><br><span class="line">obj1.foo(); <span class="comment">//2</span></span><br><span class="line">obj2.foo(); <span class="comment">//3</span></span><br><span class="line">obj1.foo.call(obj2); <span class="comment">//3</span></span><br><span class="line">obj2.foo.call(obj1); <span class="comment">//2</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>可见显示绑定优先级高于隐式绑定</p>
+<ul>
+<li>new绑定和显示绑定的优先级：<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params">something</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.a = something;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> obj1 = &#123;&#125;;</span><br><span class="line"><span class="keyword">var</span> bar = foo.bind(obj1);</span><br><span class="line">bar(<span class="number">2</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> baz = <span class="keyword">new</span> bar(<span class="number">3</span>);</span><br><span class="line"><span class="built_in">console</span>.log(obj1.a);  <span class="comment">//2</span></span><br><span class="line"><span class="built_in">console</span>.log(baz.a);    <span class="comment">//3</span></span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>由上可见<code>new</code>绑定高于显示绑定的优先级。</p>
+<h3 id="总结："><a href="#总结：" class="headerlink" title="总结："></a>总结：</h3><p>我们可以在函数调用的位置使用一下规则来判断<code>this</code>的绑定：</p>
+<ol>
+<li><p>函数由<code>new</code>操作符调用(<code>new</code>绑定)，<code>this</code>绑定的是新建的对象；</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = <span class="keyword">new</span> foo();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数通过<code>apply</code>,<code>call</code>（显示绑定）或者硬绑定调用，<code>this</code>绑定的是指定的对象：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = foo.call(obj2);</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>函数在某一个上下文对象调用（隐式绑定），<code>this</code>绑定的是那个上下文对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = obj1.foo();</span><br></pre></td></tr></table></figure>
+</li>
+<li><p>如果不是以上，则是默认绑定。在严格模式下：<code>this</code>绑定到<code>undefined</code>，否则绑定到全局对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> bar = foo();</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-4"><a class="toc-link" href="#this指向函数自身？"><span class="toc-number">1.</span> <span class="toc-text">this指向函数自身？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定规则"><span class="toc-number"></span> <span class="toc-text">绑定规则</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1、-默认绑定"><span class="toc-number">1.</span> <span class="toc-text">1、 默认绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2、隐式绑定"><span class="toc-number">2.</span> <span class="toc-text">2、隐式绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#3、显示绑定"><span class="toc-number">3.</span> <span class="toc-text">3、显示绑定</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#4、new绑定"><span class="toc-number">4.</span> <span class="toc-text">4、new绑定</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#绑定优先级"><span class="toc-number"></span> <span class="toc-text">绑定优先级</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#总结："><span class="toc-number"></span> <span class="toc-text">总结：</span></a>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/10/09/this-解析/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/10/09/this-解析/&text=this 解析"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/10/09/this-解析/&is_video=false&description=this 解析"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=this 解析&body=Check out this article: http://yoursite.com/2016/10/09/this-解析/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/10/09/this-解析/&title=this 解析"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/10/09/this-解析/&name=this 解析&description=&lt;blockquote&gt;
+&lt;p&gt;&lt;code&gt;this&lt;/code&gt;是&lt;code&gt;JavaScript&lt;/code&gt;中非常重要的关键字之一，是函数的内部属性，被自动定义在函数的作用域中。&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;identify&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; &lt;span class=&#34;keyword&#34;&gt;this&lt;/span&gt;.name.toUpperCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;speak&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; greeting = &lt;span class=&#34;string&#34;&gt;&#34;Hello, I`m &#34;&lt;/span&gt; + identify.call(&lt;span class=&#34;keyword&#34;&gt;this&lt;/span&gt;);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(greeting);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; me = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhangchenxu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; you = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhanglongzhu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak.call(me);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak.call(you);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;使用&lt;code&gt;this&lt;/code&gt;可以在不同上下文对象&lt;code&gt;me&lt;/code&gt;和&lt;code&gt;you&lt;/code&gt;中复用&lt;code&gt;identify&lt;/code&gt;和&lt;code&gt;speak&lt;/code&gt;，不用针对每个对象编写不同版本的函数。如果不是用&lt;code&gt;this&lt;/code&gt;就要显示传入一个上下文对象。&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;11&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;12&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;13&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;14&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;15&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;identify&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;context&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; context.name.toUpperCase();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;speak&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;context&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; greeting = &lt;span class=&#34;string&#34;&gt;&#34;Hello, I`m &#34;&lt;/span&gt; + identify(context);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(greeting);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; me = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhangchenxu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; you = &amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    name : &lt;span class=&#34;string&#34;&gt;&#34;zhanglongzhu&#34;&lt;/span&gt;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak(me);&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;speak(you);&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;可以看出，&lt;code&gt;this&lt;/code&gt;提供了非常优雅的方式传递一个对象引用，因此可以使API更加简洁和易于复用。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

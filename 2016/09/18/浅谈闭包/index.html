@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="之前很长一段时间不能理解闭包，经过这几天搜集资料，也对闭包有了一点较深的认识。那么闭包是什么呢？ 闭包是什么？123456789function foo() &amp;#123;	var a = 2;	function bar () &amp;#123;		console.log(a)		&amp;#125;	return bar;	&amp;#125;var baz = foo();baz();   //2 这就是闭包的效果">
+<meta name="keywords" content="闭包 作用域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="浅谈闭包">
+<meta property="og:url" content="http://yoursite.com/2016/09/18/浅谈闭包/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="之前很长一段时间不能理解闭包，经过这几天搜集资料，也对闭包有了一点较深的认识。那么闭包是什么呢？ 闭包是什么？123456789function foo() &amp;#123;	var a = 2;	function bar () &amp;#123;		console.log(a)		&amp;#125;	return bar;	&amp;#125;var baz = foo();baz();   //2 这就是闭包的效果">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-09-19T07:07:21.925Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="浅谈闭包">
+<meta name="twitter:description" content="之前很长一段时间不能理解闭包，经过这几天搜集资料，也对闭包有了一点较深的认识。那么闭包是什么呢？ 闭包是什么？123456789function foo() &amp;#123;	var a = 2;	function bar () &amp;#123;		console.log(a)		&amp;#125;	return bar;	&amp;#125;var baz = foo();baz();   //2 这就是闭包的效果">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>浅谈闭包</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/09/19/数组去重/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/09/18/引用类型/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/09/18/浅谈闭包/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/09/18/浅谈闭包/&text=浅谈闭包"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/09/18/浅谈闭包/&is_video=false&description=浅谈闭包"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浅谈闭包&body=Check out this article: http://yoursite.com/2016/09/18/浅谈闭包/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/09/18/浅谈闭包/&name=浅谈闭包&description=&lt;p&gt;之前很长一段时间不能理解闭包，经过这几天搜集资料，也对闭包有了一点较深的认识。那么闭包是什么呢？&lt;/p&gt;
+&lt;h3 id=&#34;闭包是什么？&#34;&gt;&lt;a href=&#34;#闭包是什么？&#34; class=&#34;headerlink&#34; title=&#34;闭包是什么？&#34;&gt;&lt;/a&gt;闭包是什么？&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;foo&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; a = &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;bar&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(a)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; bar;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; baz = foo();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;baz();   &lt;span class=&#34;comment&#34;&gt;//2 这就是闭包的效果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面代码中函数&lt;code&gt;bar&lt;/code&gt;被当作值返回，并且通过调用&lt;code&gt;foo()&lt;/code&gt;将&lt;code&gt;bar&lt;/code&gt;赋给了&lt;code&gt;baz&lt;/code&gt;，并调用&lt;code&gt;baz()&lt;/code&gt;，实际上是通过不同的标识符引用调用了内部的函数&lt;code&gt;bar()&lt;/code&gt;。&lt;br&gt;当&lt;code&gt;foo()&lt;/code&gt;执行结束之后，根据垃圾回收的机制，&lt;code&gt;foo()&lt;/code&gt;的整个内部作用域都会被销毁，但是由于&lt;strong&gt;闭包&lt;/strong&gt;的发生而阻止了这件事情的发生，之后内部作用域一直存在，被&lt;code&gt;bar()&lt;/code&gt;所使用。而这个函数在定义的词法作用域之外进行成功调用，闭包使得函数可以访问定义时的作用域。&lt;br&gt;当函数记住并访问所在词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行的。函数对持有对该定义域的引用这就是闭包。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包是什么？"><span class="toc-number">1.</span> <span class="toc-text">闭包是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环和闭包"><span class="toc-number">2.</span> <span class="toc-text">循环和闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写在末尾"><span class="toc-number">3.</span> <span class="toc-text">写在末尾</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        浅谈闭包
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-09-18T10:41:59.000Z" itemprop="datePublished">2016-09-18</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/闭包-作用域/">闭包 作用域</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>之前很长一段时间不能理解闭包，经过这几天搜集资料，也对闭包有了一点较深的认识。那么闭包是什么呢？</p>
+<h3 id="闭包是什么？"><a href="#闭包是什么？" class="headerlink" title="闭包是什么？"></a>闭包是什么？</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(a)</span><br><span class="line">		&#125;</span><br><span class="line">	<span class="keyword">return</span> bar;</span><br><span class="line">	&#125;</span><br><span class="line"><span class="keyword">var</span> baz = foo();</span><br><span class="line">baz();   <span class="comment">//2 这就是闭包的效果</span></span><br></pre></td></tr></table></figure>
+<p>上面代码中函数<code>bar</code>被当作值返回，并且通过调用<code>foo()</code>将<code>bar</code>赋给了<code>baz</code>，并调用<code>baz()</code>，实际上是通过不同的标识符引用调用了内部的函数<code>bar()</code>。<br>当<code>foo()</code>执行结束之后，根据垃圾回收的机制，<code>foo()</code>的整个内部作用域都会被销毁，但是由于<strong>闭包</strong>的发生而阻止了这件事情的发生，之后内部作用域一直存在，被<code>bar()</code>所使用。而这个函数在定义的词法作用域之外进行成功调用，闭包使得函数可以访问定义时的作用域。<br>当函数记住并访问所在词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行的。函数对持有对该定义域的引用这就是闭包。<br><a id="more"></a><br>事实上，无论以哪种方对函数类型的值进行传递，当函数在别处调用的时候，都可以观察到闭包；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">baz</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(a)</span><br><span class="line">	&#125;</span><br><span class="line">	bar(baz) ;</span><br><span class="line">&#125;</span><br><span class="line">foo();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">bar</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">	fn();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>上面也产生了闭包，<code>baz</code>作为参数传递给了<code>bar</code>。在<code>foo()</code>作用域之外，能访问到<code>foo()</code>作用域中的变量<code>a</code>。<br>上面代码中只是为了说明闭包而生硬的使用闭包，实际上闭包在我的学习中使用了很多次了。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">wait</span>(<span class="params">message</span>) </span>&#123;</span><br><span class="line">	setTimeout(<span class="function"><span class="keyword">function</span> <span class="title">timer</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">		<span class="built_in">console</span>.log(message)</span><br><span class="line">	&#125;, <span class="number">1000</span>)</span><br><span class="line">&#125;</span><br><span class="line">wait(<span class="string">"hello world"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>将一个内部函数<code>timer</code>传给<code>setTimeout()</code>。<code>timer</code>具有涵盖<code>wait()</code>作用域的闭包，因此还保留对<code>message</code>的引用。<br>本质上无论何时何地，如果将函数当作返回值，并在自身作用于之外的地方调用，就会观察到闭包。</p>
+<h3 id="循环和闭包"><a href="#循环和闭包" class="headerlink" title="循环和闭包"></a>循环和闭包</h3><p>在闭包上，最开始遇到的棘手问题就是在循环中出现闭包：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">  settimeout (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(i);</span><br><span class="line">  &#125;, <span class="number">1000</span>*i)</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>我期望的预期是，分别输出1~5，每秒一次，每次一个;<br>但是结果是输出了5个5；这是为什么呢？为什么会取到5？<br>分析如下：<br><code>i=5</code>是<code>i&lt;5</code>终止条件首次成立<code>i</code>的取值，因此输出显示是循环结束后<code>i</code>的取值，而延时函数的回调会在循环结束时才执行。所以每次都会输出6；<br>那和预想产生冲突的原因是什么呢？<br>我们认为的认为循环中每次迭代都会在延时函数的回调函数中添加一个<code>i</code>的副本，然而根据作用域的工作原理，尽管循环中的五个函数是在每次迭代中分别定义的，但是他们都被<strong>封闭在一个共享的全局作用域中</strong>，因此实际上只有一个<code>i</code>；<br>那么怎么解决呢？需要更多的闭包作用域，使得循环过程中每次迭代都有自己独立的作用域和变量；这里使用了立即执行函数(IIFE)来创建作用域：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">5</span>; i++) &#123;</span><br><span class="line">    (<span class="function"><span class="keyword">function</span> (<span class="params">j</span>) </span>&#123;</span><br><span class="line">        setTimeout (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">            <span class="built_in">console</span>.log(j);</span><br><span class="line">        &#125;, <span class="number">1000</span>*j)</span><br><span class="line">    &#125;)(i)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>在迭代中使用IIFE会为每个迭代产生一个新的作用域和私有变量，这样每个迭代中都会有一个正确的变量供我们访问。</p>
+<h3 id="写在末尾"><a href="#写在末尾" class="headerlink" title="写在末尾"></a>写在末尾</h3><p>闭包并不是那么的高深莫测，而且在工作学习中会经常遇到；准确的发现哪里出现了闭包和理解它的工作原理，就可以避免很多错误的发生。但是怎么才能拨云见日，还是需要以后不断积累和总结。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#闭包是什么？"><span class="toc-number">1.</span> <span class="toc-text">闭包是什么？</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#循环和闭包"><span class="toc-number">2.</span> <span class="toc-text">循环和闭包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#写在末尾"><span class="toc-number">3.</span> <span class="toc-text">写在末尾</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/09/18/浅谈闭包/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/09/18/浅谈闭包/&text=浅谈闭包"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/09/18/浅谈闭包/&is_video=false&description=浅谈闭包"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=浅谈闭包&body=Check out this article: http://yoursite.com/2016/09/18/浅谈闭包/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/09/18/浅谈闭包/&title=浅谈闭包"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/09/18/浅谈闭包/&name=浅谈闭包&description=&lt;p&gt;之前很长一段时间不能理解闭包，经过这几天搜集资料，也对闭包有了一点较深的认识。那么闭包是什么呢？&lt;/p&gt;
+&lt;h3 id=&#34;闭包是什么？&#34;&gt;&lt;a href=&#34;#闭包是什么？&#34; class=&#34;headerlink&#34; title=&#34;闭包是什么？&#34;&gt;&lt;/a&gt;闭包是什么？&lt;/h3&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;6&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;7&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;8&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;9&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;foo&lt;/span&gt;(&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; a = &lt;span class=&#34;number&#34;&gt;2&lt;/span&gt;;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;function&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;function&lt;/span&gt; &lt;span class=&#34;title&#34;&gt;bar&lt;/span&gt; (&lt;span class=&#34;params&#34;&gt;&lt;/span&gt;) &lt;/span&gt;&amp;#123;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&lt;span class=&#34;built_in&#34;&gt;console&lt;/span&gt;.log(a)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;		&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&lt;span class=&#34;keyword&#34;&gt;return&lt;/span&gt; bar;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;	&amp;#125;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; baz = foo();&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;baz();   &lt;span class=&#34;comment&#34;&gt;//2 这就是闭包的效果&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;上面代码中函数&lt;code&gt;bar&lt;/code&gt;被当作值返回，并且通过调用&lt;code&gt;foo()&lt;/code&gt;将&lt;code&gt;bar&lt;/code&gt;赋给了&lt;code&gt;baz&lt;/code&gt;，并调用&lt;code&gt;baz()&lt;/code&gt;，实际上是通过不同的标识符引用调用了内部的函数&lt;code&gt;bar()&lt;/code&gt;。&lt;br&gt;当&lt;code&gt;foo()&lt;/code&gt;执行结束之后，根据垃圾回收的机制，&lt;code&gt;foo()&lt;/code&gt;的整个内部作用域都会被销毁，但是由于&lt;strong&gt;闭包&lt;/strong&gt;的发生而阻止了这件事情的发生，之后内部作用域一直存在，被&lt;code&gt;bar()&lt;/code&gt;所使用。而这个函数在定义的词法作用域之外进行成功调用，闭包使得函数可以访问定义时的作用域。&lt;br&gt;当函数记住并访问所在词法作用域时，就产生了闭包，即使函数是在当前词法作用域之外执行的。函数对持有对该定义域的引用这就是闭包。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

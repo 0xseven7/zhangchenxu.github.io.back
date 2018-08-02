@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="TCP/IP协议 计算机网络设备之间的相互通信，肯定需要一种规则，因为这涉及到很多不同的硬件，不同的操作系统，这种规则就是协议(protocol)；TCP/IP 协议就是与互联网相关联的协议的集合，也有人认为TCP/IP协议就是TCP/IP和IP这两种协议。  TCP/IP分层TCP/IP协议按层可以分为四层：  应用层 传输层 网络层 数据链路层  应用层 （Application  Layer">
+<meta name="keywords" content="TCP&#x2F;IP协议族，MAC， DNS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络基础">
+<meta property="og:url" content="http://yoursite.com/2016/09/21/网络基础/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="TCP/IP协议 计算机网络设备之间的相互通信，肯定需要一种规则，因为这涉及到很多不同的硬件，不同的操作系统，这种规则就是协议(protocol)；TCP/IP 协议就是与互联网相关联的协议的集合，也有人认为TCP/IP协议就是TCP/IP和IP这两种协议。  TCP/IP分层TCP/IP协议按层可以分为四层：  应用层 传输层 网络层 数据链路层  应用层 （Application  Layer">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://zhangchenxu.com/images/http/httpflow1.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/3-way%20handshaking.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/DNS.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/TCP-IP&HTTP.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/request.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/method.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/get.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/post.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/response.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/keepalive.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/http/cookie.png">
+<meta property="og:updated_time" content="2017-03-27T13:55:21.988Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络基础">
+<meta name="twitter:description" content="TCP/IP协议 计算机网络设备之间的相互通信，肯定需要一种规则，因为这涉及到很多不同的硬件，不同的操作系统，这种规则就是协议(protocol)；TCP/IP 协议就是与互联网相关联的协议的集合，也有人认为TCP/IP协议就是TCP/IP和IP这两种协议。  TCP/IP分层TCP/IP协议按层可以分为四层：  应用层 传输层 网络层 数据链路层  应用层 （Application  Layer">
+<meta name="twitter:image" content="http://zhangchenxu.com/images/http/httpflow1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>网络基础</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/09/22/ubuntu下常用软件安装/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/09/19/数组去重/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/09/21/网络基础/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/09/21/网络基础/&text=网络基础"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/09/21/网络基础/&is_video=false&description=网络基础"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络基础&body=Check out this article: http://yoursite.com/2016/09/21/网络基础/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/09/21/网络基础/&name=网络基础&description=&lt;h1 id=&#34;TCP-IP协议&#34;&gt;&lt;a href=&#34;#TCP-IP协议&#34; class=&#34;headerlink&#34; title=&#34;TCP/IP协议&#34;&gt;&lt;/a&gt;TCP/IP协议&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;计算机网络设备之间的相互通信，肯定需要一种规则，因为这涉及到很多不同的硬件，不同的操作系统，这种规则就是协议(&lt;code&gt;protocol&lt;/code&gt;)；&lt;br&gt;&lt;code&gt;TCP/IP&lt;/code&gt; 协议就是与互联网相关联的协议的集合，也有人认为&lt;code&gt;TCP/IP&lt;/code&gt;协议就是&lt;code&gt;TCP/IP&lt;/code&gt;和&lt;code&gt;IP&lt;/code&gt;这两种协议。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;TCP-IP分层&#34;&gt;&lt;a href=&#34;#TCP-IP分层&#34; class=&#34;headerlink&#34; title=&#34;TCP/IP分层&#34;&gt;&lt;/a&gt;TCP/IP分层&lt;/h2&gt;&lt;p&gt;&lt;code&gt;TCP/IP&lt;/code&gt;协议按层可以分为四层：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层&lt;/li&gt;
+&lt;li&gt;传输层&lt;/li&gt;
+&lt;li&gt;网络层&lt;/li&gt;
+&lt;li&gt;数据链路层&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;应用层-（Application-Layer）&#34;&gt;&lt;a href=&#34;#应用层-（Application-Layer）&#34; class=&#34;headerlink&#34; title=&#34;应用层 （Application  Layer）&#34;&gt;&lt;/a&gt;应用层 （Application  Layer）&lt;/h4&gt;&lt;p&gt;应用层位于&lt;code&gt;TCP/IP&lt;/code&gt;协议族的最上层，最靠近用户，决定了向用户提供服务时通信的活动。&lt;br&gt;应用层预存了各类通用的应用服务&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FTP&lt;/code&gt; （File Transfer Protocol，文本传输协议）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DNS&lt;/code&gt; （Domain Name Sytem， 域名解析系统）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HTTP&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;传输层-（Transport-Layer）&#34;&gt;&lt;a href=&#34;#传输层-（Transport-Layer）&#34; class=&#34;headerlink&#34; title=&#34;传输层 （Transport Layer）&#34;&gt;&lt;/a&gt;传输层 （Transport Layer）&lt;/h4&gt;&lt;p&gt;传输层在应用层上层，提供处于处于网络链接中的两台计算机的数据传输，有两个性质不同的协议 ： &lt;code&gt;TCP
+ （transmission Controll）&lt;/code&gt; 传输控制协议 和  &lt;code&gt;UDP（User Data Protocol ）&lt;/code&gt;用户数据协议&lt;/p&gt;
+&lt;h4 id=&#34;网络层-（Internet-Layer）&#34;&gt;&lt;a href=&#34;#网络层-（Internet-Layer）&#34; class=&#34;headerlink&#34; title=&#34;网络层 （Internet Layer）&#34;&gt;&lt;/a&gt;网络层 （Internet Layer）&lt;/h4&gt;&lt;p&gt;网络层用来处理在网络上流动的数据包。数据包时网络传输的最小数据单位。该层规定了通过怎样的路径到达对方的计算机，并把数据包传送给对方。&lt;br&gt;&lt;code&gt;IP&lt;/code&gt; （Internet Protocol）网际协议&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP-IP协议"><span class="toc-number">1.</span> <span class="toc-text">TCP/IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP分层"><span class="toc-number">1.1.</span> <span class="toc-text">TCP/IP分层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#应用层-（Application-Layer）"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">应用层 （Application  Layer）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传输层-（Transport-Layer）"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">传输层 （Transport Layer）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络层-（Internet-Layer）"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">网络层 （Internet Layer）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据链路层"><span class="toc-number">1.1.0.4.</span> <span class="toc-text">数据链路层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP通信传输流程"><span class="toc-number">1.1.1.</span> <span class="toc-text">TCP/IP通信传输流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP，TCP和DNS"><span class="toc-number">1.1.2.</span> <span class="toc-text">IP，TCP和DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#负责传输的IP协议"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">负责传输的IP协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#确保传输可靠性的TCP协议"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">确保传输可靠性的TCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#三次握手"><span class="toc-number">1.1.2.2.1.</span> <span class="toc-text">三次握手</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#各种协议与HTTP协议的关系"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">各种协议与HTTP协议的关系</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求报文"><span class="toc-number">1.2.1.</span> <span class="toc-text">请求报文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#请求方法"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">请求方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#GET：获取资源"><span class="toc-number">1.2.1.1.1.</span> <span class="toc-text">GET：获取资源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#POST：-传输实体主体"><span class="toc-number">1.2.1.1.2.</span> <span class="toc-text">POST： 传输实体主体</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久链接"><span class="toc-number">1.2.2.</span> <span class="toc-text">持久链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Cookie进行状态管理"><span class="toc-number">1.2.3.</span> <span class="toc-text">使用Cookie进行状态管理</span></a></li></ol></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        网络基础
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-09-21T03:51:28.000Z" itemprop="datePublished">2016-09-21</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/TCP-IP协议族，MAC，-DNS/">TCP/IP协议族，MAC， DNS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h1 id="TCP-IP协议"><a href="#TCP-IP协议" class="headerlink" title="TCP/IP协议"></a>TCP/IP协议</h1><blockquote>
+<p>计算机网络设备之间的相互通信，肯定需要一种规则，因为这涉及到很多不同的硬件，不同的操作系统，这种规则就是协议(<code>protocol</code>)；<br><code>TCP/IP</code> 协议就是与互联网相关联的协议的集合，也有人认为<code>TCP/IP</code>协议就是<code>TCP/IP</code>和<code>IP</code>这两种协议。</p>
+</blockquote>
+<h2 id="TCP-IP分层"><a href="#TCP-IP分层" class="headerlink" title="TCP/IP分层"></a>TCP/IP分层</h2><p><code>TCP/IP</code>协议按层可以分为四层：</p>
+<ul>
+<li>应用层</li>
+<li>传输层</li>
+<li>网络层</li>
+<li>数据链路层</li>
+</ul>
+<h4 id="应用层-（Application-Layer）"><a href="#应用层-（Application-Layer）" class="headerlink" title="应用层 （Application  Layer）"></a>应用层 （Application  Layer）</h4><p>应用层位于<code>TCP/IP</code>协议族的最上层，最靠近用户，决定了向用户提供服务时通信的活动。<br>应用层预存了各类通用的应用服务</p>
+<ul>
+<li><code>FTP</code> （File Transfer Protocol，文本传输协议）</li>
+<li><code>DNS</code> （Domain Name Sytem， 域名解析系统）</li>
+<li><code>HTTP</code></li>
+</ul>
+<h4 id="传输层-（Transport-Layer）"><a href="#传输层-（Transport-Layer）" class="headerlink" title="传输层 （Transport Layer）"></a>传输层 （Transport Layer）</h4><p>传输层在应用层上层，提供处于处于网络链接中的两台计算机的数据传输，有两个性质不同的协议 ： <code>TCP
+ （transmission Controll）</code> 传输控制协议 和  <code>UDP（User Data Protocol ）</code>用户数据协议</p>
+<h4 id="网络层-（Internet-Layer）"><a href="#网络层-（Internet-Layer）" class="headerlink" title="网络层 （Internet Layer）"></a>网络层 （Internet Layer）</h4><p>网络层用来处理在网络上流动的数据包。数据包时网络传输的最小数据单位。该层规定了通过怎样的路径到达对方的计算机，并把数据包传送给对方。<br><code>IP</code> （Internet Protocol）网际协议<br><a id="more"></a></p>
+<h4 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h4><p>用来处理链接网络的硬件部分，包括操作系统，硬件的驱动，网卡，光纤等物理可见部分。</p>
+<h3 id="TCP-IP通信传输流程"><a href="#TCP-IP通信传输流程" class="headerlink" title="TCP/IP通信传输流程"></a>TCP/IP通信传输流程</h3><p>利用TCP/IP协议族通信的时候，会通过分层顺序与对方进行通信，发送端从应用层往下走，接收端则向上走,<br>以HTTP举例：<br><img src="http://zhangchenxu.com/images/http/httpflow1.png" alt="enter image description here"></p>
+<ol>
+<li>发送端的客户端在应用层(HTTP协议)发出一个HTTP请求，也就是（HTTP报文）</li>
+<li>在传输层（TCP/IP协议）把应用层处传来的数据进行分割，并在各个报文上面打上标记序号和端口号发送给网络层；</li>
+<li>在网络层（IP协议），增加作为通信目的地的MAC地址之后转发给链路层，</li>
+<li>接受的服务端在链路层接收到数据，按顺序往上层发送，直到应用层，才算真正就到发送端发来的HTTP请求;</li>
+</ol>
+<p>发送端在层与层之间传输数据，每经过一层，都会为数据打上该层所属的首部信息。接收端在层与层之间传输数据时，每层都会将对应的首部信息去掉。这种方法成为封装。</p>
+<h3 id="IP，TCP和DNS"><a href="#IP，TCP和DNS" class="headerlink" title="IP，TCP和DNS"></a>IP，TCP和DNS</h3><h4 id="负责传输的IP协议"><a href="#负责传输的IP协议" class="headerlink" title="负责传输的IP协议"></a>负责传输的IP协议</h4><p>IP协议（Internet Protocol）位于网路层，是协议族中非常重要的一环，之前经常接触IP地址，那么，<code>IP</code>和<code>IP地址</code>什么区别？<br>IP只是一种协议的名称；a<br>IP协议的作用是把各种数据传送给对方，要保证传送到对方哪里，需要满足各种条件，两个重要的条件就是正确的IP地址和MAC（Media Accss Condrol Address）；<br>IP地址明确了节点被分配到的地址，MAC地址是网卡所属的固定地址。IP地址可以和MAC地址进行配对，IP可以而MAC地址基本不变。</p>
+<blockquote>
+<p>MAC地址是网络中各种网络设备的地址，每个网络设备都有一个唯一的地址。<br>假设现有一台路由器，含有一个WAN端口及四个LAN端口。它的WAN端口会有一个如 61.61.61.61的IP地址，也会有一个如00:0A:02:0B:03:0C的MAC地址。而它的四个LAN端口，会各分配到一个例如192.168.1.0/24这样的IP地址，四个端口各会有一个不同的MAC地址。  – <a href="https://zh.wikipedia.org/wiki/MAC%E5%9C%B0%E5%9D%80" target="_blank" rel="noopener">维基百科MAC地址</a></p>
+</blockquote>
+<p><strong>使用ARP协议借用MAC地址进行通信</strong><br>IP之间的通信依赖MAC地址，在网络上，通信双方通信时通常要经过多台计算机和网络射别的中转。而在中转过程中，会利用下一站中转设备的MAV地址来搜索下一个中转目标，这里采用（Address Resolution Protocol），是路由解析地址的协议，根据通信双方的IP地址就能反查出对应的MAC；</p>
+<h4 id="确保传输可靠性的TCP协议"><a href="#确保传输可靠性的TCP协议" class="headerlink" title="确保传输可靠性的TCP协议"></a>确保传输可靠性的TCP协议</h4><p>为了方便的传输数据，将大块的数据切分成多个报文段为单位的数据包进行管理。</p>
+<h5 id="三次握手"><a href="#三次握手" class="headerlink" title="三次握手"></a>三次握手</h5><p>为了确保信息能到达目标处，TCP协议采取了<strong>三次握手</strong>的策略。握手过程中使用了TCP的标志—-SYN和ACK</p>
+<p>发送端首先发送带有<code>SYN</code>标志的数据包给对方，接收端收到后回传一个带有<code>SYN/ACK</code>标志的数据包表示传达确认信息。最后发送端在传回一个带<code>ACK</code>标志的数据包，表示传输结束。<br><img src="http://www.zhangchenxu.com/images/http/3-way%20handshaking.png" alt="三次握手模型"><br>如果传输中断，TCP协议就会在此以相同的顺序发送相同的数据包。</p>
+<h4 id="DNS"><a href="#DNS" class="headerlink" title="DNS"></a>DNS</h4><p>DNS负责域名解析，和HTTP协议一样位于应用层。<br>为什么使用域名解析？<br>访问计算机时，既可以使用域名或主机名也可以使用IP地址。域名符合人们的记忆习惯，而IP地址是计算机擅长处理的。DNS据提供了域名到IP地址的双向查找服务。<br><img src="http://www.zhangchenxu.com/images/http/DNS.png" alt="enter image description here"></p>
+<h4 id="各种协议与HTTP协议的关系"><a href="#各种协议与HTTP协议的关系" class="headerlink" title="各种协议与HTTP协议的关系"></a>各种协议与HTTP协议的关系</h4><p><img src="http://www.zhangchenxu.com/images/http/TCP-IP&amp;HTTP.png" alt="enter image description here"></p>
+<h2 id="HTTP协议"><a href="#HTTP协议" class="headerlink" title="HTTP协议"></a>HTTP协议</h2><p>HTTP协议也是用于客户端和服务端之间的通信，请求资源的就是客户端，提供资源的就是服务端。<br>HTTP协议通过请求和响应的交换来通信。客户端发送请求，服务端接收到请求之后响应该请求并返回响应。</p>
+<h3 id="请求报文"><a href="#请求报文" class="headerlink" title="请求报文"></a>请求报文</h3><p>请求报文是由请求方法，请求URL，版本协议，可选的请求首部字段和内容实体构成：<br><img src="http://www.zhangchenxu.com/images/http/request.png" alt="请求报文"></p>
+<h4 id="请求方法"><a href="#请求方法" class="headerlink" title="请求方法"></a>请求方法</h4><p>HTTP/1.1提供一下几种请求方法：<br><img src="http://www.zhangchenxu.com/images/http/method.png" alt="method"></p>
+<h5 id="GET：获取资源"><a href="#GET：获取资源" class="headerlink" title="GET：获取资源"></a>GET：获取资源</h5><p>GET方法用来请求访问以备URL识别的资源，指定资源经服务器解析之后返回响应。<br><img src="http://www.zhangchenxu.com/images/http/get.png" alt="get"></p>
+<h5 id="POST：-传输实体主体"><a href="#POST：-传输实体主体" class="headerlink" title="POST： 传输实体主体"></a>POST： 传输实体主体</h5><p>POST方法将一些信息传输到服务器，并返回响应<br><img src="http://www.zhangchenxu.com/images/http/post.png" alt="post"><br>服务器接收到请求之后，会将处理结果以响应的形式返回：<br><img src="http://www.zhangchenxu.com/images/http/response.png" alt="响应报文"></p>
+<h3 id="持久链接"><a href="#持久链接" class="headerlink" title="持久链接"></a>持久链接</h3><p>早期的HTTP协议中，每进行一次HTTP通信就要断开一次TCP链接。当然早起传输的数据比较小，这样也没太大问题。但是现在网页中的图片等资源日益增多，每次请求都会造成无谓的TCP连接的建立和断开，增加了开销。为了解决上述问题，HTTP/1.1出现了持久连接(HTTP Keep-alive)，只要任意一端没有提出断开，则保持TCP连接。<br><img src="http://www.zhangchenxu.com/images/http/keepalive.png" alt="持久连接"></p>
+<h3 id="使用Cookie进行状态管理"><a href="#使用Cookie进行状态管理" class="headerlink" title="使用Cookie进行状态管理"></a>使用Cookie进行状态管理</h3><p>引入Cookie之前，我们需要知道HTTP协议是不保存状态的协议，也就是说，HTTP协议本身不会保存请求和响应之间的通信状态。但是现代网页中都有保持登录的功能，非常方便这是怎么回事呢？<br>这是使用了Cookie技术，在请求报文和响应报文中写入参数来管理登陆状态。<br>Cookie会根据服务端发送的响应报文内的<code>Set-Cookie</code>的首部字段通知客户端保存Cookie，下次客户端再往服务器中发送请求的时候，客户端会自动在请求报文中添加Cookie的值后发送出去。<br>服务端接受到客户端发送来的Cookie数据后，会检查从哪个客户端中发来的请求，去服务器中的记录进行对比，得到之前的登录状态。<br><img src="http://www.zhangchenxu.com/images/http/cookie.png" alt="Cookie"></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#TCP-IP协议"><span class="toc-number">1.</span> <span class="toc-text">TCP/IP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#TCP-IP分层"><span class="toc-number">1.1.</span> <span class="toc-text">TCP/IP分层</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#应用层-（Application-Layer）"><span class="toc-number">1.1.0.1.</span> <span class="toc-text">应用层 （Application  Layer）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#传输层-（Transport-Layer）"><span class="toc-number">1.1.0.2.</span> <span class="toc-text">传输层 （Transport Layer）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#网络层-（Internet-Layer）"><span class="toc-number">1.1.0.3.</span> <span class="toc-text">网络层 （Internet Layer）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#数据链路层"><span class="toc-number">1.1.0.4.</span> <span class="toc-text">数据链路层</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TCP-IP通信传输流程"><span class="toc-number">1.1.1.</span> <span class="toc-text">TCP/IP通信传输流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#IP，TCP和DNS"><span class="toc-number">1.1.2.</span> <span class="toc-text">IP，TCP和DNS</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#负责传输的IP协议"><span class="toc-number">1.1.2.1.</span> <span class="toc-text">负责传输的IP协议</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#确保传输可靠性的TCP协议"><span class="toc-number">1.1.2.2.</span> <span class="toc-text">确保传输可靠性的TCP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#三次握手"><span class="toc-number">1.1.2.2.1.</span> <span class="toc-text">三次握手</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#DNS"><span class="toc-number">1.1.2.3.</span> <span class="toc-text">DNS</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#各种协议与HTTP协议的关系"><span class="toc-number">1.1.2.4.</span> <span class="toc-text">各种协议与HTTP协议的关系</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP协议"><span class="toc-number">1.2.</span> <span class="toc-text">HTTP协议</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#请求报文"><span class="toc-number">1.2.1.</span> <span class="toc-text">请求报文</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#请求方法"><span class="toc-number">1.2.1.1.</span> <span class="toc-text">请求方法</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#GET：获取资源"><span class="toc-number">1.2.1.1.1.</span> <span class="toc-text">GET：获取资源</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#POST：-传输实体主体"><span class="toc-number">1.2.1.1.2.</span> <span class="toc-text">POST： 传输实体主体</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#持久链接"><span class="toc-number">1.2.2.</span> <span class="toc-text">持久链接</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#使用Cookie进行状态管理"><span class="toc-number">1.2.3.</span> <span class="toc-text">使用Cookie进行状态管理</span></a></li></ol></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/09/21/网络基础/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/09/21/网络基础/&text=网络基础"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/09/21/网络基础/&is_video=false&description=网络基础"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=网络基础&body=Check out this article: http://yoursite.com/2016/09/21/网络基础/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/09/21/网络基础/&title=网络基础"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/09/21/网络基础/&name=网络基础&description=&lt;h1 id=&#34;TCP-IP协议&#34;&gt;&lt;a href=&#34;#TCP-IP协议&#34; class=&#34;headerlink&#34; title=&#34;TCP/IP协议&#34;&gt;&lt;/a&gt;TCP/IP协议&lt;/h1&gt;&lt;blockquote&gt;
+&lt;p&gt;计算机网络设备之间的相互通信，肯定需要一种规则，因为这涉及到很多不同的硬件，不同的操作系统，这种规则就是协议(&lt;code&gt;protocol&lt;/code&gt;)；&lt;br&gt;&lt;code&gt;TCP/IP&lt;/code&gt; 协议就是与互联网相关联的协议的集合，也有人认为&lt;code&gt;TCP/IP&lt;/code&gt;协议就是&lt;code&gt;TCP/IP&lt;/code&gt;和&lt;code&gt;IP&lt;/code&gt;这两种协议。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;TCP-IP分层&#34;&gt;&lt;a href=&#34;#TCP-IP分层&#34; class=&#34;headerlink&#34; title=&#34;TCP/IP分层&#34;&gt;&lt;/a&gt;TCP/IP分层&lt;/h2&gt;&lt;p&gt;&lt;code&gt;TCP/IP&lt;/code&gt;协议按层可以分为四层：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;应用层&lt;/li&gt;
+&lt;li&gt;传输层&lt;/li&gt;
+&lt;li&gt;网络层&lt;/li&gt;
+&lt;li&gt;数据链路层&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;应用层-（Application-Layer）&#34;&gt;&lt;a href=&#34;#应用层-（Application-Layer）&#34; class=&#34;headerlink&#34; title=&#34;应用层 （Application  Layer）&#34;&gt;&lt;/a&gt;应用层 （Application  Layer）&lt;/h4&gt;&lt;p&gt;应用层位于&lt;code&gt;TCP/IP&lt;/code&gt;协议族的最上层，最靠近用户，决定了向用户提供服务时通信的活动。&lt;br&gt;应用层预存了各类通用的应用服务&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;FTP&lt;/code&gt; （File Transfer Protocol，文本传输协议）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;DNS&lt;/code&gt; （Domain Name Sytem， 域名解析系统）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;HTTP&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h4 id=&#34;传输层-（Transport-Layer）&#34;&gt;&lt;a href=&#34;#传输层-（Transport-Layer）&#34; class=&#34;headerlink&#34; title=&#34;传输层 （Transport Layer）&#34;&gt;&lt;/a&gt;传输层 （Transport Layer）&lt;/h4&gt;&lt;p&gt;传输层在应用层上层，提供处于处于网络链接中的两台计算机的数据传输，有两个性质不同的协议 ： &lt;code&gt;TCP
+ （transmission Controll）&lt;/code&gt; 传输控制协议 和  &lt;code&gt;UDP（User Data Protocol ）&lt;/code&gt;用户数据协议&lt;/p&gt;
+&lt;h4 id=&#34;网络层-（Internet-Layer）&#34;&gt;&lt;a href=&#34;#网络层-（Internet-Layer）&#34; class=&#34;headerlink&#34; title=&#34;网络层 （Internet Layer）&#34;&gt;&lt;/a&gt;网络层 （Internet Layer）&lt;/h4&gt;&lt;p&gt;网络层用来处理在网络上流动的数据包。数据包时网络传输的最小数据单位。该层规定了通过怎样的路径到达对方的计算机，并把数据包传送给对方。&lt;br&gt;&lt;code&gt;IP&lt;/code&gt; （Internet Protocol）网际协议&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

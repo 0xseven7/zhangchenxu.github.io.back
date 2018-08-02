@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="简单的编译原理学简单的学习一下编译原理：在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。如var a = 2;会被分解为”var “、”a”、”=”、”2”、“;”。  解析/语法分析这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树Abstract Syn">
+<meta name="keywords" content="作用域">
+<meta property="og:type" content="article">
+<meta property="og:title" content="作用域深入学习">
+<meta property="og:url" content="http://yoursite.com/2016/07/16/作用域深入研究/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="简单的编译原理学简单的学习一下编译原理：在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。如var a = 2;会被分解为”var “、”a”、”=”、”2”、“;”。  解析/语法分析这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树Abstract Syn">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2016-09-19T07:06:28.062Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="作用域深入学习">
+<meta name="twitter:description" content="简单的编译原理学简单的学习一下编译原理：在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。如var a = 2;会被分解为”var “、”a”、”=”、”2”、“;”。  解析/语法分析这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树Abstract Syn">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>作用域深入学习</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/09/18/引用类型/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/06/18/caller&callee/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/07/16/作用域深入研究/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/07/16/作用域深入研究/&text=作用域深入学习"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/07/16/作用域深入研究/&is_video=false&description=作用域深入学习"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=作用域深入学习&body=Check out this article: http://yoursite.com/2016/07/16/作用域深入研究/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/07/16/作用域深入研究/&name=作用域深入学习&description=&lt;h3 id=&#34;简单的编译原理&#34;&gt;&lt;a href=&#34;#简单的编译原理&#34; class=&#34;headerlink&#34; title=&#34;简单的编译原理&#34;&gt;&lt;/a&gt;简单的编译原理&lt;/h3&gt;&lt;p&gt;学简单的学习一下编译原理：&lt;br&gt;在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；&lt;br&gt;这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。&lt;br&gt;如&lt;code&gt;var a = 2;&lt;/code&gt;会被分解为”var “、”a”、”=”、”2”、“;”。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;解析/语法分析&lt;br&gt;这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树&lt;code&gt;Abstract Syntax tree(AST)&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;代码生成&lt;br&gt;将AST转化为一组机器指令。&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;引擎&lt;/strong&gt;：从头到尾负责整个JS程序的编译和执行的过程；&lt;br&gt;&lt;strong&gt;编译器&lt;/strong&gt;：负责语法分析及代码生成；&lt;br&gt;&lt;strong&gt;作用域&lt;/strong&gt;：可以看作是一套规则，用来管理引擎如何在当前作用域以及嵌套的子作用域中根据标识符名称进行变量查找。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单的编译原理"><span class="toc-number">1.</span> <span class="toc-text">简单的编译原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域嵌套"><span class="toc-number">2.</span> <span class="toc-text">作用域嵌套</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#区分LHS和RHS"><span class="toc-number">2.0.1.</span> <span class="toc-text">区分LHS和RHS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数中的作用域"><span class="toc-number">3.</span> <span class="toc-text">函数中的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#立即执行函数表达式（IIFE）"><span class="toc-number">4.</span> <span class="toc-text">立即执行函数表达式（IIFE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块作用域"><span class="toc-number">5.</span> <span class="toc-text">块作用域</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        作用域深入学习
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-07-15T16:00:00.000Z" itemprop="datePublished">2016-07-16</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/作用域/">作用域</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h3 id="简单的编译原理"><a href="#简单的编译原理" class="headerlink" title="简单的编译原理"></a>简单的编译原理</h3><p>学简单的学习一下编译原理：<br>在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；<br>这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。<br>如<code>var a = 2;</code>会被分解为”var “、”a”、”=”、”2”、“;”。</p>
+<ol start="2">
+<li>解析/语法分析<br>这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树<code>Abstract Syntax tree(AST)</code>;</li>
+<li>代码生成<br>将AST转化为一组机器指令。<blockquote>
+<p><strong>引擎</strong>：从头到尾负责整个JS程序的编译和执行的过程；<br><strong>编译器</strong>：负责语法分析及代码生成；<br><strong>作用域</strong>：可以看作是一套规则，用来管理引擎如何在当前作用域以及嵌套的子作用域中根据标识符名称进行变量查找。</p>
+</blockquote>
+</li>
+</ol>
+<a id="more"></a>
+<h3 id="作用域嵌套"><a href="#作用域嵌套" class="headerlink" title="作用域嵌套"></a>作用域嵌套</h3><p>当一个块或者函数早另一个函数或块中的时候，就出现了作用域的嵌套；<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params">a</span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(a + b);</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> b = <span class="number">2</span>;</span><br><span class="line">foo(<span class="number">2</span>);</span><br></pre></td></tr></table></figure></p>
+<p>上面就发生了作用域嵌套；<br>对b进行RHS引用的时候，无法在foo内部完成，因为b在全局作用域中。<br>遍历嵌套的作用域链很简单，引擎从当前作用域开始查找变量，如果没找到，就在上级作用于查找。当抵达最外层作用域的时候，不管有没有找到变量，查找过程都停止。</p>
+<h5 id="区分LHS和RHS"><a href="#区分LHS和RHS" class="headerlink" title="区分LHS和RHS"></a>区分LHS和RHS</h5><p>当变量出现在“=”左侧的时候，就执行LHS查找，当在右侧的时候就执行RHS查找，也就是说RHS查询就是简单的查询某个变量的值，而LHS查询则是试图查找变量的容器本身从而进行赋值<br>如：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">console</span>.log(a);    RHS查找</span><br><span class="line">a = <span class="number">2</span>;    LHS查找</span><br></pre></td></tr></table></figure></p>
+<p>如过RHS查找时，无法查询到该变量，就会抛出<code>ReferenceRrror</code>的异常，也就是引用错误；<br>但是LHS在全局作用域也无法查找到变量的时候，就会热心的在全局作用域中创建该变量，并赋值；</p>
+<h3 id="函数中的作用域"><a href="#函数中的作用域" class="headerlink" title="函数中的作用域"></a>函数中的作用域</h3><p>函数作用域的含义就是，属于这个函数的全部变量都可以在整个函数范围内使用或者复用，而在作用域之外无法访问。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>,</span><br><span class="line">        b = <span class="number">3</span>;</span><br><span class="line">    <span class="function"><span class="keyword">function</span> <span class="title">bar</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="built_in">console</span>.log (a);</span><br><span class="line">    &#125;</span><br><span class="line">    bar ();</span><br><span class="line">&#125;</span><br><span class="line">foo();   <span class="comment">// 2</span></span><br><span class="line">bar ();  <span class="comment">//RefrenceError bar is not defined;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="立即执行函数表达式（IIFE）"><a href="#立即执行函数表达式（IIFE）" class="headerlink" title="立即执行函数表达式（IIFE）"></a>立即执行函数表达式（IIFE）</h3><p>明确一下函数表达是和函数声明的区别：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> foo1 = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;  <span class="comment">//函数表达式</span></span><br><span class="line">    <span class="built_in">console</span>.log (<span class="string">"1"</span>);</span><br><span class="line">&#125;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo2</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log (<span class="string">"2"</span>);   <span class="comment">//函数声明</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>函数声明和函数表达式的重要区别就是，<code>function</code>操作符的位置，如果<code>function</code>操作符之前没有任何字符，那么就是函数声明。否则就是函数表达式<br><strong>立即执行函数表达式</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(a);   <span class="comment">// 2</span></span><br><span class="line">&#125;)();</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> b = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(b);</span><br><span class="line">&#125;())  <span class="comment">//3</span></span><br></pre></td></tr></table></figure></p>
+<p>如上：立即执行函数的两种表达形式，此函数的优点：不需要函数名，不需要调用就能够自动运行；而且外部作用域无法访问<code>foo</code>，因为<code>foo</code>被绑定在函数表达式自身的函数中，而不是所在的作用域中；<br>由于函数被一对( )包围，因此就成为了一个函数表达式，在末尾加上另外一对（）表示立即执行这个函数；<br>IIFE的进阶使用方法就是当作函数调用，并传递参数进去:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span>;</span><br><span class="line">(<span class="function"><span class="keyword">function</span> <span class="title">IIFE</span> (<span class="params">global</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> a = <span class="number">3</span>;</span><br><span class="line">    <span class="built_in">console</span>.log(a);    <span class="comment">// 3</span></span><br><span class="line">    <span class="built_in">console</span>.log(global.a);    <span class="regexp">/2</span></span><br><span class="line"><span class="regexp">&#125;(window))</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="块作用域"><a href="#块作用域" class="headerlink" title="块作用域"></a>块作用域</h3><p>函数作用域是最常见的作用域单元：块作用域在JS表面上并不支持：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> (<span class="keyword">var</span> i=<span class="number">0</span>; i&lt;<span class="number">10</span>; i++)&#123;</span><br><span class="line">    <span class="built_in">console</span>.log (i);</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">console</span>.log(i)   <span class="comment">//10</span></span><br></pre></td></tr></table></figure></p>
+<p>上面可以看出，本来只想在for(){ }中使用的<code>var i</code>却在外部作用域中依然能够访问，如果在外部作用域中错误调用了<code>i</code>却不会返回错误。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#简单的编译原理"><span class="toc-number">1.</span> <span class="toc-text">简单的编译原理</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#作用域嵌套"><span class="toc-number">2.</span> <span class="toc-text">作用域嵌套</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#区分LHS和RHS"><span class="toc-number">2.0.1.</span> <span class="toc-text">区分LHS和RHS</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#函数中的作用域"><span class="toc-number">3.</span> <span class="toc-text">函数中的作用域</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#立即执行函数表达式（IIFE）"><span class="toc-number">4.</span> <span class="toc-text">立即执行函数表达式（IIFE）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#块作用域"><span class="toc-number">5.</span> <span class="toc-text">块作用域</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/07/16/作用域深入研究/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/07/16/作用域深入研究/&text=作用域深入学习"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/07/16/作用域深入研究/&is_video=false&description=作用域深入学习"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=作用域深入学习&body=Check out this article: http://yoursite.com/2016/07/16/作用域深入研究/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/07/16/作用域深入研究/&title=作用域深入学习"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/07/16/作用域深入研究/&name=作用域深入学习&description=&lt;h3 id=&#34;简单的编译原理&#34;&gt;&lt;a href=&#34;#简单的编译原理&#34; class=&#34;headerlink&#34; title=&#34;简单的编译原理&#34;&gt;&lt;/a&gt;简单的编译原理&lt;/h3&gt;&lt;p&gt;学简单的学习一下编译原理：&lt;br&gt;在传统编译语言流程中，程序中的一段源代码在执行之前会经历三个步骤，统称为编译；&lt;br&gt;这个过程会将有组成的字符串分解为有意义的代码块，这些代码块被称为(token)。&lt;br&gt;如&lt;code&gt;var a = 2;&lt;/code&gt;会被分解为”var “、”a”、”=”、”2”、“;”。&lt;/p&gt;
+&lt;ol start=&#34;2&#34;&gt;
+&lt;li&gt;解析/语法分析&lt;br&gt;这个过程会把词法单元流转换为一个由元素逐级嵌套所组成的代表语法结构的树，抽象语法树&lt;code&gt;Abstract Syntax tree(AST)&lt;/code&gt;;&lt;/li&gt;
+&lt;li&gt;代码生成&lt;br&gt;将AST转化为一组机器指令。&lt;blockquote&gt;
+&lt;p&gt;&lt;strong&gt;引擎&lt;/strong&gt;：从头到尾负责整个JS程序的编译和执行的过程；&lt;br&gt;&lt;strong&gt;编译器&lt;/strong&gt;：负责语法分析及代码生成；&lt;br&gt;&lt;strong&gt;作用域&lt;/strong&gt;：可以看作是一套规则，用来管理引擎如何在当前作用域以及嵌套的子作用域中根据标识符名称进行变量查找。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;/li&gt;
+&lt;/ol&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

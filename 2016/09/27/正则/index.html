@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ; pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：  g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来； i ：表示case-sinsenstive忽略大小写； m：multiline多行模式，在前一">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则">
+<meta property="og:url" content="http://yoursite.com/2016/09/27/正则/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ; pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：  g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来； i ：表示case-sinsenstive忽略大小写； m：multiline多行模式，在前一">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2017-03-27T13:55:12.672Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="正则">
+<meta name="twitter:description" content="ES通过RegExp类型来支持正则表达式1var expression = / pattern / flags ; pattern模式部分可以接收任何了简单或复杂的正则表达式。flages标明正则表达式的行为：  g：表示global模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来； i ：表示case-sinsenstive忽略大小写； m：multiline多行模式，在前一">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>正则</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/09/27/面向对象的初步认识/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/09/22/配置NodeJS环境/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/09/27/正则/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/09/27/正则/&text=正则"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/09/27/正则/&is_video=false&description=正则"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=正则&body=Check out this article: http://yoursite.com/2016/09/27/正则/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/09/27/正则/&name=正则&description=&lt;p&gt;ES通过RegExp类型来支持正则表达式&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; expression = &lt;span class=&#34;regexp&#34;&gt;/ pattern /&lt;/span&gt; flags ;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pattern&lt;/code&gt;模式部分可以接收任何了简单或复杂的正则表达式。&lt;br&gt;&lt;code&gt;flages&lt;/code&gt;标明正则表达式的行为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;g&lt;/code&gt;：表示&lt;code&gt;global&lt;/code&gt;模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt; ：表示&lt;code&gt;case-sinsenstive&lt;/code&gt;忽略大小写；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m&lt;/code&gt;：&lt;code&gt;multiline&lt;/code&gt;多行模式，在前一行末尾后查找下一行；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是&lt;strong&gt;转义字符&lt;/strong&gt;&lt;br&gt;元字符：( [ ( * $  ^ ? \ +  ) ] )&lt;br&gt;转意字符： “\”引导元字符&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern1 = &lt;span class=&#34;regexp&#34;&gt;/at/g&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;// 匹配&#39;at&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern2 = &lt;span class=&#34;regexp&#34;&gt;/[ab]cd /i&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;// 匹配第一个&#39;acd&#39;或&#39;bcd&#39;，不区分大小写&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern3 = &lt;span class=&#34;regexp&#34;&gt;/\[ab\]cd/i&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;//匹配第一个[ab]cd ,不区分大小写&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern4 = &lt;span class=&#34;regexp&#34;&gt;/.at/gi&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;//匹配所有以&#34;at&#34;结尾的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        正则
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-09-27T15:41:57.000Z" itemprop="datePublished">2016-09-27</time>
+    </div>
+
+
+      
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>ES通过RegExp类型来支持正则表达式<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> expression = <span class="regexp">/ pattern /</span> flags ;</span><br></pre></td></tr></table></figure></p>
+<p><code>pattern</code>模式部分可以接收任何了简单或复杂的正则表达式。<br><code>flages</code>标明正则表达式的行为：</p>
+<ul>
+<li><code>g</code>：表示<code>global</code>模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；</li>
+<li><code>i</code> ：表示<code>case-sinsenstive</code>忽略大小写；</li>
+<li><code>m</code>：<code>multiline</code>多行模式，在前一行末尾后查找下一行；</li>
+</ul>
+<p>一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是<strong>转义字符</strong><br>元字符：( [ ( * $  ^ ? \ +  ) ] )<br>转意字符： “\”引导元字符<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern1 = <span class="regexp">/at/g</span>    <span class="comment">// 匹配'at'</span></span><br><span class="line"><span class="keyword">var</span> pattern2 = <span class="regexp">/[ab]cd /i</span>    <span class="comment">// 匹配第一个'acd'或'bcd'，不区分大小写</span></span><br><span class="line"><span class="keyword">var</span> pattern3 = <span class="regexp">/\[ab\]cd/i</span>    <span class="comment">//匹配第一个[ab]cd ,不区分大小写</span></span><br><span class="line"><span class="keyword">var</span> pattern4 = <span class="regexp">/.at/gi</span>    <span class="comment">//匹配所有以"at"结尾的</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
+<p><strong>创建正则实例</strong><br>创建正则实例和其他实例有两种方法：<code>new</code>操作符加<code>RegExp</code>构造函数和字面量<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re1 = <span class="regexp">/at/g</span> ;</span><br><span class="line"><span class="keyword">var</span> re2 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"at"</span> <span class="string">"g"</span>) ;</span><br><span class="line"><span class="keyword">var</span> re3 = <span class="regexp">/\[ab\]cd/g</span>;</span><br><span class="line"><span class="keyword">var</span> re4 = <span class="keyword">new</span> <span class="built_in">RegExp</span>(<span class="string">"\\[ab\\]cd"</span> , <span class="string">"g"</span>)</span><br></pre></td></tr></table></figure></p>
+<p>在使用<code>new</code>操作符创建<code>RegExp</code>实例的时候，由于<code>RegExp</code>构造函数参数为字符串，字面量创建时用转义字符的，这里需要用双重转义字符。<br><strong><code>RegExp</code>实例的方法</strong><br>两种方法<code>exec()</code>和<code>test()</code>：</p>
+<ul>
+<li><code>exec()</code>方法，返回包含第一个匹配项的数组。没有匹配的话返回<code>null</code>。<br><code>exec()</code>包含两个属性：<ul>
+<li><code>index</code>会返回第一个匹配项在字符串中的位置；</li>
+<li><code>input</code>会返回应用正则表达式的字符串；</li>
+<li><code>test</code>模式与参数匹配的时候会返回<code>true</code>，否则为<code>false</code>;</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> re = <span class="regexp">/\d&#123;3&#125;.\d&#123;3&#125;.\d&#123;1&#125;.\d&#123;1&#125;/</span></span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"192.168.1.1"</span> ;</span><br><span class="line"><span class="keyword">var</span> c = <span class="string">"192.168.10.11"</span> ;</span><br><span class="line"><span class="built_in">console</span>.log(re.test(b));   <span class="comment">//true</span></span><br><span class="line"><span class="built_in">console</span>.log(re.test(c))    <span class="comment">//false</span></span><br></pre></td></tr></table></figure>
+<p>上述正则表达式中<code>/d3</code>表示3位数字，这种方法用来检测用户输入的格式是否有效。</p>
+<hr>
+<p>#####全面学习正则<br>JS中的正则只是介绍了通过RegExp创建正则表达式的方法，但是正则的复杂的用法没有提及，比如怎么验证邮箱的格式？<br>这里就通过学习如何验证邮箱格式来学习正。<br>首先，邮箱的格式是什么？<a href="mailto:`username@xxx.xxx" target="_blank" rel="noopener">`username@xxx.xxx</a>`；注册网易邮箱的时候的提示：</p>
+<blockquote>
+<p>邮箱用户名名首字符为字母或者数字，中间可以是下划线<code>_</code>、数字和字母，以字母或数字结尾。</p>
+</blockquote>
+<p>上面我们看到有些元字符在表达式中只能使用转义字符，因为这些字符在正则中有特殊的含义：<br><strong>特殊字符</strong>：有特殊意义的符号</p>
+<ul>
+<li><code>()</code>标记一个子表达式的开始和结束位置。</li>
+<li><code>^</code> 在字符串的首部匹配，在<code>[]</code>使用时，表示不匹配方括号中的表达式；</li>
+<li><code>$</code>在字符末尾匹配；</li>
+<li><code>.</code>匹配除换行符 \n之外的任何单字符;</li>
+<li><code>|</code>指明两项之间的一个选择;</li>
+<li><code>?</code>匹配前面的子表达式零次或一次，(即使多次使用也只匹配最多一次)常和<code>*+</code>配合使用；</li>
+<li><code>\</code>转义符号；<br><strong>限定符</strong></li>
+<li><code>+</code> 匹配前面子表达式的次数为1次或多次，相当于{1,}</li>
+<li><code>*</code> 匹配前面子表达式的次数为0次或多次，相当于{0,}</li>
+<li><code>{}</code>标记限定符表达式的开始和结束<code>{a,b}</code>a表示最小次数，b表示最大次数(a&lt;=b);</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> pattern = <span class="regexp">/^([a-zA-Z1-9])+([a-zA-Z0-9_])+([a-zA-Z0-9])+@([a-zA-Z0-9])+\.([a-z])&#123;2,3&#125;$/</span> ;    <span class="built_in">console</span>.log(pattern.test(em));</span><br><span class="line"><span class="keyword">if</span>(pattern.test(em))&#123;</span><br><span class="line">    alert(<span class="string">"邮箱格式正确"</span>);</span><br><span class="line">&#125;<span class="keyword">else</span> &#123;</span><br><span class="line">    alert(<span class="string">"邮箱格式不正确"</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>首先邮箱名首字符为数字或者字母：<br><code>/^([a-zA-Z1-9])+/</code><br>这里使用了<code>^</code>表示这段模式部分是在目标字符串的首部匹配的，<code>+</code>表示表达式至少出现一次。<br>邮箱用户名中可以有<code>_</code>字母和数字，但不是必须的，所以限定符使用了<code>*</code><br><code>([a-zA-Z0-9_])*</code>;<br>用户名末尾必须为字母或数字，而且末尾位是在<code>@</code>之前的：<br><code>([a-zA-Z0-9])+@</code>;<br>服务器域名由两部分组成，其中<code>.</code>之后有两个或者三个字母；<br><code>([a-zA-Z0-9])+\.([a-z]){2,3}$/</code><br><code>.</code>这里使用了转义字符，而且使用了<code>$</code>表示从字符串末尾开始匹配；<br>这样一个基本的邮箱的正则表达式就完成了，这暂时没发现什么问题。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/09/27/正则/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/09/27/正则/&text=正则"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/09/27/正则/&is_video=false&description=正则"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=正则&body=Check out this article: http://yoursite.com/2016/09/27/正则/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/09/27/正则/&title=正则"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/09/27/正则/&name=正则&description=&lt;p&gt;ES通过RegExp类型来支持正则表达式&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; expression = &lt;span class=&#34;regexp&#34;&gt;/ pattern /&lt;/span&gt; flags ;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;pattern&lt;/code&gt;模式部分可以接收任何了简单或复杂的正则表达式。&lt;br&gt;&lt;code&gt;flages&lt;/code&gt;标明正则表达式的行为：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;g&lt;/code&gt;：表示&lt;code&gt;global&lt;/code&gt;模式；模式将被应用于所有字符串，不会在检索到第一个字符串的时候停下来；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;i&lt;/code&gt; ：表示&lt;code&gt;case-sinsenstive&lt;/code&gt;忽略大小写；&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;m&lt;/code&gt;：&lt;code&gt;multiline&lt;/code&gt;多行模式，在前一行末尾后查找下一行；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;一个正则表达式就是一个模式和三个标志的组合体。模式中所使用的元字符必须是&lt;strong&gt;转义字符&lt;/strong&gt;&lt;br&gt;元字符：( [ ( * $  ^ ? \ +  ) ] )&lt;br&gt;转意字符： “\”引导元字符&lt;br&gt;&lt;figure class=&#34;highlight javascript&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern1 = &lt;span class=&#34;regexp&#34;&gt;/at/g&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;// 匹配&#39;at&#39;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern2 = &lt;span class=&#34;regexp&#34;&gt;/[ab]cd /i&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;// 匹配第一个&#39;acd&#39;或&#39;bcd&#39;，不区分大小写&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern3 = &lt;span class=&#34;regexp&#34;&gt;/\[ab\]cd/i&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;//匹配第一个[ab]cd ,不区分大小写&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;var&lt;/span&gt; pattern4 = &lt;span class=&#34;regexp&#34;&gt;/.at/gi&lt;/span&gt;    &lt;span class=&#34;comment&#34;&gt;//匹配所有以&#34;at&#34;结尾的&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+

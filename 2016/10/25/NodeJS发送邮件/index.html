@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="使用NodeJS发送邮件 今天看到Python可以通过SMTP，那我也试一试用NodeJS来发送个邮件。NodeJS发送邮件很简单，nodemailer组件就可以轻松快捷的实现发邮件的功能。 开始nodemailer介绍：nodemailer是哟个简单一用的NodeJS组件，地址为nodemailer；具体详细说明参照官方文档。 使用nodemailer发送简单的邮件：首先在新建的项目中添加nod">
+<meta name="keywords" content="NodeJS">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NodeJS发送邮件">
+<meta property="og:url" content="http://yoursite.com/2016/10/25/NodeJS发送邮件/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="使用NodeJS发送邮件 今天看到Python可以通过SMTP，那我也试一试用NodeJS来发送个邮件。NodeJS发送邮件很简单，nodemailer组件就可以轻松快捷的实现发邮件的功能。 开始nodemailer介绍：nodemailer是哟个简单一用的NodeJS组件，地址为nodemailer；具体详细说明参照官方文档。 使用nodemailer发送简单的邮件：首先在新建的项目中添加nod">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/nodeMailer/emailer1.png">
+<meta property="og:image" content="http://www.zhangchenxu.com/images/nodeMailer/emailer2.png">
+<meta property="og:updated_time" content="2016-10-25T11:31:15.971Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="NodeJS发送邮件">
+<meta name="twitter:description" content="使用NodeJS发送邮件 今天看到Python可以通过SMTP，那我也试一试用NodeJS来发送个邮件。NodeJS发送邮件很简单，nodemailer组件就可以轻松快捷的实现发邮件的功能。 开始nodemailer介绍：nodemailer是哟个简单一用的NodeJS组件，地址为nodemailer；具体详细说明参照官方文档。 使用nodemailer发送简单的邮件：首先在新建的项目中添加nod">
+<meta name="twitter:image" content="http://www.zhangchenxu.com/images/nodeMailer/emailer1.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>NodeJS发送邮件</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2016/11/07/anti-GFW/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2016/10/09/this-解析/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/10/25/NodeJS发送邮件/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&text=NodeJS发送邮件"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&is_video=false&description=NodeJS发送邮件"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJS发送邮件&body=Check out this article: http://yoursite.com/2016/10/25/NodeJS发送邮件/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&name=NodeJS发送邮件&description=&lt;p&gt;使用&lt;code&gt;NodeJS&lt;/code&gt;发送邮件&lt;/p&gt;
+&lt;p&gt;今天看到&lt;code&gt;Python&lt;/code&gt;可以通过&lt;code&gt;SMTP&lt;/code&gt;，那我也试一试用&lt;code&gt;NodeJS&lt;/code&gt;来发送个邮件。&lt;br&gt;NodeJS发送邮件很简单，&lt;code&gt;nodemailer&lt;/code&gt;组件就可以轻松快捷的实现发邮件的功能。&lt;/p&gt;
+&lt;h3 id=&#34;开始&#34;&gt;&lt;a href=&#34;#开始&#34; class=&#34;headerlink&#34; title=&#34;开始&#34;&gt;&lt;/a&gt;开始&lt;/h3&gt;&lt;h4 id=&#34;nodemailer介绍：&#34;&gt;&lt;a href=&#34;#nodemailer介绍：&#34; class=&#34;headerlink&#34; title=&#34;nodemailer介绍：&#34;&gt;&lt;/a&gt;&lt;code&gt;nodemailer&lt;/code&gt;介绍：&lt;/h4&gt;&lt;p&gt;&lt;code&gt;nodemailer&lt;/code&gt;是哟个简单一用的&lt;code&gt;NodeJS&lt;/code&gt;组件，地址为&lt;a href=&#34;https://www.npmjs.com/package/nodemailer&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;nodemailer&lt;/code&gt;&lt;/a&gt;；&lt;br&gt;具体详细说明参照官方文档。&lt;/p&gt;
+&lt;h4 id=&#34;使用nodemailer发送简单的邮件：&#34;&gt;&lt;a href=&#34;#使用nodemailer发送简单的邮件：&#34; class=&#34;headerlink&#34; title=&#34;使用nodemailer发送简单的邮件：&#34;&gt;&lt;/a&gt;使用&lt;code&gt;nodemailer&lt;/code&gt;发送简单的邮件：&lt;/h4&gt;&lt;p&gt;首先在新建的项目中添加&lt;code&gt;nodemailer&lt;/code&gt;组件：&lt;br&gt;&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;npm install nodemailer&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;官方提供了Gmail邮箱发送邮件的实例，我试了一下，速度非常慢，延时基本上在十分钟左右，所以本文将使用&lt;strong&gt;网易&lt;/strong&gt;和&lt;strong&gt;腾讯&lt;/strong&gt;邮箱作为发送方。&lt;br&gt;"><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-number">1.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nodemailer介绍："><span class="toc-number">1.1.</span> <span class="toc-text">nodemailer介绍：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用nodemailer发送简单的邮件："><span class="toc-number">1.2.</span> <span class="toc-text">使用nodemailer发送简单的邮件：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用网易163邮箱"><span class="toc-number">1.2.1.</span> <span class="toc-text">使用网易163邮箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用QQ邮箱发送"><span class="toc-number">1.2.2.</span> <span class="toc-text">使用QQ邮箱发送</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写邮件模块"><span class="toc-number">1.3.</span> <span class="toc-text">编写邮件模块</span></a></li></ol></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        NodeJS发送邮件
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2016-10-25T11:25:18.000Z" itemprop="datePublished">2016-10-25</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/NodeJS/">NodeJS</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>使用<code>NodeJS</code>发送邮件</p>
+<p>今天看到<code>Python</code>可以通过<code>SMTP</code>，那我也试一试用<code>NodeJS</code>来发送个邮件。<br>NodeJS发送邮件很简单，<code>nodemailer</code>组件就可以轻松快捷的实现发邮件的功能。</p>
+<h3 id="开始"><a href="#开始" class="headerlink" title="开始"></a>开始</h3><h4 id="nodemailer介绍："><a href="#nodemailer介绍：" class="headerlink" title="nodemailer介绍："></a><code>nodemailer</code>介绍：</h4><p><code>nodemailer</code>是哟个简单一用的<code>NodeJS</code>组件，地址为<a href="https://www.npmjs.com/package/nodemailer" target="_blank" rel="noopener"><code>nodemailer</code></a>；<br>具体详细说明参照官方文档。</p>
+<h4 id="使用nodemailer发送简单的邮件："><a href="#使用nodemailer发送简单的邮件：" class="headerlink" title="使用nodemailer发送简单的邮件："></a>使用<code>nodemailer</code>发送简单的邮件：</h4><p>首先在新建的项目中添加<code>nodemailer</code>组件：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm install nodemailer</span><br></pre></td></tr></table></figure></p>
+<p>官方提供了Gmail邮箱发送邮件的实例，我试了一下，速度非常慢，延时基本上在十分钟左右，所以本文将使用<strong>网易</strong>和<strong>腾讯</strong>邮箱作为发送方。<br><a id="more"></a></p>
+<h5 id="使用网易163邮箱"><a href="#使用网易163邮箱" class="headerlink" title="使用网易163邮箱"></a>使用网易163邮箱</h5><p>网易163邮箱提供了第三方程序可使用的<code>SMTP</code>服务，新建一个<code>email.js</code></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodeMailer = <span class="built_in">require</span>(<span class="string">'nodemailer'</span>);  <span class="comment">//引入nodemailer组件</span></span><br><span class="line"><span class="keyword">var</span> config = &#123;   <span class="comment">// 配置STMP客户端</span></span><br><span class="line">    host: <span class="string">'smtp.163.com'</span>,</span><br><span class="line">    <span class="comment">// secureConnection: true,</span></span><br><span class="line">    port: <span class="number">25</span>,</span><br><span class="line">    auth: &#123;</span><br><span class="line">        user: <span class="string">'user@163.com'</span>,</span><br><span class="line">        pass: <span class="string">'---------'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> transporter = nodeMailer.createTransport(config);  <span class="comment">//创建STMP客户端</span></span><br><span class="line"><span class="keyword">var</span> mail = &#123;  <span class="comment">//创建邮件对象</span></span><br><span class="line">    <span class="keyword">from</span>: <span class="string">'user &lt;user@163.com&gt;'</span>, <span class="comment">// 发送方</span></span><br><span class="line">    to: <span class="string">'user@qq.com'</span>,  <span class="comment">//收件方</span></span><br><span class="line">    subject: <span class="string">'test'</span>,  <span class="comment">// 主题</span></span><br><span class="line">    html: <span class="string">'&lt;b&gt;你好xxx去去去&lt;/b&gt;&gt;'</span> <span class="comment">// 邮件内容HTML格式</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//发送邮件</span></span><br><span class="line">transporter.sendMail(mail, <span class="function"><span class="keyword">function</span> (<span class="params">error, info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(error)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">console</span>.log(error);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'发送成功'</span> + info.response);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>Bingo，写好了，开始装逼（运行）吧；<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">node email</span><br></pre></td></tr></table></figure></p>
+<p>出错啦！！！<br><img src="http://www.zhangchenxu.com/images/nodeMailer/emailer1.png" alt=""><br>wtf？仔细看看，<code>authentication failed</code>认证失败的意思，也就是说我的用户名和密码出现错误了。于是仔细检查了一下用户名和密码，发现没有错误啊，同样的组合可以在网页登录的呀。<br>咱去网易邮箱<code>SMTP</code>页面看看什么情况吧。<br><img src="http://www.zhangchenxu.com/images/nodeMailer/emailer2.png" alt="enter image description here"><br>这个页面我是比较熟悉的，之前<code>kindle</code>设置推送邮箱的时候来设置过，对了好像用163邮箱作为推送邮箱的时候好像需要设置<strong>授权码</strong>，就是相当于独立密码，在第三方软件中保护账号的安全。难道这里也需要使用授权码？不管怎样试试再说。<br>于是获取了一下授权码，然后把<code>pass</code>改为授权码的内容。<br>这次应该没问题了吧，再次运行。<br>但是，还是出错了：<br><figure class="highlight powershell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&#123; [Error: Message failed: <span class="number">554</span> DT:SPM <span class="number">163</span> smtp10,DsCowAD3ENCXMQ9YcQGRAQ--.<span class="number">41718</span>S3 <span class="number">1477390743</span>,</span><br><span class="line">please see http://mail.<span class="number">163</span>.com/help/help_spam_16.htm?ip=<span class="number">101.36</span>.<span class="number">76.65</span>&amp;hostid=smtp10&amp;time=<span class="number">1477390743</span>]</span><br><span class="line">  code: <span class="string">'EMESSAGE'</span>,</span><br><span class="line">  response: <span class="string">'554 DT:SPM 163 smtp10,DsCowAD3ENCXMQ9YcQGRAQ--.41718S3 1477390743,please see http://mail.163.com/help/help_spam_16.htm?ip=101.36.76.65&amp;hostid=smtp10&amp;time=1477390743'</span>,</span><br><span class="line">  responseCode: <span class="number">554</span>,</span><br><span class="line">  command: <span class="string">'DATA'</span> &#125;</span><br></pre></td></tr></table></figure></p>
+<p>这次提示<code>message failed</code>，也出现了错误码<code>554 DT:SPM</code>，更出现了错误参考链接，咱去看看<a href="http://mail.163.com/help/help_spam_16.htm?ip=101.36.76.65&amp;hostid=smtp10&amp;time=1477390743&#39;。" target="_blank" rel="noopener">http://mail.163.com/help/help_spam_16.htm?ip=101.36.76.65&amp;hostid=smtp10&amp;time=1477390743&#39;。</a></p>
+<blockquote>
+<p><code>554 DT:SPM</code> 发送的邮件内容包含了未被许可的信息，或被系统识别为垃圾邮件。请检查是否有用户发送病毒或者垃圾邮件。</p>
+</blockquote>
+<p>被系统识别为垃圾邮件？？？也就是说我的内容里面含有不太 ‘合法’ 的字符呗。看来看去感觉问题出在<code>subject: &#39;test&#39;</code>上，因为这句让人很明显的感觉到这是一封很简单测试邮件，测试邮件一般不太被用户欢迎，那就改呗。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodeMailer = <span class="built_in">require</span>(<span class="string">'nodemailer'</span>);  <span class="comment">//引入nodemailer组件</span></span><br><span class="line"><span class="keyword">var</span> config = &#123;   <span class="comment">// 配置STMP客户端</span></span><br><span class="line">    host: <span class="string">'smtp.163.com'</span>,</span><br><span class="line">    secureConnection: <span class="literal">true</span>, <span class="comment">//是否通过TTL加密</span></span><br><span class="line">    port: <span class="number">25</span>,</span><br><span class="line">    auth: &#123;</span><br><span class="line">        user: <span class="string">'user@163.com'</span>,</span><br><span class="line">        pass: <span class="string">'---------'</span> <span class="comment">//使用网易第三方授权密码</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> transporter = nodeMailer.createTransport(config);  <span class="comment">//创建STMP客户端</span></span><br><span class="line"><span class="keyword">var</span> mail = &#123;  <span class="comment">//创建邮件对象</span></span><br><span class="line">    <span class="keyword">from</span>: <span class="string">'user &lt;user@163.com&gt;'</span>, <span class="comment">// 发送方</span></span><br><span class="line">    to: <span class="string">'user@qq.com'</span>,  <span class="comment">//收件方</span></span><br><span class="line">    subject: <span class="string">'你好'</span>,  <span class="comment">// 主题</span></span><br><span class="line">    html: <span class="string">'&lt;b&gt;你好xxx去去去&lt;/b&gt;&gt;'</span> <span class="comment">// 邮件内容HTML格式</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//发送邮件</span></span><br><span class="line">transporter.sendMail(mail, <span class="function"><span class="keyword">function</span> (<span class="params">error, info</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(error)&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">console</span>.log(error);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'发送成功'</span> + info.response);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p>再一次运行，这次运行成功。多次测试之后发现，即使运行成功依然会出现被当作垃圾邮件退回的情况，可能是因为测试文件内容偏小的缘故吧。</p>
+<h5 id="使用QQ邮箱发送"><a href="#使用QQ邮箱发送" class="headerlink" title="使用QQ邮箱发送"></a>使用QQ邮箱发送</h5><p>使用QQ邮箱和网易邮箱类似，都需要使用第三方授权码登录，这里就不再赘述了。代码如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> nodemailer = <span class="built_in">require</span>(<span class="string">'nodemailer'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个SMTP客户端配置</span></span><br><span class="line"><span class="keyword">var</span> config = &#123;</span><br><span class="line">    service: <span class="string">'QQ'</span>,</span><br><span class="line">    port: <span class="number">465</span>,</span><br><span class="line">    secureConnection: <span class="literal">true</span>,  <span class="comment">//是否通过TTL加密</span></span><br><span class="line">    auth: &#123;</span><br><span class="line">        user: <span class="string">'user@qq.com'</span>,</span><br><span class="line">        pass: <span class="string">'rfnebzbnfnclfhde'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个SMTP客户端对象</span></span><br><span class="line"><span class="keyword">var</span> transporter = nodemailer.createTransport(config);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 创建一个邮件对象</span></span><br><span class="line"><span class="keyword">var</span> mail = &#123;</span><br><span class="line">    <span class="comment">// 发件人</span></span><br><span class="line">    <span class="keyword">from</span>: <span class="string">'user &lt;user@qq.com&gt;'</span>,</span><br><span class="line">    <span class="comment">// 收件人</span></span><br><span class="line">    to: <span class="string">'xxxx@qq.com'</span>,</span><br><span class="line">    <span class="comment">// 主题</span></span><br><span class="line">    subject: <span class="string">'嘿嘿嘿'</span>,</span><br><span class="line">    <span class="comment">// 邮件内容，HTML格式</span></span><br><span class="line">    html: <span class="string">'&lt;div&gt;&lt;h3&gt;你好&lt;/h3&gt;&lt;p&gt;hello world&lt;/p&gt;&lt;/div&gt;'</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 发送邮件</span></span><br><span class="line">transporter.sendMail(mail, <span class="function"><span class="keyword">function</span>(<span class="params">error, info</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span>(error) <span class="keyword">return</span> <span class="built_in">console</span>.log(error);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'mail sent:'</span>, info.response);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h4 id="编写邮件模块"><a href="#编写邮件模块" class="headerlink" title="编写邮件模块"></a>编写邮件模块</h4><p>虽然上面我们实现可邮件的发送，但是我不希望每次发送邮件都要编写这么长的代码，那么要对上面的程序进行模块化。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> lodash = <span class="built_in">require</span>(<span class="string">'lodash'</span>);</span><br><span class="line"><span class="keyword">var</span> nodeMailer = <span class="built_in">require</span>(<span class="string">'nodemailer'</span>);</span><br><span class="line"><span class="keyword">var</span> config = &#123;</span><br><span class="line">    service: <span class="string">'QQ'</span>,</span><br><span class="line">    port: <span class="number">465</span>,</span><br><span class="line">    secureConnection: <span class="literal">true</span>,</span><br><span class="line">    auth: &#123;</span><br><span class="line">        user: <span class="string">'user@qq.com'</span>,</span><br><span class="line">        pass: <span class="string">'rfnebzbnfnclfhde'</span></span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">var</span> transporter = nodeMailer.createTransport(config);</span><br><span class="line"><span class="keyword">var</span> defaultMail = &#123;</span><br><span class="line">    <span class="keyword">from</span>: <span class="string">'zcx &lt;user@qq.com&gt;'</span>,</span><br><span class="line">&#125;</span><br><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span> (<span class="params">mail</span>) </span>&#123;</span><br><span class="line">    mail = lodash.merge(&#123;&#125;, defaultMail, mail);</span><br><span class="line">    transporter.sendMail(mail, <span class="function"><span class="keyword">function</span> (<span class="params">error, info</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (error) &#123;</span><br><span class="line">            <span class="keyword">return</span> <span class="built_in">console</span>.log(error);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'发送成功'</span> + info.response);</span><br><span class="line"></span><br><span class="line">    &#125;)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p><code>lodash</code>是<code>javascript</code>的工具哭，其<code>merge</code>方法会将其参数的所有属性合并到第一个参数，并返回合并后的参数。<br>然后就可以方便的发送邮件了：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> mailer = <span class="built_in">require</span>(<span class="string">'./mailer.js'</span>);</span><br><span class="line"><span class="comment">// from qq</span></span><br><span class="line">mailer(&#123;</span><br><span class="line">    to: <span class="string">'user@163.com'</span>,</span><br><span class="line">    subject: <span class="string">'hellow'</span>,</span><br><span class="line">    html: <span class="string">'nihao'</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#开始"><span class="toc-number">1.</span> <span class="toc-text">开始</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#nodemailer介绍："><span class="toc-number">1.1.</span> <span class="toc-text">nodemailer介绍：</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用nodemailer发送简单的邮件："><span class="toc-number">1.2.</span> <span class="toc-text">使用nodemailer发送简单的邮件：</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#使用网易163邮箱"><span class="toc-number">1.2.1.</span> <span class="toc-text">使用网易163邮箱</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#使用QQ邮箱发送"><span class="toc-number">1.2.2.</span> <span class="toc-text">使用QQ邮箱发送</span></a></li></ol></li><li class="toc-item toc-level-4"><a class="toc-link" href="#编写邮件模块"><span class="toc-number">1.3.</span> <span class="toc-text">编写邮件模块</span></a></li></ol></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2016/10/25/NodeJS发送邮件/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&text=NodeJS发送邮件"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&is_video=false&description=NodeJS发送邮件"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=NodeJS发送邮件&body=Check out this article: http://yoursite.com/2016/10/25/NodeJS发送邮件/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&title=NodeJS发送邮件"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2016/10/25/NodeJS发送邮件/&name=NodeJS发送邮件&description=&lt;p&gt;使用&lt;code&gt;NodeJS&lt;/code&gt;发送邮件&lt;/p&gt;
+&lt;p&gt;今天看到&lt;code&gt;Python&lt;/code&gt;可以通过&lt;code&gt;SMTP&lt;/code&gt;，那我也试一试用&lt;code&gt;NodeJS&lt;/code&gt;来发送个邮件。&lt;br&gt;NodeJS发送邮件很简单，&lt;code&gt;nodemailer&lt;/code&gt;组件就可以轻松快捷的实现发邮件的功能。&lt;/p&gt;
+&lt;h3 id=&#34;开始&#34;&gt;&lt;a href=&#34;#开始&#34; class=&#34;headerlink&#34; title=&#34;开始&#34;&gt;&lt;/a&gt;开始&lt;/h3&gt;&lt;h4 id=&#34;nodemailer介绍：&#34;&gt;&lt;a href=&#34;#nodemailer介绍：&#34; class=&#34;headerlink&#34; title=&#34;nodemailer介绍：&#34;&gt;&lt;/a&gt;&lt;code&gt;nodemailer&lt;/code&gt;介绍：&lt;/h4&gt;&lt;p&gt;&lt;code&gt;nodemailer&lt;/code&gt;是哟个简单一用的&lt;code&gt;NodeJS&lt;/code&gt;组件，地址为&lt;a href=&#34;https://www.npmjs.com/package/nodemailer&#34; target=&#34;_blank&#34; rel=&#34;noopener&#34;&gt;&lt;code&gt;nodemailer&lt;/code&gt;&lt;/a&gt;；&lt;br&gt;具体详细说明参照官方文档。&lt;/p&gt;
+&lt;h4 id=&#34;使用nodemailer发送简单的邮件：&#34;&gt;&lt;a href=&#34;#使用nodemailer发送简单的邮件：&#34; class=&#34;headerlink&#34; title=&#34;使用nodemailer发送简单的邮件：&#34;&gt;&lt;/a&gt;使用&lt;code&gt;nodemailer&lt;/code&gt;发送简单的邮件：&lt;/h4&gt;&lt;p&gt;首先在新建的项目中添加&lt;code&gt;nodemailer&lt;/code&gt;组件：&lt;br&gt;&lt;figure class=&#34;highlight powershell&#34;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&#34;gutter&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;npm install nodemailer&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;官方提供了Gmail邮箱发送邮件的实例，我试了一下，速度非常慢，延时基本上在十分钟左右，所以本文将使用&lt;strong&gt;网易&lt;/strong&gt;和&lt;strong&gt;腾讯&lt;/strong&gt;邮箱作为发送方。&lt;br&gt;"><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
