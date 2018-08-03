@@ -17,7 +17,7 @@
 <meta property="og:image" content="http://pcvhffvzu.bkt.clouddn.com/ssr3.png">
 <meta property="og:image" content="http://pcvhffvzu.bkt.clouddn.com/ssr4.png">
 <meta property="og:image" content="http://pcvhffvzu.bkt.clouddn.com/ssr5.png">
-<meta property="og:updated_time" content="2018-08-03T08:00:12.982Z">
+<meta property="og:updated_time" content="2018-08-03T08:18:24.136Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建ssr服务器以及梯子的日常使用(下)">
 <meta name="twitter:description" content="上一篇文章最后, 我们有了ip, 端口, 密码, 加密方式, 协议和混淆等,  本文我们学习如何通过这些数据翻墙 ShadowsocksX-NG客户端 由于我是使用了kcptun加速, 所有使用ShadowsocksX-NG比较方便. 打开ShadowsocksX-NG, 找到服务器-服务器配置, 填入我们之前拿到的数据即可.  然后选择全局模式, 如果不出意外的话, 应该就能翻墙了, 在浏览器里">
@@ -107,7 +107,7 @@
 
     </div>
     <div id="toc">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ShadowsocksX-NG客户端"><span class="toc-number">1.</span> <span class="toc-text">ShadowsocksX-NG客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代理服务器"><span class="toc-number">1.1.</span> <span class="toc-text">代理服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在chrome中使用switchy-omega管理和切换端口"><span class="toc-number">2.</span> <span class="toc-text">在chrome中使用switchy-omega管理和切换端口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iTerm2使用proxy"><span class="toc-number">3.</span> <span class="toc-text">iTerm2使用proxy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结束"><span class="toc-number">4.</span> <span class="toc-text">结束</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ShadowsocksX-NG客户端"><span class="toc-number">1.</span> <span class="toc-text">ShadowsocksX-NG客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代理服务器"><span class="toc-number">1.1.</span> <span class="toc-text">代理服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在chrome中使用switchy-omega管理和切换端口"><span class="toc-number">2.</span> <span class="toc-text">在chrome中使用switchy-omega管理和切换端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iTerm2使用proxy"><span class="toc-number">3.</span> <span class="toc-text">iTerm2使用proxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">4.</span> <span class="toc-text">结束</span></a></li></ol>
     </div>
   </span>
 </div>
@@ -147,19 +147,19 @@
 
   <div class="content" itemprop="articleBody">
     <p>上一篇文章最后, 我们有了ip, 端口, 密码, 加密方式, 协议和混淆等,  本文我们学习如何通过这些数据翻墙</p>
-<h1 id="ShadowsocksX-NG客户端"><a href="#ShadowsocksX-NG客户端" class="headerlink" title="ShadowsocksX-NG客户端"></a>ShadowsocksX-NG客户端</h1><p> 由于我是使用了kcptun加速, 所有使用ShadowsocksX-NG比较方便. 打开ShadowsocksX-NG, 找到服务器-服务器配置, 填入我们之前拿到的数据即可.</p>
+<h2 id="ShadowsocksX-NG客户端"><a href="#ShadowsocksX-NG客户端" class="headerlink" title="ShadowsocksX-NG客户端"></a>ShadowsocksX-NG客户端</h2><p> 由于我是使用了kcptun加速, 所有使用ShadowsocksX-NG比较方便. 打开ShadowsocksX-NG, 找到服务器-服务器配置, 填入我们之前拿到的数据即可.</p>
 <p><img src="http://pcvhffvzu.bkt.clouddn.com/ssr3.png" alt=""></p>
 <p>然后选择全局模式, 如果不出意外的话, 应该就能翻墙了, 在浏览器里输入google.com试试能不能连接.<br><img src="http://pcvhffvzu.bkt.clouddn.com/ssr4.png" alt=""></p>
-<h2 id="代理服务器"><a href="#代理服务器" class="headerlink" title="代理服务器"></a>代理服务器</h2><p> 在SSR设置把http监听端口设置到127.0.0.1:1085</p>
+<h3 id="代理服务器"><a href="#代理服务器" class="headerlink" title="代理服务器"></a>代理服务器</h3><p> 在SSR设置把http监听端口设置到127.0.0.1:1085</p>
 <p><img src="http://pcvhffvzu.bkt.clouddn.com/ssr5.png" alt=""></p>
 <p>这样<a href="http://127.0.0.1:1085" target="_blank" rel="noopener">http://127.0.0.1:1085</a> 就是你本地的HTTP代理服务器了, 很多本地的APP都可以就是用这个代理服务器访问外网, 也可以使用proxyfier强行为一些APP设置代理服务器.</p>
-<h1 id="在chrome中使用switchy-omega管理和切换端口"><a href="#在chrome中使用switchy-omega管理和切换端口" class="headerlink" title="在chrome中使用switchy-omega管理和切换端口"></a>在chrome中使用switchy-omega管理和切换端口</h1><p>现在我们虽然能翻墙了, 但是所有的网站都是通过代理服务器走的, 这是不合理的, 我们想要的是只代理一些国内之前上不去的网站, 其他的不通过代理. switchy-omega就是可以根据多种条件和规则自动切换线路的.<a href="https://www.switchyomega.com" target="_blank" rel="noopener">官网</a><br>下载安装之后,  我们进入switchy-omega选项界面:<br>选择导入导出,  导入我配置好的情景模式: 链接: <a href="https://pan.baidu.com/s/1O9lxIm4WxcTZhVOBvocaZw" target="_blank" rel="noopener">https://pan.baidu.com/s/1O9lxIm4WxcTZhVOBvocaZw</a> 密码: meav<br>进入http-router 中可以发现我的proxy设置在<a href="http://127.0.0.1:1085" target="_blank" rel="noopener">http://127.0.0.1:1085</a> , 就我本地的HTTP代理服务器<br>这个插件平时使用的时候慢慢摸索, 遇到上不去的网站就在直接连接和http-router之前切换一下, 然后把规则更改到对应的情景欧式</p>
-<h1 id="iTerm2使用proxy"><a href="#iTerm2使用proxy" class="headerlink" title="iTerm2使用proxy"></a>iTerm2使用proxy</h1><p>国内的开发者一般都会遇到git clone 慢, npm慢的情况, 有了梯子之后我们就可以在终端中添加proxy, 让终端通过代理连接互联网.<br>打开你的终端的配置文件, 我用的是<code>zsh</code>, 所以我的配置文件是<code>~/.zshrc</code></p>
+<h2 id="在chrome中使用switchy-omega管理和切换端口"><a href="#在chrome中使用switchy-omega管理和切换端口" class="headerlink" title="在chrome中使用switchy-omega管理和切换端口"></a>在chrome中使用switchy-omega管理和切换端口</h2><p>现在我们虽然能翻墙了, 但是所有的网站都是通过代理服务器走的, 这是不合理的, 我们想要的是只代理一些国内之前上不去的网站, 其他的不通过代理. switchy-omega就是可以根据多种条件和规则自动切换线路的.<a href="https://www.switchyomega.com" target="_blank" rel="noopener">switch-omega官网</a><br>下载安装之后,  我们进入switchy-omega选项界面:<br>选择导入导出,  导入我配置好的情景模式: 链接: <a href="https://pan.baidu.com/s/1O9lxIm4WxcTZhVOBvocaZw" target="_blank" rel="noopener">https://pan.baidu.com/s/1O9lxIm4WxcTZhVOBvocaZw</a> 密码: meav<br>进入http-router 中可以发现我的proxy设置在<a href="http://127.0.0.1:1085" target="_blank" rel="noopener">http://127.0.0.1:1085</a> , 就我本地的HTTP代理服务器<br>这个插件平时使用的时候慢慢摸索, 遇到上不去的网站就在直接连接和http-router之前切换一下, 然后把规则更改到对应的情景欧式</p>
+<h2 id="iTerm2使用proxy"><a href="#iTerm2使用proxy" class="headerlink" title="iTerm2使用proxy"></a>iTerm2使用proxy</h2><p>国内的开发者一般都会遇到git clone 慢, npm慢的情况, 有了梯子之后我们就可以在终端中添加proxy, 让终端通过代理连接互联网.<br>打开你的终端的配置文件, 我用的是<code>zsh</code>, 所以我的配置文件是<code>~/.zshrc</code></p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure>
 <p>在最后添加: </p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http_proxy=http://127.0.0.1:1085</span><br><span class="line">https_proxy=$http_proxy</span><br></pre></td></tr></table></figure>
 <p>然后<code>source ~/.zshrc</code>重载一下配置就行了</p>
-<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>梯子的使用场景还是自己慢慢摸索, 既然付费了, 就应该珍惜付出的时间和金钱, 多多学习墙外的先进. 同时也要注意遵守国内的相关法律. </p>
+<h2 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h2><p>梯子的使用场景还是自己慢慢摸索, 既然付费了, 就应该珍惜付出的时间和金钱, 多多学习墙外的先进. 同时也要注意遵守国内的相关法律. </p>
 
   </div>
 </article>
@@ -186,7 +186,7 @@
     </div>
 
     <div id="toc-footer" style="display: none">
-      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ShadowsocksX-NG客户端"><span class="toc-number">1.</span> <span class="toc-text">ShadowsocksX-NG客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代理服务器"><span class="toc-number">1.1.</span> <span class="toc-text">代理服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在chrome中使用switchy-omega管理和切换端口"><span class="toc-number">2.</span> <span class="toc-text">在chrome中使用switchy-omega管理和切换端口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iTerm2使用proxy"><span class="toc-number">3.</span> <span class="toc-text">iTerm2使用proxy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结束"><span class="toc-number">4.</span> <span class="toc-text">结束</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#ShadowsocksX-NG客户端"><span class="toc-number">1.</span> <span class="toc-text">ShadowsocksX-NG客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#代理服务器"><span class="toc-number">1.1.</span> <span class="toc-text">代理服务器</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#在chrome中使用switchy-omega管理和切换端口"><span class="toc-number">2.</span> <span class="toc-text">在chrome中使用switchy-omega管理和切换端口</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iTerm2使用proxy"><span class="toc-number">3.</span> <span class="toc-text">iTerm2使用proxy</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#结束"><span class="toc-number">4.</span> <span class="toc-text">结束</span></a></li></ol>
     </div>
 
     <div id="share-footer" style="display: none">
