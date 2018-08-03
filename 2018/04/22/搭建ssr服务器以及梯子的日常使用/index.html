@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="上一篇文章最后, 我们有了ip, 端口, 密码, 加密方式, 协议和混淆等,  本文我们学习如何通过这些数据翻墙 ShadowsocksX-NG客户端 由于我是使用了kcptun加速, 所有使用ShadowsocksX-NG比较方便. 打开ShadowsocksX-NG, 找到服务器-服务器配置, 填入我们之前拿到的数据即可.  然后选择全局模式, 如果不出意外的话, 应该就能翻墙了, 在浏览器里">
+<meta name="keywords" content="ssr">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建ssr服务器以及梯子的日常使用(下)">
+<meta property="og:url" content="http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="上一篇文章最后, 我们有了ip, 端口, 密码, 加密方式, 协议和混淆等,  本文我们学习如何通过这些数据翻墙 ShadowsocksX-NG客户端 由于我是使用了kcptun加速, 所有使用ShadowsocksX-NG比较方便. 打开ShadowsocksX-NG, 找到服务器-服务器配置, 填入我们之前拿到的数据即可.  然后选择全局模式, 如果不出意外的话, 应该就能翻墙了, 在浏览器里">
+<meta property="og:locale" content="default">
+<meta property="og:image" content="http://pcvhffvzu.bkt.clouddn.com/ssr3.png">
+<meta property="og:image" content="http://pcvhffvzu.bkt.clouddn.com/ssr4.png">
+<meta property="og:image" content="http://pcvhffvzu.bkt.clouddn.com/ssr5.png">
+<meta property="og:updated_time" content="2018-08-03T08:00:12.982Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建ssr服务器以及梯子的日常使用(下)">
+<meta name="twitter:description" content="上一篇文章最后, 我们有了ip, 端口, 密码, 加密方式, 协议和混淆等,  本文我们学习如何通过这些数据翻墙 ShadowsocksX-NG客户端 由于我是使用了kcptun加速, 所有使用ShadowsocksX-NG比较方便. 打开ShadowsocksX-NG, 找到服务器-服务器配置, 填入我们之前拿到的数据即可.  然后选择全局模式, 如果不出意外的话, 应该就能翻墙了, 在浏览器里">
+<meta name="twitter:image" content="http://pcvhffvzu.bkt.clouddn.com/ssr3.png">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>搭建ssr服务器以及梯子的日常使用(下)</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2018/08/02/hello-world/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2018/04/21/搭建ssr服务器以及梯子的日常使用.1/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&text=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&is_video=false&description=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=搭建ssr服务器以及梯子的日常使用(下)&body=Check out this article: http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&name=搭建ssr服务器以及梯子的日常使用(下)&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ShadowsocksX-NG客户端"><span class="toc-number">1.</span> <span class="toc-text">ShadowsocksX-NG客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代理服务器"><span class="toc-number">1.1.</span> <span class="toc-text">代理服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在chrome中使用switchy-omega管理和切换端口"><span class="toc-number">2.</span> <span class="toc-text">在chrome中使用switchy-omega管理和切换端口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iTerm2使用proxy"><span class="toc-number">3.</span> <span class="toc-text">iTerm2使用proxy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结束"><span class="toc-number">4.</span> <span class="toc-text">结束</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        搭建ssr服务器以及梯子的日常使用(下)
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2018-04-22T13:13:43.000Z" itemprop="datePublished">2018-04-22</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/ssr/">ssr</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <p>上一篇文章最后, 我们有了ip, 端口, 密码, 加密方式, 协议和混淆等,  本文我们学习如何通过这些数据翻墙</p>
+<h1 id="ShadowsocksX-NG客户端"><a href="#ShadowsocksX-NG客户端" class="headerlink" title="ShadowsocksX-NG客户端"></a>ShadowsocksX-NG客户端</h1><p> 由于我是使用了kcptun加速, 所有使用ShadowsocksX-NG比较方便. 打开ShadowsocksX-NG, 找到服务器-服务器配置, 填入我们之前拿到的数据即可.</p>
+<p><img src="http://pcvhffvzu.bkt.clouddn.com/ssr3.png" alt=""></p>
+<p>然后选择全局模式, 如果不出意外的话, 应该就能翻墙了, 在浏览器里输入google.com试试能不能连接.<br><img src="http://pcvhffvzu.bkt.clouddn.com/ssr4.png" alt=""></p>
+<h2 id="代理服务器"><a href="#代理服务器" class="headerlink" title="代理服务器"></a>代理服务器</h2><p> 在SSR设置把http监听端口设置到127.0.0.1:1085</p>
+<p><img src="http://pcvhffvzu.bkt.clouddn.com/ssr5.png" alt=""></p>
+<p>这样<a href="http://127.0.0.1:1085" target="_blank" rel="noopener">http://127.0.0.1:1085</a> 就是你本地的HTTP代理服务器了, 很多本地的APP都可以就是用这个代理服务器访问外网, 也可以使用proxyfier强行为一些APP设置代理服务器.</p>
+<h1 id="在chrome中使用switchy-omega管理和切换端口"><a href="#在chrome中使用switchy-omega管理和切换端口" class="headerlink" title="在chrome中使用switchy-omega管理和切换端口"></a>在chrome中使用switchy-omega管理和切换端口</h1><p>现在我们虽然能翻墙了, 但是所有的网站都是通过代理服务器走的, 这是不合理的, 我们想要的是只代理一些国内之前上不去的网站, 其他的不通过代理. switchy-omega就是可以根据多种条件和规则自动切换线路的.<a href="https://www.switchyomega.com" target="_blank" rel="noopener">官网</a><br>下载安装之后,  我们进入switchy-omega选项界面:<br>选择导入导出,  导入我配置好的情景模式: 链接: <a href="https://pan.baidu.com/s/1O9lxIm4WxcTZhVOBvocaZw" target="_blank" rel="noopener">https://pan.baidu.com/s/1O9lxIm4WxcTZhVOBvocaZw</a> 密码: meav<br>进入http-router 中可以发现我的proxy设置在<a href="http://127.0.0.1:1085" target="_blank" rel="noopener">http://127.0.0.1:1085</a> , 就我本地的HTTP代理服务器<br>这个插件平时使用的时候慢慢摸索, 遇到上不去的网站就在直接连接和http-router之前切换一下, 然后把规则更改到对应的情景欧式</p>
+<h1 id="iTerm2使用proxy"><a href="#iTerm2使用proxy" class="headerlink" title="iTerm2使用proxy"></a>iTerm2使用proxy</h1><p>国内的开发者一般都会遇到git clone 慢, npm慢的情况, 有了梯子之后我们就可以在终端中添加proxy, 让终端通过代理连接互联网.<br>打开你的终端的配置文件, 我用的是<code>zsh</code>, 所以我的配置文件是<code>~/.zshrc</code></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">vi ~/.zshrc</span><br></pre></td></tr></table></figure>
+<p>在最后添加: </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">http_proxy=http://127.0.0.1:1085</span><br><span class="line">https_proxy=$http_proxy</span><br></pre></td></tr></table></figure>
+<p>然后<code>source ~/.zshrc</code>重载一下配置就行了</p>
+<h1 id="结束"><a href="#结束" class="headerlink" title="结束"></a>结束</h1><p>梯子的使用场景还是自己慢慢摸索, 既然付费了, 就应该珍惜付出的时间和金钱, 多多学习墙外的先进. 同时也要注意遵守国内的相关法律. </p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#ShadowsocksX-NG客户端"><span class="toc-number">1.</span> <span class="toc-text">ShadowsocksX-NG客户端</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#代理服务器"><span class="toc-number">1.1.</span> <span class="toc-text">代理服务器</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#在chrome中使用switchy-omega管理和切换端口"><span class="toc-number">2.</span> <span class="toc-text">在chrome中使用switchy-omega管理和切换端口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iTerm2使用proxy"><span class="toc-number">3.</span> <span class="toc-text">iTerm2使用proxy</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#结束"><span class="toc-number">4.</span> <span class="toc-text">结束</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&text=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&is_video=false&description=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=搭建ssr服务器以及梯子的日常使用(下)&body=Check out this article: http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&title=搭建ssr服务器以及梯子的日常使用(下)"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2018/04/22/搭建ssr服务器以及梯子的日常使用/&name=搭建ssr服务器以及梯子的日常使用(下)&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/about/">About</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="/projects_url">Projects</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
