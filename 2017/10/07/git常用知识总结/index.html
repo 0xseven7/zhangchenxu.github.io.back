@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <!-- so meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="HandheldFriendly" content="True">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+    <meta name="description" content="git init初始化一个git仓库 git clone如果是是从远程主机克隆一个版本库git clone &amp;lt;仓库地址&amp;gt; git remote为了便于管理，Git要求每个远程主机都必须指定一个主机名。git remote命令就用于管理主机名。123$ git remote //列出所有远程主机origin$ git remote -v 克隆版本库的时候，所使用的远程主机自动被Git命名">
+<meta name="keywords" content="git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="git常用知识总结">
+<meta property="og:url" content="http://yoursite.com/2017/10/07/git常用知识总结/index.html">
+<meta property="og:site_name" content="张晨旭">
+<meta property="og:description" content="git init初始化一个git仓库 git clone如果是是从远程主机克隆一个版本库git clone &amp;lt;仓库地址&amp;gt; git remote为了便于管理，Git要求每个远程主机都必须指定一个主机名。git remote命令就用于管理主机名。123$ git remote //列出所有远程主机origin$ git remote -v 克隆版本库的时候，所使用的远程主机自动被Git命名">
+<meta property="og:locale" content="default">
+<meta property="og:updated_time" content="2018-08-11T15:45:10.570Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="git常用知识总结">
+<meta name="twitter:description" content="git init初始化一个git仓库 git clone如果是是从远程主机克隆一个版本库git clone &amp;lt;仓库地址&amp;gt; git remote为了便于管理，Git要求每个远程主机都必须指定一个主机名。git remote命令就用于管理主机名。123$ git remote //列出所有远程主机origin$ git remote -v 克隆版本库的时候，所使用的远程主机自动被Git命名">
+    
+    
+        
+          
+              <link rel="shortcut icon" href="/images/favicon.ico">
+          
+        
+        
+          
+            <link rel="icon" type="image/png" href="/images/favicon-192x192.png" sizes="192x192">
+          
+        
+        
+          
+            <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon.png">
+          
+        
+    
+    <!-- title -->
+    <title>git常用知识总结</title>
+    <!-- styles -->
+    <link rel="stylesheet" href="/css/style.css">
+    <!-- persian styles -->
+    
+      <link rel="stylesheet" href="/css/rtl.css">
+    
+    <!-- rss -->
+    
+    
+</head>
+
+<body class="max-width mx-auto px3 ltr">
+    
+      <div id="header-post">
+  <a id="menu-icon" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="menu-icon-tablet" href="#"><i class="fas fa-bars fa-lg"></i></a>
+  <a id="top-icon-tablet" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');" style="display:none;"><i class="fas fa-chevron-up fa-lg"></i></a>
+  <span id="menu">
+    <span id="nav">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://zhangchenxu.github.io/2018/08/06/简历/">About</a></li>
+         
+          <li><a href="https://github.com/zhangchenxu">Github</a></li>
+        
+      </ul>
+    </span>
+    <br/>
+    <span id="actions">
+      <ul>
+        
+        <li><a class="icon" href="/2017/12/07/es6笔记/"><i class="fas fa-chevron-left" aria-hidden="true" onmouseover="$('#i-prev').toggle();" onmouseout="$('#i-prev').toggle();"></i></a></li>
+        
+        
+        <li><a class="icon" href="/2017/04/17/正则表达式总结/"><i class="fas fa-chevron-right" aria-hidden="true" onmouseover="$('#i-next').toggle();" onmouseout="$('#i-next').toggle();"></i></a></li>
+        
+        <li><a class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up" aria-hidden="true" onmouseover="$('#i-top').toggle();" onmouseout="$('#i-top').toggle();"></i></a></li>
+        <li><a class="icon" href="#"><i class="fas fa-share-alt" aria-hidden="true" onmouseover="$('#i-share').toggle();" onmouseout="$('#i-share').toggle();" onclick="$('#share').toggle();return false;"></i></a></li>
+      </ul>
+      <span id="i-prev" class="info" style="display:none;">Previous post</span>
+      <span id="i-next" class="info" style="display:none;">Next post</span>
+      <span id="i-top" class="info" style="display:none;">Back to top</span>
+      <span id="i-share" class="info" style="display:none;">Share post</span>
+    </span>
+    <br/>
+    <div id="share" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/10/07/git常用知识总结/"><i class="fab fa-facebook " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/10/07/git常用知识总结/&text=git常用知识总结"><i class="fab fa-twitter " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-linkedin " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/10/07/git常用知识总结/&is_video=false&description=git常用知识总结"><i class="fab fa-pinterest " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=git常用知识总结&body=Check out this article: http://yoursite.com/2017/10/07/git常用知识总结/"><i class="fas fa-envelope " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-get-pocket " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-reddit " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-stumbleupon " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-digg " aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/10/07/git常用知识总结/&name=git常用知识总结&description="><i class="fab fa-tumblr " aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+    <div id="toc">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-init"><span class="toc-number">1.</span> <span class="toc-text">git init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-clone"><span class="toc-number">2.</span> <span class="toc-text">git clone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-remote"><span class="toc-number">3.</span> <span class="toc-text">git remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-fetch"><span class="toc-number">4.</span> <span class="toc-text">git fetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-merge"><span class="toc-number">5.</span> <span class="toc-text">git merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-pull"><span class="toc-number">6.</span> <span class="toc-text">git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-push"><span class="toc-number">7.</span> <span class="toc-text">git push</span></a></li></ol>
+    </div>
+  </span>
+</div>
+
+    
+    <div class="content index my4">
+        
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+  <header>
+    
+    <h1 class="posttitle" itemprop="name headline">
+        git常用知识总结
+    </h1>
+
+
+
+    <div class="meta">
+      <span class="author" itemprop="author" itemscope itemtype="http://schema.org/Person">
+        <span itemprop="name">张晨旭</span>
+      </span>
+      
+    <div class="postdate">
+        <time datetime="2017-10-07T13:13:43.000Z" itemprop="datePublished">2017-10-07</time>
+    </div>
+
+
+      
+    <div class="article-tag">
+        <i class="fas fa-tag"></i>
+        <a class="tag-link" href="/tags/git/">git</a>
+    </div>
+
+
+    </div>
+  </header>
+  
+
+  <div class="content" itemprop="articleBody">
+    <h2 id="git-init"><a href="#git-init" class="headerlink" title="git init"></a>git init</h2><p>初始化一个git仓库</p>
+<h2 id="git-clone"><a href="#git-clone" class="headerlink" title="git clone"></a>git clone</h2><p>如果是是从远程主机克隆一个版本库<br><code>git clone &lt;仓库地址&gt;</code></p>
+<h2 id="git-remote"><a href="#git-remote" class="headerlink" title="git remote"></a>git remote</h2><p>为了便于管理，Git要求每个远程主机都必须指定一个主机名。<code>git remote</code>命令就用于管理主机名。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git remote //列出所有远程主机</span><br><span class="line">origin</span><br><span class="line">$ git remote -v</span><br></pre></td></tr></table></figure></p>
+<p>克隆版本库的时候，所使用的远程主机自动被Git命名为origin。如果想用其他的主机名，需要用git clone命令的-o选项指定。</p>
+<p><code>git remote show</code>命令加上主机名，可以查看该主机的详细信息。<br><code>git remote rm</code>命令用于删除远程主机。<br><code>git remote rename</code>命令用于远程主机的改名。</p>
+<h2 id="git-fetch"><a href="#git-fetch" class="headerlink" title="git fetch"></a>git fetch</h2><p>一旦远程主机的版本库有了更新（Git术语叫做commit），需要将这些更新取回本地，这时就要用到git fetch命令。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git fetch &lt;远程主机名&gt; // 取回全部更新</span><br><span class="line">$ git fetch &lt;远程主机名&gt;&lt;分支名&gt; //指定分支取回</span><br></pre></td></tr></table></figure></p>
+<h2 id="git-merge"><a href="#git-merge" class="headerlink" title="git merge"></a>git merge</h2><p>git merge命令在本地分支上合并远程分支。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git merge origin/master</span><br></pre></td></tr></table></figure></p>
+<h2 id="git-pull"><a href="#git-pull" class="headerlink" title="git pull"></a>git pull</h2><p><code>git pull</code>命令的作用是，取回远程主机某个分支的更新，再与本地的指定分支合并. 相当于<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git fetch &amp;&amp; git merge</span><br></pre></td></tr></table></figure></p>
+<h2 id="git-push"><a href="#git-push" class="headerlink" title="git push"></a>git push</h2><p><code>git push</code>命令用于将本地分支的更新，推送到远程主机。</p>
+
+  </div>
+</article>
+
+
+
+    </div>
+    
+      <div id="footer-post-container">
+  <div id="footer-post">
+
+    <div id="nav-footer" style="display: none">
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://zhangchenxu.github.io/2018/08/06/简历/">About</a></li>
+         
+          <li><a href="https://github.com/zhangchenxu">Github</a></li>
+        
+      </ul>
+    </div>
+
+    <div id="toc-footer" style="display: none">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#git-init"><span class="toc-number">1.</span> <span class="toc-text">git init</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-clone"><span class="toc-number">2.</span> <span class="toc-text">git clone</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-remote"><span class="toc-number">3.</span> <span class="toc-text">git remote</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-fetch"><span class="toc-number">4.</span> <span class="toc-text">git fetch</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-merge"><span class="toc-number">5.</span> <span class="toc-text">git merge</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-pull"><span class="toc-number">6.</span> <span class="toc-text">git pull</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-push"><span class="toc-number">7.</span> <span class="toc-text">git push</span></a></li></ol>
+    </div>
+
+    <div id="share-footer" style="display: none">
+      <ul>
+  <li><a class="icon" href="http://www.facebook.com/sharer.php?u=http://yoursite.com/2017/10/07/git常用知识总结/"><i class="fab fa-facebook fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://twitter.com/share?url=http://yoursite.com/2017/10/07/git常用知识总结/&text=git常用知识总结"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.linkedin.com/shareArticle?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-linkedin fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://pinterest.com/pin/create/bookmarklet/?url=http://yoursite.com/2017/10/07/git常用知识总结/&is_video=false&description=git常用知识总结"><i class="fab fa-pinterest fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="mailto:?subject=git常用知识总结&body=Check out this article: http://yoursite.com/2017/10/07/git常用知识总结/"><i class="fas fa-envelope fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="https://getpocket.com/save?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-get-pocket fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://reddit.com/submit?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-reddit fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.stumbleupon.com/submit?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-stumbleupon fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://digg.com/submit?url=http://yoursite.com/2017/10/07/git常用知识总结/&title=git常用知识总结"><i class="fab fa-digg fa-lg" aria-hidden="true"></i></a></li>
+  <li><a class="icon" href="http://www.tumblr.com/share/link?url=http://yoursite.com/2017/10/07/git常用知识总结/&name=git常用知识总结&description="><i class="fab fa-tumblr fa-lg" aria-hidden="true"></i></a></li>
+</ul>
+
+    </div>
+
+    <div id="actions-footer">
+        <a id="menu" class="icon" href="#" onclick="$('#nav-footer').toggle();return false;"><i class="fas fa-bars fa-lg" aria-hidden="true"></i> Menu</a>
+        <a id="toc" class="icon" href="#" onclick="$('#toc-footer').toggle();return false;"><i class="fas fa-list fa-lg" aria-hidden="true"></i> TOC</a>
+        <a id="share" class="icon" href="#" onclick="$('#share-footer').toggle();return false;"><i class="fas fa-share-alt fa-lg" aria-hidden="true"></i> Share</a>
+        <a id="top" style="display:none" class="icon" href="#" onclick="$('html, body').animate({ scrollTop: 0 }, 'fast');"><i class="fas fa-chevron-up fa-lg" aria-hidden="true"></i> Top</a>
+    </div>
+
+  </div>
+</div>
+
+    
+    <footer id="footer">
+  <div class="footer-left">
+    Copyright &copy; 2018 张晨旭
+  </div>
+  <div class="footer-right">
+    <nav>
+      <ul>
+         
+          <li><a href="/">Home</a></li>
+         
+          <li><a href="/archives/">Writing</a></li>
+         
+          <li><a href="https://zhangchenxu.github.io/2018/08/06/简历/">About</a></li>
+         
+          <li><a href="https://github.com/zhangchenxu">Github</a></li>
+        
+      </ul>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+<!-- styles -->
+<link rel="stylesheet" href="/lib/font-awesome/css/fontawesome-all.min.css">
+<link rel="stylesheet" href="/lib/justified-gallery/css/justifiedGallery.min.css">
+
+<!-- jquery -->
+<script src="/lib/jquery/jquery.min.js"></script>
+<script src="/lib/justified-gallery/js/jquery.justifiedGallery.min.js"></script>
+<script src="/js/main.js"></script>
+<!-- search -->
+
+<!-- Google Analytics -->
+
+<!-- Baidu Analytics -->
+
+<!-- Disqus Comments -->
+
+
